@@ -1,0 +1,305 @@
+import 'package:flutter/material.dart';
+import '../../core/theme/app_colors.dart';
+
+class AdminShopSettingsScreen extends StatefulWidget {
+  const AdminShopSettingsScreen({super.key});
+
+  @override
+  State<AdminShopSettingsScreen> createState() =>
+      _AdminShopSettingsScreenState();
+}
+
+class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
+  final TextEditingController _beneficiaryNameCtrl = TextEditingController();
+  final TextEditingController _bankNameCtrl = TextEditingController();
+  final TextEditingController _upiIdCtrl = TextEditingController();
+  final TextEditingController _phoneCtrl = TextEditingController();
+  final TextEditingController _boutiqueNameCtrl = TextEditingController(
+    text: 'Fashion Boutique',
+  );
+  final TextEditingController _emailCtrl = TextEditingController();
+
+  @override
+  void dispose() {
+    _beneficiaryNameCtrl.dispose();
+    _bankNameCtrl.dispose();
+    _upiIdCtrl.dispose();
+    _phoneCtrl.dispose();
+    _boutiqueNameCtrl.dispose();
+    _emailCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.backgroundUser,
+      appBar: AppBar(
+        title: const Text(
+          'Shop & UPI Settings',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: AppColors.textUser,
+          ),
+        ),
+        backgroundColor: Colors.white.withValues(alpha: 0.95),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.textUser),
+          onPressed: () => Navigator.pop(context),
+        ),
+        elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(1),
+          child: Container(color: Colors.grey[200], height: 1),
+        ),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            // UPI Details Section
+            _buildSection(
+              title: 'UPI Payment Details',
+              icon: Icons.payments,
+              children: [
+                _buildTextField(
+                  'Beneficiary Name',
+                  'e.g. Anjali Sharma',
+                  _beneficiaryNameCtrl,
+                ),
+                const SizedBox(height: 16),
+                _buildTextField('Bank Name', 'e.g. HDFC Bank', _bankNameCtrl),
+                const SizedBox(height: 16),
+                _buildTextField('UPI ID', 'username@bank', _upiIdCtrl),
+                const SizedBox(height: 16),
+                _buildTextField(
+                  'Phone Number',
+                  '98765 43210',
+                  _phoneCtrl,
+                  prefixText: '+91 ',
+                ),
+                const SizedBox(height: 24),
+                _buildActionButton('UPDATE UPI DETAILS', Icons.save, () {}),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // QR Code Section
+            _buildSection(
+              title: 'Shop QR Code',
+              icon: Icons.qr_code_scanner,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    // Pick Image Logic
+                  },
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Colors.grey.shade300,
+                        style: BorderStyle.none,
+                      ), // Dashed borders need custom painter usually, stick to solid or library
+                      image: const DecorationImage(
+                        image: NetworkImage(
+                          'https://placehold.co/400x400/png?text=QR+Code',
+                        ),
+                        fit: BoxFit.contain,
+                        opacity: 0.5,
+                      ),
+                    ),
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.cloud_upload_outlined,
+                            size: 48,
+                            color: Colors.grey.shade400,
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Tap to upload new QR',
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 24),
+                _buildActionButton(
+                  'UPDATE QR CODE',
+                  Icons.upload_file,
+                  () {},
+                  isOutlined: true,
+                ),
+              ],
+            ),
+            const SizedBox(height: 24),
+
+            // Shop Profile Section
+            _buildSection(
+              title: 'Shop Profile',
+              icon: Icons.storefront,
+              children: [
+                _buildTextField(
+                  'Boutique Name',
+                  'e.g. Elegant Trends',
+                  _boutiqueNameCtrl,
+                ),
+                const SizedBox(height: 16),
+                _buildTextField(
+                  'Contact Email',
+                  'admin@boutique.com',
+                  _emailCtrl,
+                ),
+                const SizedBox(height: 24),
+                _buildActionButton(
+                  'UPDATE PROFILE',
+                  Icons.edit_calendar_rounded,
+                  () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSection({
+    required String title,
+    required IconData icon,
+    required List<Widget> children,
+  }) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+        border: Border.all(color: Colors.grey.shade100),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: AppColors.primaryUser.withValues(alpha: 0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(icon, color: AppColors.primaryUser),
+              ),
+              const SizedBox(width: 12),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textUser,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          ...children,
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField(
+    String label,
+    String placeholder,
+    TextEditingController controller, {
+    String? prefixText,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: const TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 14,
+            color: AppColors.textMuted,
+          ),
+        ),
+        const SizedBox(height: 8),
+        TextField(
+          controller: controller,
+          decoration: InputDecoration(
+            hintText: placeholder,
+            prefixText: prefixText,
+            filled: true,
+            fillColor: Colors.white,
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.grey.shade300),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: const BorderSide(color: AppColors.primaryUser),
+            ),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 16,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildActionButton(
+    String label,
+    IconData icon,
+    VoidCallback onPressed, {
+    bool isOutlined = false,
+  }) {
+    if (isOutlined) {
+      return OutlinedButton.icon(
+        onPressed: onPressed,
+        style: OutlinedButton.styleFrom(
+          padding: const EdgeInsets.symmetric(vertical: 16),
+          side: const BorderSide(color: AppColors.primaryUser, width: 2),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          foregroundColor: AppColors.primaryUser,
+        ),
+        icon: Icon(icon),
+        label: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+      );
+    }
+    return ElevatedButton.icon(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.primaryUser,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(vertical: 16),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 4,
+        shadowColor: AppColors.primaryUser.withValues(alpha: 0.4),
+      ),
+      icon: Icon(icon),
+      label: Text(label, style: const TextStyle(fontWeight: FontWeight.bold)),
+    );
+  }
+}

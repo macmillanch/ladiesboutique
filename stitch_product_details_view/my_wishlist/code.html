@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Wishlist</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&amp;family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#b8a17f",
+                "background-light": "#faf7f5",
+                "background-dark": "#2a2622",
+                "surface-light": "#ffffff",
+                "surface-dark": "#3c3632",
+                "text-main-light": "#1c1917",
+                "text-main-dark": "#e7e5e4",
+                "text-secondary-light": "#78716c",
+                "text-secondary-dark": "#a8a29e",
+              },
+              fontFamily: {
+                "display": ["Noto Serif", "serif"],
+                "body": ["Manrope", "sans-serif"]
+              },
+              borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+              boxShadow: {
+                "whisper": "0 4px 20px -2px rgba(184, 161, 127, 0.08)",
+                "soft-hover": "0 10px 25px -5px rgba(184, 161, 127, 0.15)",
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        /* Custom scrollbar hide for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main-light dark:text-text-main-dark antialiased selection:bg-primary/30">
+<div class="relative flex h-full min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/10 transition-colors duration-300">
+<div class="flex items-center p-4 pb-3 justify-between">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-primary/10 transition-colors text-text-main-light dark:text-text-main-dark">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-center">My Wishlist</h1>
+<div class="size-10 shrink-0"></div> <!-- Spacer for optical centering -->
+</div>
+<!-- Filter/Sort Bar -->
+<div class="px-4 pb-4 flex justify-between items-center text-sm font-body">
+<span class="text-text-secondary-light dark:text-text-secondary-dark">4 Items</span>
+<button class="flex items-center gap-1 text-primary hover:text-primary/80 transition-colors">
+<span class="underline underline-offset-4 decoration-primary/40">Sort by Date</span>
+<span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-4 pt-2">
+<!-- Grid Layout -->
+<div class="grid grid-cols-2 gap-x-4 gap-y-6">
+<!-- Product Card 1 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark shadow-whisper group-hover:shadow-soft-hover transition-all duration-300">
+<!-- Image -->
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Soft silk blouse in cream color hanging gracefully" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA6ItgVQ_A8DxkewkQFiugY0gybgKdDmVR53oBRBzKxAIVCeQyDo3PjtfhtsClhVvPms3-6jjTnvVSUi1YqTD4Cli1rvkkGBdlmxLZ6qesMzsqR3cddwksebtJGNzB7StARXm50H4aTA1EpvvkcSJ_rjLLhMV3imIQwwnShqOVWJ14je7fHnMW8o7d1ZfnPheqqLB-6ShIOgAdDg51B-YEJ4JKQwGZii1mai9Z3INST16-lzdmzYXp-JBQwKa1662iIdz0KAYVuYlA");'>
+</div>
+<!-- Remove Heart Icon -->
+<button class="absolute top-2 right-2 p-2 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm text-primary hover:bg-white hover:scale-110 transition-all shadow-sm z-10">
+<span class="material-symbols-outlined text-[20px] font-variation-settings-'FILL'1">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<div class="flex justify-between items-start gap-2">
+<h3 class="text-sm font-medium leading-tight line-clamp-2">The Siena Silk Blouse</h3>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-body font-medium">$120.00</p>
+<button class="mt-2 w-full py-2.5 rounded-lg bg-primary text-white text-xs font-body font-bold uppercase tracking-wide hover:bg-primary/90 hover:shadow-lg active:scale-95 transition-all">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark shadow-whisper group-hover:shadow-soft-hover transition-all duration-300">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Wide leg beige linen trousers folded neatly" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAnFoqTKW31_nqJeuU3ovhYhYFIGOB1ubWkcKClHuiXIQLWJixRfvbOAfKCYS63m6BpFq_gT__v-AYipIoHBhGzz2jrOoDA-D8-YEPu6Eiy-T8kPliv1hLSxIOBNwWgvxb55E1LUjfKpfKqoHeeXyEgEjwbcPHij5d-pgofRXX5uYITibzAkTERroq_MMgfr7kEJW1B89Qa27Pi4hqTH5IxC1CEBnFqxECQ4T1O2y28Ez2T8MycONkNTL4VRuX-pyMIgmWFuf4aj-U");'>
+</div>
+<button class="absolute top-2 right-2 p-2 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm text-primary hover:bg-white hover:scale-110 transition-all shadow-sm z-10">
+<span class="material-symbols-outlined text-[20px] font-variation-settings-'FILL'1">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<div class="flex justify-between items-start gap-2">
+<h3 class="text-sm font-medium leading-tight line-clamp-2">Wide-Leg Linen Pant</h3>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-body font-medium">$185.00</p>
+<button class="mt-2 w-full py-2.5 rounded-lg border border-primary text-primary hover:text-white hover:bg-primary text-xs font-body font-bold uppercase tracking-wide transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark shadow-whisper group-hover:shadow-soft-hover transition-all duration-300">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Pearl drop earrings on a marble surface" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBgHapFMCEJAj_kS0AI-OALePArf99aoalbCNZK1QrnzoNy-XQSmObFNVrzNA-fagR4WsHoOxzco28ZPuO1dvP1XN2tjZ972XcUYExqcVCQmx1EOsz2yaUk2Y3tR5R3DK3BcZB7jlyDY_fa4SUINX4utHKAJ8Y3SIckMbMF62MkdORYuAKeYM5tFN7zOdSSwYsKHWXkJg6mP-e2Orwh_jDP2IbBXXWhtCaWHCNjR9gh3NBdI2d4L0-FkveG7nEq6xWTKGpQZeH23Hc");'>
+</div>
+<button class="absolute top-2 right-2 p-2 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm text-primary hover:bg-white hover:scale-110 transition-all shadow-sm z-10">
+<span class="material-symbols-outlined text-[20px] font-variation-settings-'FILL'1">favorite</span>
+</button>
+<!-- Low stock badge -->
+<div class="absolute bottom-2 left-2 px-2 py-0.5 rounded-full bg-white/80 dark:bg-black/60 backdrop-blur-sm">
+<p class="text-[10px] uppercase font-bold tracking-wider text-text-main-light dark:text-text-main-dark">Low Stock</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<div class="flex justify-between items-start gap-2">
+<h3 class="text-sm font-medium leading-tight line-clamp-2">Heirloom Pearl Drop</h3>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-body font-medium">$65.00</p>
+<button class="mt-2 w-full py-2.5 rounded-lg border border-primary text-primary hover:text-white hover:bg-primary text-xs font-body font-bold uppercase tracking-wide transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative flex flex-col gap-3">
+<div class="relative w-full aspect-[3/4] overflow-hidden rounded-lg bg-surface-light dark:bg-surface-dark shadow-whisper group-hover:shadow-soft-hover transition-all duration-300">
+<div class="w-full h-full bg-center bg-no-repeat bg-cover transition-transform duration-700 group-hover:scale-105" data-alt="Woven straw tote bag with leather handles" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAQIfvIeCl68Lw2rxYi0T5ZyHEojZ9LWJ2gzNdDy6XFqqvIKM4BCF4kqdFVa7FNm1IQhhL5jD99sln5RzcvTem6dBXyUJTBlGCccfcyrh1Fo1q58o1mOdFiUgsDUvT5QydOJ93J5YwNx0ILx_LhRmzOBdpwcTF7DUUSBA8Ce3r2yMNiOM6Lq3DTie1fwFXV4OttIhU_SLqG-dGLM_wjtXHs5gAfTNODp6Xkvs8jR2JwQ71fF7GJFtYMJsuZoBYsqUulyrGpm3YbAH4");'>
+</div>
+<button class="absolute top-2 right-2 p-2 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm text-primary hover:bg-white hover:scale-110 transition-all shadow-sm z-10">
+<span class="material-symbols-outlined text-[20px] font-variation-settings-'FILL'1">favorite</span>
+</button>
+</div>
+<div class="flex flex-col gap-1 px-1">
+<div class="flex justify-between items-start gap-2">
+<h3 class="text-sm font-medium leading-tight line-clamp-2">Artisan Woven Tote</h3>
+</div>
+<p class="text-text-secondary-light dark:text-text-secondary-dark text-xs font-body font-medium">$145.00</p>
+<button class="mt-2 w-full py-2.5 rounded-lg border border-primary text-primary hover:text-white hover:bg-primary text-xs font-body font-bold uppercase tracking-wide transition-all active:scale-95">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Subtle Decorative Element at bottom of list -->
+<div class="flex justify-center items-center py-12 opacity-40">
+<div class="h-px w-12 bg-primary"></div>
+<div class="mx-3 text-primary">
+<span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+</div>
+<div class="h-px w-12 bg-primary"></div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="sticky bottom-0 z-50 border-t border-primary/10 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-lg pb-safe">
+<div class="flex justify-around items-end px-2 pt-3 pb-5">
+<a class="group flex flex-1 flex-col items-center justify-center gap-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform duration-300">storefront</span>
+<span class="text-[10px] font-body font-medium tracking-wide">Home</span>
+</a>
+<a class="group flex flex-1 flex-col items-center justify-center gap-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform duration-300">search</span>
+<span class="text-[10px] font-body font-medium tracking-wide">Search</span>
+</a>
+<a class="group flex flex-1 flex-col items-center justify-center gap-1.5 text-primary" href="#">
+<span class="material-symbols-outlined text-[24px] font-variation-settings-'FILL'1 animate-pulse">favorite</span>
+<span class="text-[10px] font-body font-bold tracking-wide">Wishlist</span>
+</a>
+<a class="group flex flex-1 flex-col items-center justify-center gap-1.5 text-text-secondary-light dark:text-text-secondary-dark hover:text-primary transition-colors" href="#">
+<div class="relative">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-y-0.5 transition-transform duration-300">shopping_bag</span>
+<span class="absolute -top-1 -right-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-primary text-[8px] text-white">2</span>
+</div>
+<span class="text-[10px] font-body font-medium tracking-wide">Bag</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

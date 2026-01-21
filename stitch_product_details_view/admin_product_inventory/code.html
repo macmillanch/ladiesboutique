@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Product Inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00bdc7",
+                        "secondary": "#2A2A2A",
+                        "danger": "#D65C5C",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1a1a1a",
+                        "surface-light": "#F8F8F8",
+                        "surface-dark": "#2d2d2d",
+                        "text-light": "#2A2A2A",
+                        "text-dark": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px rgba(0,0,0,0.05)',
+                        'float': '0 10px 30px -5px rgba(0,0,0,0.1)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom toggle switch styling to match requirements */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #00bdc7;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #00bdc7;
+        }
+        
+        /* Hide scrollbar for cleaner look on mobile but allow scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark font-display antialiased min-h-screen flex flex-col">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+<div class="flex items-center justify-between px-5 py-4">
+<button class="flex items-center justify-center p-2 -ml-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-3xl text-secondary dark:text-white">arrow_back</span>
+</button>
+<h1 class="text-xl font-extrabold tracking-tight text-center flex-1 text-secondary dark:text-white uppercase">Inventory Management</h1>
+<div class="w-10"></div> <!-- Spacer for optical centering -->
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-5 pb-8 pt-4 space-y-8 max-w-lg mx-auto w-full">
+<!-- Add New Product Button -->
+<div class="relative group">
+<button class="w-full relative overflow-hidden bg-primary hover:bg-[#00a0a8] active:scale-[0.98] transition-all duration-200 text-white rounded-xl shadow-float h-16 flex items-center justify-center gap-3">
+<div class="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-3xl font-bold">add_circle</span>
+<span class="text-lg font-bold tracking-wide uppercase">Add New Product</span>
+</button>
+</div>
+<!-- Product List -->
+<div class="flex flex-col gap-5">
+<!-- Product Item 1: Active -->
+<article class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-soft flex flex-col gap-4 border border-transparent dark:border-gray-700 hover:border-primary/20 transition-all duration-200">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="shrink-0 relative">
+<div class="h-28 w-28 rounded-lg bg-gray-200 dark:bg-gray-700 bg-cover bg-center shadow-inner" data-alt="Floral wrap dress on a hanger" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwMyHAQ9jjYix6qGJaFtvbRLCNvMhFT08u2iqMo_I7sFhPJGTK_eUytHu_H4HNwgohePBM1n7Iwyzx_oGnVxJMu1c09Cx0DbF5ws3mSsP5plIM3UmlPQooYcaD_tIO-JaSNt3m7Ra7AtP_25nrA7O7cmO3LxOtNL-LPN2fbJDgQGalYw9DL-yrOZd0puNXyu6LMcYLlm_SOK6bpBE7ytfYPqFQEfQFlNOotLkIIYC2x-tebL0pUGmXc7zwIYOPDcXSMxu5-MeiMic');">
+</div>
+</div>
+<!-- Product Details -->
+<div class="flex flex-col justify-center flex-1 min-w-0 py-1">
+<h3 class="text-xl font-bold text-secondary dark:text-white leading-tight mb-1 truncate">Floral Wrap Dress</h3>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-3">$120.00</p>
+<!-- Inline Edit Button for Quick Access -->
+<button class="self-start flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-secondary dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700 active:bg-gray-100 dark:active:bg-gray-600 transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            EDIT
+                        </button>
+</div>
+</div>
+<!-- Stock Toggle Area - Full Width for ease of access -->
+<div class="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
+<span class="text-base font-bold text-primary">In Stock</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</article>
+<!-- Product Item 2: Out of Stock Variant -->
+<article class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-soft flex flex-col gap-4 border border-transparent dark:border-gray-700 hover:border-danger/20 transition-all duration-200">
+<div class="flex gap-4">
+<div class="shrink-0 relative">
+<!-- Overlay for out of stock visual cue -->
+<div class="absolute inset-0 bg-white/50 dark:bg-black/50 z-10 rounded-lg flex items-center justify-center">
+<span class="bg-black/70 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Sold Out</span>
+</div>
+<div class="h-28 w-28 rounded-lg bg-gray-200 dark:bg-gray-700 bg-cover bg-center shadow-inner grayscale" data-alt="Elegant silk blouse folded" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCtTCtCD34HWoa-5pp861zOmwNpKrwtdl7LwPQ8PMjfbAvRlGDwTMNq4O-_LO66HJ2s0Z922judQzrNNybKdGVhwHNN41kAl0ueugbBCpNVe-ZXPKrn5N8t8SYQKaIicEuU9DA_L4YCyStOIIG9TOrbZivR3Ro-h-O5Xogv5Z4y4_9H5H7Vnif--HWarEXNj18zkWt3uYvUBK26CE9VoZ_8mYVjnTv7xB9i5_soS5aYeUfg_V463xw4oVmgSj7KGWkS2qgQug21a6U');">
+</div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0 py-1 opacity-60">
+<h3 class="text-xl font-bold text-secondary dark:text-white leading-tight mb-1 truncate">Silk Blouse</h3>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-3">$85.00</p>
+<button class="self-start flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-secondary dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            EDIT
+                        </button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
+<span class="text-base font-bold text-danger">Out of Stock</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</article>
+<!-- Product Item 3: Active -->
+<article class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-soft flex flex-col gap-4 border border-transparent dark:border-gray-700 hover:border-primary/20 transition-all duration-200">
+<div class="flex gap-4">
+<div class="shrink-0 relative">
+<div class="h-28 w-28 rounded-lg bg-gray-200 dark:bg-gray-700 bg-cover bg-center shadow-inner" data-alt="Classic brown leather handbag" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBjoVWD8bLcjvSE9ouuBC4Y3vbiMsc76PT0Bl2X7AApKhnF0mRxUZRbwL5rNUKyJjk8suZs6IZAOSjLmw3uxPWB-xKf-OQF8z_H5bW1Gin4Mrt-lxenD66Ort33KYzEn1b2VFU6iZpadZtunyUkZgyyEnXNenkWN49CYQne25HYOekrSNX1o9fdhE9qbp7oAGjNapi9VHDrOq9XxpCNW8PU6XagCK1AcISLRYqOqAOp7c6wB4rameG6h9qGPEh2Q9__8xMdDRs6_I');">
+</div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0 py-1">
+<h3 class="text-xl font-bold text-secondary dark:text-white leading-tight mb-1 truncate">Classic Leather Handbag</h3>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-3">$250.00</p>
+<button class="self-start flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-secondary dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            EDIT
+                        </button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
+<span class="text-base font-bold text-primary">In Stock</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</article>
+<!-- Product Item 4: Active -->
+<article class="bg-surface-light dark:bg-surface-dark rounded-xl p-4 shadow-soft flex flex-col gap-4 border border-transparent dark:border-gray-700 hover:border-primary/20 transition-all duration-200">
+<div class="flex gap-4">
+<div class="shrink-0 relative">
+<div class="h-28 w-28 rounded-lg bg-gray-200 dark:bg-gray-700 bg-cover bg-center shadow-inner" data-alt="Summer hat with wide brim" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC8l0jmCOPwOnPsk2zu7gDLoIGzUuRvt_tGwg8kSIaG2JO_FWdi9dMspmPBmHLISEvu8c7i0HtxyZJtG2BVl3fg4m6ecYBlPzPlyMwtydUPfYMmJigeEUOMN08TCjXwaH1RElgwpifwAZpQdBH3ilffSemyWwiqeMMQIMHEgS-RxStPOgfsagSZniyGNjm8I18GGw_LkbvXtAo4FQSBCAOx_EGjc048G6lXPM-CSyC-x0njj8NBBdf6j-014KKe9zb5Oz_2xz92QLc');">
+</div>
+</div>
+<div class="flex flex-col justify-center flex-1 min-w-0 py-1">
+<h3 class="text-xl font-bold text-secondary dark:text-white leading-tight mb-1 truncate">Sun Hat</h3>
+<p class="text-lg text-gray-500 dark:text-gray-400 font-medium mb-3">$45.00</p>
+<button class="self-start flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg text-secondary dark:text-white text-sm font-bold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+                            EDIT
+                        </button>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
+<span class="text-base font-bold text-primary">In Stock</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-14 h-8 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
+</label>
+</div>
+</article>
+</div>
+</main>
+<!-- Bottom padding for scroll space -->
+<div class="h-8"></div>
+</body></html>

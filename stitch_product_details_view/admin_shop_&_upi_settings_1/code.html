@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Shop &amp; UPI Settings</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00bdc7",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1c1f22",
+                        "surface-light": "#f8fafc",
+                        "surface-dark": "#25292e",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-900 dark:text-gray-100 antialiased selection:bg-primary/30">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden pb-10">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+<div class="flex items-center p-4 h-16 justify-between max-w-lg mx-auto w-full">
+<button class="flex size-12 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors group">
+<span class="material-symbols-outlined text-gray-900 dark:text-white group-hover:scale-110 transition-transform" style="font-size: 28px;">arrow_back</span>
+</button>
+<h1 class="text-gray-900 dark:text-white text-xl font-bold leading-tight tracking-tight flex-1 text-center pr-12">
+                    Shop &amp; UPI Settings
+                </h1>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 w-full max-w-lg mx-auto px-4 pt-6 space-y-8">
+<!-- Section 1: UPI Payment Details -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">payments</span>
+</div>
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">UPI Payment Details</h2>
+</div>
+<div class="space-y-6">
+<!-- Field: Beneficiary Name -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">Beneficiary Name</span>
+<input class="w-full h-16 px-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="e.g. Anjali Sharma" type="text"/>
+</label>
+<!-- Field: Bank Name -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">Bank Name</span>
+<input class="w-full h-16 px-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="e.g. HDFC Bank" type="text"/>
+</label>
+<!-- Field: UPI ID -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">UPI ID</span>
+<input class="w-full h-16 px-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="username@bank" type="text"/>
+</label>
+<!-- Field: Phone Number -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">Phone Number</span>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl text-gray-500 font-medium">+91</span>
+<input class="w-full h-16 pl-14 pr-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="98765 43210" type="tel"/>
+</div>
+</label>
+</div>
+<div class="mt-8">
+<button class="w-full h-14 bg-primary text-white text-lg font-bold rounded-xl shadow-lg shadow-primary/30 hover:bg-primary/90 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">save</span>
+                        UPDATE UPI DETAILS
+                    </button>
+</div>
+</section>
+<!-- Section 2: Shop QR Code -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">qr_code_scanner</span>
+</div>
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">Shop QR Code</h2>
+</div>
+<div class="flex flex-col items-center">
+<!-- Upload Area -->
+<div class="w-full relative group cursor-pointer">
+<div class="w-full aspect-square max-h-64 rounded-2xl border-2 border-dashed border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark flex flex-col items-center justify-center text-center p-6 transition-colors group-hover:border-primary group-hover:bg-primary/5">
+<!-- Placeholder QR Visual -->
+<div class="size-24 bg-gray-100 dark:bg-gray-700 rounded-lg mb-4 grid grid-cols-5 grid-rows-5 gap-1 p-2 opacity-50 group-hover:opacity-100 transition-opacity">
+<div class="col-span-2 row-span-2 bg-gray-400 dark:bg-gray-500 rounded-sm"></div>
+<div class="col-span-2 row-span-2 col-start-4 bg-gray-400 dark:bg-gray-500 rounded-sm"></div>
+<div class="col-span-2 row-span-2 row-start-4 bg-gray-400 dark:bg-gray-500 rounded-sm"></div>
+<div class="col-start-3 row-start-3 bg-gray-400 dark:bg-gray-500 rounded-sm"></div>
+<div class="col-start-4 row-start-4 bg-gray-400 dark:bg-gray-500 rounded-sm"></div>
+</div>
+<p class="text-lg font-medium text-gray-600 dark:text-gray-300 mb-1">Tap to upload new QR</p>
+<p class="text-sm text-gray-400">Supports JPG, PNG</p>
+<!-- Hidden File Input -->
+<input class="absolute inset-0 opacity-0 cursor-pointer" type="file"/>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<button class="w-full h-14 bg-white dark:bg-gray-700 border-2 border-primary text-primary dark:text-primary font-bold text-lg rounded-xl hover:bg-primary/5 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">upload_file</span>
+                        UPDATE QR CODE
+                    </button>
+</div>
+</section>
+<!-- Section 3: Shop Profile -->
+<section class="bg-surface-light dark:bg-surface-dark rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" style="font-size: 24px;">storefront</span>
+</div>
+<h2 class="text-xl font-bold text-gray-900 dark:text-white">Shop Profile</h2>
+</div>
+<div class="space-y-6">
+<!-- Field: Boutique Name -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">Boutique Name</span>
+<input class="w-full h-16 px-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="e.g. Elegant Trends" type="text" value="Fashion Boutique"/>
+</label>
+<!-- Field: Contact Email -->
+<label class="block space-y-2">
+<span class="text-lg font-medium text-gray-700 dark:text-gray-300">Contact Email</span>
+<input class="w-full h-16 px-4 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-background-dark text-xl text-gray-900 dark:text-white placeholder:text-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all shadow-sm" placeholder="admin@boutique.com" type="email"/>
+</label>
+</div>
+<div class="mt-8">
+<button class="w-full h-14 bg-primary text-white text-lg font-bold rounded-xl shadow-lg shadow-primary/30 hover:bg-primary/90 hover:shadow-primary/40 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">edit_square</span>
+                        UPDATE PROFILE
+                    </button>
+</div>
+</section>
+<!-- Bottom spacing -->
+<div class="h-10"></div>
+</main>
+</div>
+</body></html>

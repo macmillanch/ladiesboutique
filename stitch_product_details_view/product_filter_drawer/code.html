@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Filter Drawer</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a79086",
+                        "primary-dark": "#8e7a71",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#1b1817",
+                        "boutique-beige": "#F9F7F2",
+                        "charcoal": "#333333",
+                        "surface-white": "#FFFFFF",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display bg-gray-500/30 flex items-end justify-center min-h-screen antialiased">
+<!-- Drawer Container (Simulating a slide-over sheet) -->
+<div class="relative w-full max-w-md h-[90vh] bg-boutique-beige dark:bg-background-dark rounded-t-3xl shadow-2xl overflow-hidden flex flex-col transition-all duration-300 ease-out group/design-root">
+<!-- Bottom Sheet Handle -->
+<div class="flex flex-col items-center pt-3 pb-1 bg-boutique-beige dark:bg-background-dark shrink-0 z-10">
+<div class="h-1.5 w-12 rounded-full bg-[#E5E0DD] dark:bg-white/20"></div>
+</div>
+<!-- Top App Bar -->
+<div class="flex items-center justify-between px-6 py-4 bg-boutique-beige dark:bg-background-dark shrink-0">
+<!-- Empty div for spacing balance if needed, or just flex-1 text-center -->
+<div class="w-10"></div> <!-- Spacer -->
+<h2 class="text-charcoal dark:text-white text-xl font-bold tracking-tight">Filters</h2>
+<button class="w-10 h-10 flex items-center justify-end text-charcoal dark:text-white hover:opacity-70 transition-opacity rounded-full">
+<span class="material-symbols-outlined text-[28px]">close</span>
+</button>
+</div>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto px-6 pb-24">
+<!-- Price Range Section -->
+<div class="py-6 border-b border-[#EBE5E1] dark:border-white/10">
+<div class="flex justify-between items-end mb-6">
+<h3 class="text-charcoal dark:text-white text-lg font-semibold">Price Range</h3>
+<p class="text-primary font-bold text-base">$50 — $250</p>
+</div>
+<div class="px-2 pb-2">
+<div class="relative w-full h-12 flex items-center">
+<!-- Track Background -->
+<div class="absolute w-full h-1.5 bg-[#EBE5E1] dark:bg-white/10 rounded-full"></div>
+<!-- Active Range Track -->
+<div class="absolute h-1.5 bg-primary rounded-full left-[20%] right-[30%]"></div>
+<!-- Left Thumb -->
+<div class="absolute left-[20%] -translate-x-1/2 w-7 h-7 bg-white dark:bg-zinc-800 border-[1.5px] border-primary rounded-full shadow-md flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+</div>
+<!-- Right Thumb -->
+<div class="absolute right-[30%] translate-x-1/2 w-7 h-7 bg-white dark:bg-zinc-800 border-[1.5px] border-primary rounded-full shadow-md flex items-center justify-center cursor-pointer hover:scale-110 transition-transform z-10">
+<div class="w-2 h-2 bg-primary rounded-full"></div>
+</div>
+</div>
+<div class="flex justify-between mt-1">
+<span class="text-xs text-gray-400 font-medium">$0</span>
+<span class="text-xs text-gray-400 font-medium">$500+</span>
+</div>
+</div>
+</div>
+<!-- Size Selection Section -->
+<div class="py-8 border-b border-[#EBE5E1] dark:border-white/10">
+<h3 class="text-charcoal dark:text-white text-lg font-semibold mb-5">Select Size</h3>
+<div class="flex flex-wrap gap-4">
+<!-- Option: Small -->
+<button class="w-12 h-12 rounded-full border border-[#E0D6D3] bg-surface-white dark:bg-white/5 dark:border-white/10 text-charcoal dark:text-gray-300 font-medium hover:border-primary hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center text-sm">
+                        S
+                    </button>
+<!-- Option: Medium (Selected) -->
+<button class="w-12 h-12 rounded-full bg-primary text-white font-semibold shadow-md shadow-primary/30 flex items-center justify-center text-sm ring-2 ring-primary ring-offset-2 ring-offset-boutique-beige dark:ring-offset-background-dark">
+                        M
+                    </button>
+<!-- Option: Large -->
+<button class="w-12 h-12 rounded-full border border-[#E0D6D3] bg-surface-white dark:bg-white/5 dark:border-white/10 text-charcoal dark:text-gray-300 font-medium hover:border-primary hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center text-sm">
+                        L
+                    </button>
+<!-- Option: XL -->
+<button class="w-12 h-12 rounded-full border border-[#E0D6D3] bg-surface-white dark:bg-white/5 dark:border-white/10 text-charcoal dark:text-gray-300 font-medium hover:border-primary hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center text-sm">
+                        XL
+                    </button>
+<!-- Option: XXL -->
+<button class="w-12 h-12 rounded-full border border-[#E0D6D3] bg-surface-white dark:bg-white/5 dark:border-white/10 text-charcoal dark:text-gray-300 font-medium hover:border-primary hover:text-primary dark:hover:text-primary transition-colors flex items-center justify-center text-sm opacity-50 cursor-not-allowed decoration-slice">
+                        XXL
+                    </button>
+</div>
+</div>
+<!-- Color Selection Section -->
+<div class="py-8">
+<h3 class="text-charcoal dark:text-white text-lg font-semibold mb-5">Colors</h3>
+<div class="grid grid-cols-5 gap-y-4 gap-x-2">
+<!-- Color: Rose -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-11 h-11 rounded-full bg-[#E8C4C4] relative group focus:outline-none">
+<div class="absolute inset-0 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-[#E8C4C4] dark:ring-offset-background-dark transition-all"></div>
+</button>
+<span class="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Rose</span>
+</div>
+<!-- Color: Sage -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-11 h-11 rounded-full bg-[#BCC5B5] relative group focus:outline-none">
+<span class="material-symbols-outlined text-white/80 text-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 drop-shadow-sm">check</span>
+<div class="absolute inset-0 rounded-full ring-1 ring-offset-2 ring-gray-300 dark:ring-gray-600 dark:ring-offset-background-dark transition-all"></div>
+</button>
+<span class="text-[10px] text-gray-800 dark:text-gray-200 font-bold uppercase tracking-wide">Sage</span>
+</div>
+<!-- Color: Cream -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-11 h-11 rounded-full bg-[#F5F0E6] border border-gray-200 relative group focus:outline-none">
+<div class="absolute inset-0 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-[#D6Cfc0] dark:ring-offset-background-dark transition-all"></div>
+</button>
+<span class="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Cream</span>
+</div>
+<!-- Color: Sky -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-11 h-11 rounded-full bg-[#C8D9EB] relative group focus:outline-none">
+<div class="absolute inset-0 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-[#C8D9EB] dark:ring-offset-background-dark transition-all"></div>
+</button>
+<span class="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Sky</span>
+</div>
+<!-- Color: Black -->
+<div class="flex flex-col items-center gap-2">
+<button class="w-11 h-11 rounded-full bg-[#2A2A2A] relative group focus:outline-none">
+<div class="absolute inset-0 rounded-full ring-2 ring-offset-2 ring-transparent group-hover:ring-gray-400 dark:ring-offset-background-dark transition-all"></div>
+</button>
+<span class="text-[10px] text-gray-500 font-medium uppercase tracking-wide">Noir</span>
+</div>
+</div>
+</div>
+<!-- Spacer for bottom scroll -->
+<div class="h-6"></div>
+</div>
+<!-- Sticky Footer -->
+<div class="absolute bottom-0 left-0 w-full bg-surface-white/90 dark:bg-[#252221]/90 backdrop-blur-md border-t border-[#EBE5E1] dark:border-white/5 p-6 flex items-center justify-between gap-6 z-20">
+<button class="text-sm font-semibold text-gray-500 dark:text-gray-400 hover:text-primary transition-colors px-2 py-2">
+                Reset
+            </button>
+<button class="flex-1 h-14 bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all rounded-full flex items-center justify-center gap-2 shadow-lg shadow-primary/25 text-white">
+<span class="text-base font-bold tracking-wide">Apply Filters</span>
+<span class="bg-white/20 px-2 py-0.5 rounded-full text-xs font-semibold">3</span>
+</button>
+</div>
+</div>
+</body></html>

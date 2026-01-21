@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>India Post Tracking Slip View</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#8e5d87",
+                        "background-light": "#f7f7f7", 
+                        "background-dark": "#1b171b",
+                        "boutique-cream": "#faf7f0",
+                        "indiapost-red": "#D8232A",
+                        "indiapost-yellow": "#E8C646",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Epilogue", "serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        "soft": "0 8px 30px -4px rgba(142, 93, 135, 0.08)",
+                        "paper": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+                    },
+                    animation: {
+                        "slide-up": "slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+                    },
+                    keyframes: {
+                        slideUp: {
+                            "0%": { transform: "translateY(100%)", opacity: "0" },
+                            "100%": { transform: "translateY(0)", opacity: "1" },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(600px, 100dvh);
+        }
+        .slip-texture {
+            background-image: radial-gradient(#000 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.03;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-[#151415] dark:bg-background-dark font-display text-[#151415] dark:text-white antialiased min-h-screen flex flex-col overflow-hidden relative">
+<div class="absolute inset-0 z-0 opacity-30 pointer-events-none overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://lh3.googleusercontent.com/aida-public/AB6AXuCA2jBhPPZiHbNgpPemDIwr7nDfzhik6yA_1B37UvCZXncY3gq3K3VxlcYcUle0chE7HRf2fybN2fVABlAhoYLFGM79laLYIi3f1bs_taTtEUHvcx7g8i_YkcbGn2v4kjdzfz5s_Ahw5tNS4x79KrFZbP3vqUpcEjcoQR5qVI_UTyTd6i9fCY2ugJK-xlN0b2Nrkt11jCXuZumHo7x1LGPUhoTVOfPFkAO6n35jSDZLaqu8uk6TYanGgLWy0V17-A_YCrpFUgmxxvA')] bg-cover bg-center filter blur-[40px] scale-110"></div>
+<div class="absolute inset-0 bg-black/60"></div>
+</div>
+<header class="sticky top-0 z-30 flex items-center justify-between p-4 text-white">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/10 backdrop-blur-md shadow-sm hover:bg-white/20 transition-all active:scale-95">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="font-serif text-lg font-bold tracking-tight text-center flex-1 pr-10">Tracking Slip</h1>
+</header>
+<main class="relative z-10 flex-1 flex flex-col w-full max-w-lg mx-auto h-full">
+<div class="flex-1 flex items-center justify-center p-6 pb-20 overflow-hidden">
+<div class="group relative w-full max-w-[300px] aspect-[0.7] bg-[#fdfdfd] rounded-sm shadow-paper transform rotate-1 transition-all duration-500 hover:rotate-0 hover:scale-[1.02] cursor-zoom-in">
+<div class="absolute inset-0 p-5 flex flex-col text-black">
+<div class="slip-texture absolute inset-0 pointer-events-none"></div>
+<div class="flex justify-between items-start border-b-2 border-black/80 pb-3 mb-3 relative z-10">
+<div class="flex gap-2 items-center">
+<div class="rounded-full border border-black p-1">
+<span class="material-symbols-outlined text-black text-2xl block">local_post_office</span>
+</div>
+<div>
+<div class="font-serif font-bold uppercase text-[10px] leading-tight">India Post</div>
+<div class="text-[8px] font-bold text-gray-500 uppercase">Speed Post</div>
+</div>
+</div>
+<div class="h-8 w-8 bg-black"></div>
+</div>
+<div class="space-y-2 flex-1 relative z-10">
+<div class="flex justify-between text-[8px] font-mono text-gray-500 uppercase">
+<span>Date: 22/10/2023</span>
+<span>Time: 14:30</span>
+</div>
+<div class="h-px w-full bg-gray-200 my-2"></div>
+<div class="space-y-1 opacity-70">
+<div class="h-1.5 w-1/3 bg-gray-400 rounded-sm"></div>
+<div class="h-1.5 w-2/3 bg-gray-300 rounded-sm"></div>
+<div class="h-1.5 w-1/2 bg-gray-300 rounded-sm"></div>
+</div>
+<div class="mt-4 border border-gray-300 bg-gray-100 p-1">
+<div class="relative h-28 w-full overflow-hidden bg-gray-200 grayscale contrast-125">
+<img alt="Parcel Scan" class="w-full h-full object-cover opacity-80 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA2jBhPPZiHbNgpPemDIwr7nDfzhik6yA_1B37UvCZXncY3gq3K3VxlcYcUle0chE7HRf2fybN2fVABlAhoYLFGM79laLYIi3f1bs_taTtEUHvcx7g8i_YkcbGn2v4kjdzfz5s_Ahw5tNS4x79KrFZbP3vqUpcEjcoQR5qVI_UTyTd6i9fCY2ugJK-xlN0b2Nrkt11jCXuZumHo7x1LGPUhoTVOfPFkAO6n35jSDZLaqu8uk6TYanGgLWy0V17-A_YCrpFUgmxxvA"/>
+<div class="absolute bottom-0 right-0 bg-black text-white text-[8px] px-1 py-0.5 font-mono">SCAN_01</div>
+</div>
+</div>
+<div class="mt-3 text-center">
+<div class="text-[10px] text-gray-400 font-bold uppercase mb-0.5">Tracking ID</div>
+<div class="text-sm font-mono font-bold tracking-widest border border-dashed border-gray-400 p-1 inline-block">EI123456789IN</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 z-20">
+<button class="flex items-center justify-center size-10 rounded-full bg-black/80 text-white backdrop-blur-md shadow-lg transition-transform hover:scale-110 active:scale-95">
+<span class="material-symbols-outlined text-xl">zoom_in</span>
+</button>
+</div>
+</div>
+</div>
+<div class="bg-boutique-cream dark:bg-[#1a1a1a] rounded-t-[2rem] shadow-[0_-10px_40px_rgba(0,0,0,0.3)] p-6 pb-8 w-full animate-slide-up relative overflow-hidden">
+<div class="w-12 h-1.5 bg-gray-300 dark:bg-white/10 rounded-full mx-auto mb-6"></div>
+<div class="flex items-start justify-between mb-6">
+<div class="flex items-center gap-4">
+<div class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-white border border-indiapost-yellow/30 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 w-full h-1 bg-indiapost-yellow"></div>
+<span class="material-symbols-outlined text-3xl text-indiapost-red mt-1" style="font-variation-settings: 'FILL' 1;">local_post_office</span>
+</div>
+<div>
+<h2 class="font-serif text-xl font-bold text-[#151415] dark:text-white leading-none mb-1.5">India Post</h2>
+<div class="flex items-center gap-1.5">
+<span class="text-[10px] font-bold uppercase tracking-wider text-white bg-indiapost-red px-1.5 py-0.5 rounded shadow-sm">Dak Seva</span>
+<span class="text-[10px] font-bold uppercase tracking-wider text-indiapost-red border border-indiapost-red px-1.5 py-0.5 rounded">Jan Seva</span>
+</div>
+</div>
+</div>
+<div class="hidden sm:block">
+<span class="material-symbols-outlined text-gray-400">verified</span>
+</div>
+</div>
+<div class="relative rounded-xl bg-white dark:bg-white/5 border border-gray-200 dark:border-gray-700 p-4 mb-6 text-center group transition-colors hover:border-indiapost-red/30">
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Consignment Number</p>
+<div class="flex items-center justify-center gap-3">
+<h3 class="font-mono text-2xl font-black tracking-wider text-indiapost-red selection:bg-indiapost-yellow selection:text-black">EI123456789IN</h3>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-3">
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white dark:bg-white/5 border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-all group hover:bg-gray-50 dark:hover:bg-white/10">
+<div class="size-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase text-center leading-tight">Copy ID</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white dark:bg-white/5 border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-all group relative overflow-hidden hover:bg-gray-50 dark:hover:bg-white/10">
+<div class="size-10 rounded-full bg-indiapost-red text-white flex items-center justify-center shadow-md shadow-indiapost-red/30 z-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-xl">public</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase text-center leading-tight z-10">Track on<br/>Website</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white dark:bg-white/5 border border-gray-100 dark:border-gray-700 shadow-sm active:scale-95 transition-all group hover:bg-gray-50 dark:hover:bg-white/10">
+<div class="size-10 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-gray-600 dark:text-gray-300 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">open_in_new_down</span>
+</div>
+<span class="text-[10px] font-bold text-gray-500 uppercase text-center leading-tight">Post Info<br/>App</span>
+</button>
+</div>
+</div>
+</main>
+</body></html>

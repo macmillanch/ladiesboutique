@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact Us - Boutique</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#476b59",
+              "background-light": "#e9e6e2",
+              "background-dark": "#222a26",
+              "surface-light": "#ffffff",
+              "surface-dark": "#2c3631",
+            },
+            fontFamily: {
+              "display": ["Noto Serif", "serif"],
+              "body": ["Manrope", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "3xl": "1.5rem", "full": "9999px"},
+            boxShadow: {
+                "soft": "0 10px 40px -10px rgba(0,0,0,0.08)",
+                "float": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+            }
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#222a26] dark:text-white overflow-x-hidden w-full min-h-screen flex flex-col antialiased selection:bg-primary selection:text-white transition-colors duration-300">
+<!-- Header -->
+<header class="flex items-center px-6 py-4 justify-between sticky top-0 z-30 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-black/5 dark:border-white/5">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full bg-white/50 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 text-[#222a26] dark:text-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">arrow_back_ios_new</span>
+</button>
+<h2 class="text-xl font-bold tracking-tight text-center">Contact Us</h2>
+<div class="size-10"></div> <!-- Spacer for visual balance -->
+</header>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col px-5 pb-10 space-y-6 pt-4 max-w-md mx-auto w-full">
+<!-- Map Card Container -->
+<div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-soft ring-4 ring-white dark:ring-[#2c3631] group z-10">
+<!-- Static Map Image -->
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 group-hover:scale-105" data-alt="Stylized map view of city streets with soft beige and grey tones" data-location="New York, NY" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBViZ0yU-HS3Pg5LU8V-FCQ4Ad4qAYeaKnayftZkC6mSQhVcWYTDtsObRNHXpTwzrwKiwVMqAaGwm7SVrzp0bO9GRQmIqDWqN1xiqmBAtLi61Tf0qymev1q3LRKFp0vJyXbDGkJlkiQEkb_eCoxDnTxAuSPDKbO8YH-qRPH1bJucFgrWVlJiFdgqB7YvxQToCjFApJ40cjm8tuzsz8Q9Ho5oeJIRhCJk7TvFYE8hFTm40i1OoBcs32WVe-IcwLSNQKPh0iMmrbOTWw');">
+</div>
+<!-- Map Overlay Gradient -->
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 pointer-events-none"></div>
+<!-- Custom Sage Green Map Pin -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center -mt-8 drop-shadow-2xl">
+<!-- Pin Head -->
+<div class="relative flex items-center justify-center size-14 bg-primary rounded-full text-white shadow-xl z-10 border-4 border-white dark:border-[#2c3631]">
+<span class="material-symbols-outlined text-[26px]">storefront</span>
+</div>
+<!-- Pin Stem -->
+<div class="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[12px] border-t-primary mt-[-2px] z-0"></div>
+<!-- Pin Shadow on Map -->
+<div class="w-4 h-1.5 bg-black/30 rounded-[100%] blur-[2px] mt-1"></div>
+</div>
+<!-- Corner Badge -->
+<div class="absolute bottom-4 right-4 bg-white/90 dark:bg-[#2c3631]/90 backdrop-blur px-3 py-1.5 rounded-lg text-xs font-bold shadow-sm font-body tracking-wide flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                 Open Now
+             </div>
+</div>
+<!-- Info Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-3xl p-8 shadow-float relative -mt-6 z-20 mx-1 flex flex-col gap-6 ring-1 ring-black/5 dark:ring-white/5">
+<!-- Decorative Top notch/handle simulation for card feel -->
+<div class="w-12 h-1 bg-gray-200 dark:bg-gray-600 rounded-full mx-auto mb-2 opacity-50"></div>
+<div class="text-center">
+<h2 class="text-[26px] font-bold mb-1 text-[#222a26] dark:text-white">Visit Our Store</h2>
+<p class="font-body text-primary text-sm font-medium tracking-wide mb-5 opacity-80">EST. 2023</p>
+<div class="space-y-4">
+<!-- Address -->
+<div class="flex flex-col items-center justify-center text-center font-body text-[#222a26]/80 dark:text-white/80">
+<p class="text-base leading-relaxed max-w-[260px]">
+                            123 Blossom Avenue, Suite 100<br/>New York, NY 10012
+                        </p>
+</div>
+</div>
+</div>
+<div class="w-full h-px bg-gradient-to-r from-transparent via-gray-200 dark:via-gray-600 to-transparent"></div>
+<!-- Hours Grid -->
+<div class="grid grid-cols-2 gap-4 font-body text-sm">
+<div class="flex flex-col items-center justify-center p-3 rounded-2xl bg-background-light/30 dark:bg-white/5 border border-transparent hover:border-primary/20 transition-colors">
+<span class="font-bold text-primary dark:text-primary-light mb-1">Mon - Sat</span>
+<span class="text-gray-600 dark:text-gray-300">10am - 7pm</span>
+</div>
+<div class="flex flex-col items-center justify-center p-3 rounded-2xl bg-background-light/30 dark:bg-white/5 border border-transparent hover:border-primary/20 transition-colors">
+<span class="font-bold text-primary dark:text-primary-light mb-1">Sunday</span>
+<span class="text-gray-600 dark:text-gray-300">11am - 5pm</span>
+</div>
+</div>
+<!-- Primary Actions -->
+<div class="flex flex-col sm:flex-row gap-3 pt-2 font-body">
+<button class="flex-1 flex items-center justify-center gap-2 h-12 bg-primary hover:bg-[#3a5749] text-white rounded-xl font-semibold tracking-wide transition-all active:scale-[0.98] shadow-lg shadow-primary/20 group">
+<span class="material-symbols-outlined text-[20px] group-hover:animate-bounce">near_me</span>
+<span>Get Directions</span>
+</button>
+<button class="flex-1 flex items-center justify-center gap-2 h-12 bg-transparent text-primary dark:text-white hover:bg-primary/5 rounded-xl font-semibold tracking-wide transition-all active:scale-[0.98] border-2 border-primary/20 dark:border-white/20">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Call Now</span>
+</button>
+</div>
+</div>
+<!-- Footer Links -->
+<div class="space-y-3 pt-2 font-body">
+<a class="flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 group hover:shadow-md transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-background-light dark:bg-white/10 flex items-center justify-center text-primary dark:text-white group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#222a26] dark:text-white">Email Us</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">hello@boutique.com</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</a>
+<a class="flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm ring-1 ring-black/5 dark:ring-white/5 group hover:shadow-md transition-all" href="#">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-full bg-background-light dark:bg-white/10 flex items-center justify-center text-primary dark:text-white group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[20px]">photo_camera</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-bold text-[#222a26] dark:text-white">Instagram</span>
+<span class="text-xs text-gray-500 dark:text-gray-400">@boutique_official</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[20px] group-hover:translate-x-1 transition-transform">chevron_right</span>
+</a>
+</div>
+</main>
+</body></html>

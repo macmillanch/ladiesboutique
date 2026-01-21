@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Add Product</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1dbac9",
+                        "background-light": "#ffffff",
+                        "background-dark": "#181a1b",
+                        "surface-light": "#f3f5f6",
+                        "surface-dark": "#25282a",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'glow': '0 0 15px rgba(29, 186, 201, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        /* Custom checkbox/radio hiding */
+        input[type="radio"].custom-radio {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-[#111717] dark:text-[#ececec] font-display overflow-x-hidden antialiased selection:bg-primary selection:text-white">
+<div class="relative flex flex-col min-h-screen w-full max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Header -->
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 px-5 py-4 flex items-center justify-between transition-colors duration-300">
+<button class="flex items-center justify-center w-12 h-12 rounded-full hover:bg-surface-light dark:hover:bg-surface-dark transition-colors active:scale-95 text-[#111717] dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 32px;">chevron_left</span>
+</button>
+<h1 class="text-2xl font-extrabold tracking-tight text-center flex-1">New Product</h1>
+<div class="w-12 h-12"></div> <!-- Spacer for balance -->
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 flex flex-col px-6 py-6 gap-8 overflow-y-auto no-scrollbar pb-32">
+<!-- Image Upload Section -->
+<section class="group">
+<div class="relative overflow-hidden rounded-3xl border-4 border-dashed border-[#dce4e5] dark:border-gray-700 bg-surface-light dark:bg-surface-dark transition-all duration-300 hover:border-primary/50 dark:hover:border-primary/50 active:scale-[0.99]">
+<input aria-label="Upload image" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" type="file"/>
+<div class="flex flex-col items-center justify-center py-12 px-4 text-center">
+<div class="w-20 h-20 rounded-2xl bg-primary/10 flex items-center justify-center mb-4 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+<span class="material-symbols-outlined" style="font-size: 40px;">add_a_photo</span>
+</div>
+<p class="text-xl font-bold text-[#111717] dark:text-white mb-2">Upload Photos</p>
+<p class="text-base text-gray-500 dark:text-gray-400 font-medium leading-relaxed">Tap to add from gallery<br/>or take a new shot</p>
+</div>
+<!-- Decorative background accent -->
+<div class="absolute -bottom-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
+</div>
+</section>
+<!-- Product Details Section -->
+<section class="flex flex-col gap-6">
+<!-- Product Name -->
+<div class="flex flex-col gap-3">
+<label class="text-lg font-bold text-[#111717] dark:text-gray-200 ml-1">Product Name</label>
+<input class="w-full h-[72px] rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent focus:border-primary focus:ring-0 focus:bg-white dark:focus:bg-black px-6 text-xl font-semibold text-[#111717] dark:text-white placeholder-gray-400 transition-all shadow-sm" placeholder="e.g. Floral Summer Dress" type="text"/>
+</div>
+<!-- Price and Discount Row -->
+<div class="flex gap-4">
+<div class="flex flex-col gap-3 flex-1">
+<label class="text-lg font-bold text-[#111717] dark:text-gray-200 ml-1">Price ($)</label>
+<input class="w-full h-[72px] rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent focus:border-primary focus:ring-0 focus:bg-white dark:focus:bg-black px-6 text-2xl font-bold text-[#111717] dark:text-white placeholder-gray-400 transition-all shadow-sm text-center" inputmode="decimal" placeholder="0.00" type="number"/>
+</div>
+<div class="flex flex-col gap-3 flex-1">
+<label class="text-lg font-bold text-[#111717] dark:text-gray-200 ml-1">Discount (%)</label>
+<input class="w-full h-[72px] rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent focus:border-primary focus:ring-0 focus:bg-white dark:focus:bg-black px-6 text-2xl font-bold text-[#111717] dark:text-white placeholder-gray-400 transition-all shadow-sm text-center" inputmode="numeric" placeholder="0" type="number"/>
+</div>
+</div>
+</section>
+<!-- Attributes Section -->
+<section class="flex flex-col gap-8">
+<!-- Sizes -->
+<div class="flex flex-col gap-4">
+<div class="flex items-baseline justify-between">
+<h3 class="text-xl font-bold text-[#111717] dark:text-white ml-1">Available Sizes</h3>
+<button class="text-primary font-bold text-sm uppercase tracking-wider">Guide</button>
+</div>
+<div class="grid grid-cols-4 gap-3">
+<!-- Size S -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="aspect-square w-full rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-glow flex items-center justify-center transition-all duration-200 group-active:scale-95">
+<span class="text-xl font-bold text-gray-500 dark:text-gray-400 peer-checked:text-white">S</span>
+</div>
+</label>
+<!-- Size M -->
+<label class="cursor-pointer group relative">
+<input checked="" class="peer sr-only" type="checkbox"/>
+<div class="aspect-square w-full rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-glow flex items-center justify-center transition-all duration-200 group-active:scale-95">
+<span class="text-xl font-bold text-gray-500 dark:text-gray-400 peer-checked:text-white">M</span>
+</div>
+</label>
+<!-- Size L -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="aspect-square w-full rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-glow flex items-center justify-center transition-all duration-200 group-active:scale-95">
+<span class="text-xl font-bold text-gray-500 dark:text-gray-400 peer-checked:text-white">L</span>
+</div>
+</label>
+<!-- Size XL -->
+<label class="cursor-pointer group relative">
+<input class="peer sr-only" type="checkbox"/>
+<div class="aspect-square w-full rounded-2xl bg-surface-light dark:bg-surface-dark border-2 border-transparent peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-glow flex items-center justify-center transition-all duration-200 group-active:scale-95">
+<span class="text-xl font-bold text-gray-500 dark:text-gray-400 peer-checked:text-white">XL</span>
+</div>
+</label>
+</div>
+</div>
+<!-- Colors -->
+<div class="flex flex-col gap-4">
+<h3 class="text-xl font-bold text-[#111717] dark:text-white ml-1">Color</h3>
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2 pl-1">
+<!-- Color Option 1: Black -->
+<label class="relative cursor-pointer group flex-shrink-0">
+<input checked="" class="custom-radio peer" name="color_select" type="radio"/>
+<div class="w-16 h-16 rounded-full bg-black border-2 border-gray-200 dark:border-gray-600 shadow-sm flex items-center justify-center transition-transform group-active:scale-90">
+<span class="material-symbols-outlined text-white opacity-0 peer-checked:opacity-100 transition-opacity font-bold scale-125">check</span>
+</div>
+<div class="absolute -inset-1.5 rounded-full border-[3px] border-primary opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</label>
+<!-- Color Option 2: Beige -->
+<label class="relative cursor-pointer group flex-shrink-0">
+<input class="custom-radio peer" name="color_select" type="radio"/>
+<div class="w-16 h-16 rounded-full bg-[#E8DCC4] border-2 border-gray-200 dark:border-gray-600 shadow-sm flex items-center justify-center transition-transform group-active:scale-90">
+<span class="material-symbols-outlined text-black opacity-0 peer-checked:opacity-100 transition-opacity font-bold scale-125">check</span>
+</div>
+<div class="absolute -inset-1.5 rounded-full border-[3px] border-primary opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</label>
+<!-- Color Option 3: Red -->
+<label class="relative cursor-pointer group flex-shrink-0">
+<input class="custom-radio peer" name="color_select" type="radio"/>
+<div class="w-16 h-16 rounded-full bg-[#D64045] border-2 border-gray-200 dark:border-gray-600 shadow-sm flex items-center justify-center transition-transform group-active:scale-90">
+<span class="material-symbols-outlined text-white opacity-0 peer-checked:opacity-100 transition-opacity font-bold scale-125">check</span>
+</div>
+<div class="absolute -inset-1.5 rounded-full border-[3px] border-primary opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</label>
+<!-- Color Option 4: Blue -->
+<label class="relative cursor-pointer group flex-shrink-0">
+<input class="custom-radio peer" name="color_select" type="radio"/>
+<div class="w-16 h-16 rounded-full bg-[#1A5E8E] border-2 border-gray-200 dark:border-gray-600 shadow-sm flex items-center justify-center transition-transform group-active:scale-90">
+<span class="material-symbols-outlined text-white opacity-0 peer-checked:opacity-100 transition-opacity font-bold scale-125">check</span>
+</div>
+<div class="absolute -inset-1.5 rounded-full border-[3px] border-primary opacity-0 peer-checked:opacity-100 transition-opacity"></div>
+</label>
+<!-- Add New Color -->
+<button class="w-16 h-16 rounded-full bg-surface-light dark:bg-surface-dark border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center text-gray-400 hover:text-primary hover:border-primary transition-colors flex-shrink-0">
+<span class="material-symbols-outlined scale-125">add</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Fixed Bottom Action -->
+<div class="absolute bottom-0 left-0 w-full bg-white/80 dark:bg-[#181a1b]/80 backdrop-blur-lg border-t border-gray-100 dark:border-gray-800 p-6 z-30">
+<button class="w-full h-[72px] bg-primary hover:bg-primary/90 active:bg-primary/95 text-white rounded-2xl shadow-lg shadow-primary/30 flex items-center justify-center gap-3 transition-all active:scale-[0.98] group">
+<span class="text-xl font-black uppercase tracking-wider">Save Product</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

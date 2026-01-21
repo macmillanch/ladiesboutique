@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Shopping Cart</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a4b398",
+                        "background-light": "#fcfbf7", // Warm beige from plan
+                        "background-dark": "#191b17",
+                        "text-main": "#3C3C3A",
+                        "text-sub": "#7F7F7D",
+                        "accent-red": "#E9D2D4",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    boxShadow: {
+                        "soft": "0px 4px 12px rgba(0, 0, 0, 0.03)",
+                        "float": "0px 8px 24px rgba(0, 0, 0, 0.06)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hiding for cleaner look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-text-main font-display antialiased h-screen overflow-hidden selection:bg-primary/30">
+<div class="relative flex h-full w-full max-w-md mx-auto flex-col bg-background-light dark:bg-background-dark overflow-hidden group/design-root">
+<!-- Header -->
+<header class="shrink-0 flex items-center justify-between px-6 pt-12 pb-4 bg-background-light dark:bg-background-dark z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-black/5 transition-colors -ml-2 text-text-main">
+<span class="material-symbols-outlined text-[24px]">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-text-main">My Bag</h1>
+<div class="size-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Scrollable Area -->
+<main class="flex-1 overflow-y-auto no-scrollbar px-6 pb-64">
+<!-- Item List -->
+<div class="flex flex-col gap-5 mt-2">
+<!-- Item 1 -->
+<div class="bg-white dark:bg-[#252525] p-3 rounded-2xl shadow-soft flex gap-4 items-stretch group relative overflow-hidden transition-transform active:scale-[0.99]">
+<!-- Image -->
+<div class="w-24 shrink-0 aspect-[3/4] rounded-lg bg-gray-100 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Silk floral midi dress with soft pastel patterns" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAoGX2WJcHkUidOjVIcEqODEYtWV_fNMzFzxMd_W9eqmnTFmXEqZeqTSP71-UosaBSlfjHBLFe6z5OFOOf_dvp0hTk2CXfotmsxPd7lHNUXK-dEArmtZBzWI80DxnlKhpZ_URekT3GshtIHPB27fHpcnTwWD-nbqKoz0PyYGY8oj-PMAhU4QKB8WYgojUgNjLdz4tfHxtQzMSPjGzne1MYwHV7Fb-7dk5zR5cTFpnuzDsqVo1PESNFcm7GtAoMiO0LnGdB0a__a5Gc");'></div>
+</div>
+<!-- Details -->
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h3 class="text-text-main dark:text-white text-[15px] font-semibold leading-tight mb-1">Silk Floral Midi Dress</h3>
+<p class="text-text-sub text-xs font-medium">Size: M</p>
+</div>
+<!-- Remove Button -->
+<button class="text-accent-red hover:text-red-400 p-1 -mr-1 rounded-full hover:bg-accent-red/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-2">
+<p class="text-text-main dark:text-gray-200 text-base font-medium">₹4,500</p>
+<!-- Quantity Stepper -->
+<div class="flex items-center bg-[#F2F2F0] dark:bg-white/10 rounded-full h-8 px-1">
+<button class="size-7 flex items-center justify-center text-text-main dark:text-white hover:bg-white dark:hover:bg-white/20 rounded-full transition-shadow">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-6 text-center text-sm font-semibold text-text-main dark:text-white">1</span>
+<button class="size-7 flex items-center justify-center text-white bg-primary rounded-full shadow-sm hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="bg-white dark:bg-[#252525] p-3 rounded-2xl shadow-soft flex gap-4 items-stretch group relative overflow-hidden transition-transform active:scale-[0.99]">
+<div class="w-24 shrink-0 aspect-[3/4] rounded-lg bg-gray-100 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Soft linen blouse in beige color hanging" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC9PirsjwJMDE68JNbifnbcTxuayFFFwL3WDtUR0GwSsNokTPSaITeib6KlOdXEBGKALkvewosM54mYjyzoszyS7g6RPp6e6zuZLykM2-JCW-I69kEBjvfRSz5MMGfOanqnmNXmIGQNnMgJQndD4PG31T-gEB7lxsvG7LEJg7eIGMbSGBjJITF9jRq7IMC_bOzd8ubt6k0Y3ug3V708QixEabjYbrOJRaEtf2ZaqnIeR9F3EkLRPTSGbbJ8ZiI2i5VTbzadFerRPSc");'></div>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h3 class="text-text-main dark:text-white text-[15px] font-semibold leading-tight mb-1">Soft Linen Blouse</h3>
+<p class="text-text-sub text-xs font-medium">Size: S</p>
+</div>
+<button class="text-accent-red hover:text-red-400 p-1 -mr-1 rounded-full hover:bg-accent-red/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-2">
+<p class="text-text-main dark:text-gray-200 text-base font-medium">₹2,100</p>
+<div class="flex items-center bg-[#F2F2F0] dark:bg-white/10 rounded-full h-8 px-1">
+<button class="size-7 flex items-center justify-center text-text-main dark:text-white hover:bg-white dark:hover:bg-white/20 rounded-full transition-shadow">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-6 text-center text-sm font-semibold text-text-main dark:text-white">1</span>
+<button class="size-7 flex items-center justify-center text-white bg-primary rounded-full shadow-sm hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="bg-white dark:bg-[#252525] p-3 rounded-2xl shadow-soft flex gap-4 items-stretch group relative overflow-hidden transition-transform active:scale-[0.99]">
+<div class="w-24 shrink-0 aspect-[3/4] rounded-lg bg-gray-100 overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Folded cashmere scarf with soft texture" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDImtKkjOj6LFg34n_YvU8BCI_yh9umJry7PbbMSAeR6KJK1qZOA-a6U8Achupytg18_kxWoSs_0BdEmHFgAXr4UPi_0wCFVbq35xf5XPHPPxlGcdV2Aig8Flh3sxI72IvARAkHCPAHKoBS5YYtaP_xRH-qJ5OJIRKLIoT7Kkd-i4gsZ9hclU_g8NW5Q76zJ-fzYyyrbsjwXBn3wVNKKEw52cuw0NsjvALNAqWsIXWsjtUvSiBQjy91ukQVJgaVLzh1UbdsZ3Podig");'></div>
+</div>
+<div class="flex flex-1 flex-col justify-between py-1">
+<div class="flex justify-between items-start gap-2">
+<div>
+<h3 class="text-text-main dark:text-white text-[15px] font-semibold leading-tight mb-1">Cashmere Blend Scarf</h3>
+<p class="text-text-sub text-xs font-medium">One Size</p>
+</div>
+<button class="text-accent-red hover:text-red-400 p-1 -mr-1 rounded-full hover:bg-accent-red/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+<div class="flex items-end justify-between mt-2">
+<p class="text-text-main dark:text-gray-200 text-base font-medium">₹1,200</p>
+<div class="flex items-center bg-[#F2F2F0] dark:bg-white/10 rounded-full h-8 px-1">
+<button class="size-7 flex items-center justify-center text-text-main dark:text-white hover:bg-white dark:hover:bg-white/20 rounded-full transition-shadow">
+<span class="material-symbols-outlined text-[16px]">remove</span>
+</button>
+<span class="w-6 text-center text-sm font-semibold text-text-main dark:text-white">1</span>
+<button class="size-7 flex items-center justify-center text-white bg-primary rounded-full shadow-sm hover:brightness-105 transition-all">
+<span class="material-symbols-outlined text-[16px]">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State / Promo (Optional filler for design) -->
+<div class="mt-8 mb-4 flex items-center justify-center gap-2 text-text-sub opacity-60">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="text-xs font-medium uppercase tracking-wider">Free Shipping on orders over ₹5000</span>
+</div>
+</main>
+<!-- Sticky Bottom Summary & Checkout -->
+<div class="absolute bottom-0 left-0 w-full z-20">
+<!-- Subtle gradient fade above the panel -->
+<div class="h-12 w-full bg-gradient-to-t from-background-light to-transparent dark:from-background-dark pointer-events-none"></div>
+<div class="bg-white dark:bg-[#1e1e1e] rounded-t-[32px] shadow-[0_-8px_32px_rgba(0,0,0,0.06)] px-6 pt-6 pb-8 border border-gray-50 dark:border-gray-800">
+<!-- Cost Breakdown -->
+<div class="flex flex-col gap-3 mb-6">
+<div class="flex justify-between items-center text-sm">
+<span class="text-text-sub font-medium">Subtotal</span>
+<span class="text-text-main dark:text-gray-200 font-semibold">₹7,800</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-1.5">
+<span class="text-text-sub font-medium">Shipping (India Post)</span>
+<span class="material-symbols-outlined text-[16px] text-text-sub cursor-help" title="5-7 Business Days">info</span>
+</div>
+<span class="text-text-main dark:text-gray-200 font-semibold">₹100</span>
+</div>
+<div class="my-1 h-px w-full bg-gray-100 dark:bg-gray-700 dashed-border"></div>
+<div class="flex justify-between items-center text-lg">
+<span class="text-text-main dark:text-white font-bold">Total</span>
+<span class="text-text-main dark:text-white font-bold">₹7,900</span>
+</div>
+</div>
+<!-- Primary Action -->
+<button class="group w-full bg-primary hover:bg-[#96a889] active:bg-[#889a7b] text-white h-14 rounded-xl font-bold text-[16px] shadow-lg shadow-primary/25 flex items-center justify-between px-6 transition-all transform active:scale-[0.98]">
+<span>Proceed to Checkout</span>
+<div class="bg-white/20 rounded-full p-1 group-hover:bg-white/30 transition-colors">
+<span class="material-symbols-outlined block text-[20px]">arrow_forward</span>
+</div>
+</button>
+</div>
+</div>
+</div>
+</body></html>

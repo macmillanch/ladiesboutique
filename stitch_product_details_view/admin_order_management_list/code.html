@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Order Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00bdc7",
+                        "background-light": "#f9fafa",
+                        "background-dark": "#21242c",
+                        "card-light": "#ffffff",
+                        "card-dark": "#2b303b",
+                        "text-main-light": "#101818",
+                        "text-main-dark": "#f0f5f5",
+                        "text-sub-light": "#5e8a8d",
+                        "text-sub-dark": "#94b8bb",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Scrollbar hide for cleaner horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display antialiased transition-colors duration-200">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-30 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center justify-between px-6 py-5">
+<h1 class="text-2xl font-extrabold tracking-tight text-text-main-light dark:text-text-main-dark">
+                Manage Orders
+            </h1>
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+<span class="material-symbols-outlined text-3xl text-text-main-light dark:text-text-main-dark">search</span>
+</button>
+</div>
+<!-- Filter Chips (Sticky Sub-header) -->
+<div class="px-6 pb-4">
+<div class="flex gap-4 overflow-x-auto no-scrollbar pb-2">
+<!-- Active Chip -->
+<button class="flex h-12 min-w-[100px] shrink-0 items-center justify-center rounded-full bg-primary px-6 shadow-md transition-transform active:scale-95">
+<span class="text-text-main-light text-lg font-bold">ALL</span>
+</button>
+<!-- Inactive Chips -->
+<button class="flex h-12 min-w-[100px] shrink-0 items-center justify-center rounded-full bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 px-6 shadow-sm transition-transform active:scale-95">
+<span class="text-text-sub-light dark:text-text-sub-dark text-lg font-bold">NEW</span>
+</button>
+<button class="flex h-12 min-w-[100px] shrink-0 items-center justify-center rounded-full bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 px-6 shadow-sm transition-transform active:scale-95">
+<span class="text-text-sub-light dark:text-text-sub-dark text-lg font-bold">SHIPPED</span>
+</button>
+<button class="flex h-12 min-w-[100px] shrink-0 items-center justify-center rounded-full bg-white dark:bg-card-dark border border-gray-200 dark:border-gray-700 px-6 shadow-sm transition-transform active:scale-95">
+<span class="text-text-sub-light dark:text-text-sub-dark text-lg font-bold">RETURNS</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content List -->
+<main class="flex flex-col gap-6 p-4 pb-24 max-w-lg mx-auto w-full">
+<!-- Card 1: To Pack -->
+<article class="group relative flex flex-col bg-card-light dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all hover:shadow-md">
+<div class="p-5 flex flex-col gap-5">
+<!-- Header: ID + Status -->
+<div class="flex items-start justify-between w-full">
+<div class="flex flex-col">
+<span class="text-text-sub-light dark:text-text-sub-dark text-sm font-medium uppercase tracking-wider mb-1">Order ID</span>
+<h2 class="text-2xl font-black text-text-main-light dark:text-text-main-dark tracking-tight">#ORD-2938</h2>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-100 dark:bg-blue-900/40">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-300 mr-1.5 text-xl">inventory_2</span>
+<span class="text-blue-800 dark:text-blue-200 text-base font-bold uppercase">To Pack</span>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-gray-100 dark:bg-gray-700 w-full"></div>
+<!-- Body: Customer + Price -->
+<div class="flex items-end justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Customer</span>
+<p class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Jane Doe</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Total</span>
+<p class="text-2xl font-black text-text-main-light dark:text-text-main-dark">$145.00</p>
+</div>
+</div>
+<!-- Action Button -->
+<button class="mt-2 flex w-full h-14 cursor-pointer items-center justify-center rounded-xl bg-primary hover:bg-primary/90 active:bg-primary/80 transition-colors shadow-sm">
+<span class="text-text-main-light text-lg font-bold tracking-wide uppercase">View Details</span>
+<span class="material-symbols-outlined ml-2 text-text-main-light">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 2: Pending Payment -->
+<article class="group relative flex flex-col bg-card-light dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all hover:shadow-md">
+<div class="p-5 flex flex-col gap-5">
+<div class="flex items-start justify-between w-full">
+<div class="flex flex-col">
+<span class="text-text-sub-light dark:text-text-sub-dark text-sm font-medium uppercase tracking-wider mb-1">Order ID</span>
+<h2 class="text-2xl font-black text-text-main-light dark:text-text-main-dark tracking-tight">#ORD-2937</h2>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center justify-center px-4 py-2 rounded-lg bg-orange-100 dark:bg-orange-900/40">
+<span class="material-symbols-outlined text-orange-700 dark:text-orange-300 mr-1.5 text-xl">pending</span>
+<span class="text-orange-800 dark:text-orange-200 text-base font-bold uppercase">Pending</span>
+</div>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-700 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Customer</span>
+<p class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Sarah Smith</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Total</span>
+<p class="text-2xl font-black text-text-main-light dark:text-text-main-dark">$89.50</p>
+</div>
+</div>
+<button class="mt-2 flex w-full h-14 cursor-pointer items-center justify-center rounded-xl bg-primary hover:bg-primary/90 active:bg-primary/80 transition-colors shadow-sm">
+<span class="text-text-main-light text-lg font-bold tracking-wide uppercase">View Details</span>
+<span class="material-symbols-outlined ml-2 text-text-main-light">arrow_forward</span>
+</button>
+</div>
+</article>
+<!-- Card 3: Shipped -->
+<article class="group relative flex flex-col bg-card-light dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all hover:shadow-md opacity-90">
+<div class="p-5 flex flex-col gap-5">
+<div class="flex items-start justify-between w-full">
+<div class="flex flex-col">
+<span class="text-text-sub-light dark:text-text-sub-dark text-sm font-medium uppercase tracking-wider mb-1">Order ID</span>
+<h2 class="text-2xl font-black text-text-main-light dark:text-text-main-dark tracking-tight">#ORD-2915</h2>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center justify-center px-4 py-2 rounded-lg bg-green-100 dark:bg-green-900/40">
+<span class="material-symbols-outlined text-green-700 dark:text-green-300 mr-1.5 text-xl">local_shipping</span>
+<span class="text-green-800 dark:text-green-200 text-base font-bold uppercase">Shipped</span>
+</div>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-700 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Customer</span>
+<p class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Emily Rose</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Total</span>
+<p class="text-2xl font-black text-text-main-light dark:text-text-main-dark">$210.00</p>
+</div>
+</div>
+<button class="mt-2 flex w-full h-14 cursor-pointer items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors shadow-sm">
+<span class="text-text-main-light dark:text-text-main-dark text-lg font-bold tracking-wide uppercase">Track Order</span>
+<span class="material-symbols-outlined ml-2 text-text-main-light dark:text-text-main-dark">open_in_new</span>
+</button>
+</div>
+</article>
+<!-- Card 4: New / To Pack -->
+<article class="group relative flex flex-col bg-card-light dark:bg-card-dark rounded-2xl border border-gray-200 dark:border-gray-700 shadow-sm overflow-hidden transition-all hover:shadow-md border-l-8 border-l-primary">
+<div class="p-5 flex flex-col gap-5">
+<div class="flex items-start justify-between w-full">
+<div class="flex flex-col">
+<span class="text-primary text-sm font-bold uppercase tracking-wider mb-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">fiber_new</span> New Order
+                        </span>
+<h2 class="text-2xl font-black text-text-main-light dark:text-text-main-dark tracking-tight">#ORD-2940</h2>
+</div>
+<!-- Status Badge -->
+<div class="flex items-center justify-center px-4 py-2 rounded-lg bg-blue-100 dark:bg-blue-900/40">
+<span class="material-symbols-outlined text-blue-700 dark:text-blue-300 mr-1.5 text-xl">inventory_2</span>
+<span class="text-blue-800 dark:text-blue-200 text-base font-bold uppercase">To Pack</span>
+</div>
+</div>
+<div class="h-px bg-gray-100 dark:bg-gray-700 w-full"></div>
+<div class="flex items-end justify-between">
+<div class="flex flex-col gap-1">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Customer</span>
+<p class="text-xl font-bold text-text-main-light dark:text-text-main-dark">Linda K.</p>
+</div>
+<div class="flex flex-col gap-1 text-right">
+<span class="text-text-sub-light dark:text-text-sub-dark text-base">Total</span>
+<p class="text-2xl font-black text-text-main-light dark:text-text-main-dark">$54.00</p>
+</div>
+</div>
+<button class="mt-2 flex w-full h-14 cursor-pointer items-center justify-center rounded-xl bg-primary hover:bg-primary/90 active:bg-primary/80 transition-colors shadow-sm">
+<span class="text-text-main-light text-lg font-bold tracking-wide uppercase">View Details</span>
+<span class="material-symbols-outlined ml-2 text-text-main-light">arrow_forward</span>
+</button>
+</div>
+</article>
+</main>
+<!-- Floating Action Button for Adding Manual Orders (Contextual addition) -->
+<button class="fixed bottom-6 right-6 h-16 w-16 bg-text-main-light dark:bg-white rounded-full shadow-lg flex items-center justify-center z-40 active:scale-95 transition-transform hover:shadow-xl">
+<span class="material-symbols-outlined text-white dark:text-black text-3xl">add</span>
+</button>
+<script>
+        // Simple script to demonstrate active state on filters
+        const buttons = document.querySelectorAll('header div div button');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Reset all
+                buttons.forEach(b => {
+                    b.classList.remove('bg-primary');
+                    b.classList.add('bg-white', 'dark:bg-card-dark', 'border');
+                    const span = b.querySelector('span');
+                    span.classList.remove('text-text-main-light');
+                    span.classList.add('text-text-sub-light', 'dark:text-text-sub-dark');
+                });
+                
+                // Set active
+                btn.classList.remove('bg-white', 'dark:bg-card-dark', 'border');
+                btn.classList.add('bg-primary');
+                const span = btn.querySelector('span');
+                span.classList.remove('text-text-sub-light', 'dark:text-text-sub-dark');
+                span.classList.add('text-text-main-light');
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Payment Verification</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#25a296",
+                        "primary-dark": "#1d8c81",
+                        "background-light": "#f9fafb",
+                        "background-dark": "#1d2025",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2a2f36",
+                        "error": "#E74C3C",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem", 
+                        "lg": "0.5rem", 
+                        "xl": "0.75rem", 
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 8px rgba(0, 0, 0, 0.08)',
+                        'glow': '0 0 15px rgba(37, 162, 150, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar hiding for cleaner mobile look */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#121717] dark:text-white min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- Top App Bar -->
+<div class="sticky top-0 z-30 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-md border-b border-[#dce4e4] dark:border-gray-700 px-4 py-3 flex items-center justify-between transition-colors">
+<button class="flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+<span class="material-symbols-outlined text-[#121717] dark:text-white">arrow_back_ios_new</span>
+</button>
+<h1 class="text-[#121717] dark:text-white text-base font-bold leading-tight tracking-[-0.015em] text-center">
+            Order #10234 Details
+        </h1>
+<div class="size-10"></div> <!-- Spacer for balance -->
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col gap-6 p-4 pb-40 w-full max-w-lg mx-auto">
+<!-- Header Section -->
+<div>
+<h2 class="text-[#121717] dark:text-white text-[28px] font-extrabold leading-tight tracking-tight">
+                Payment to Verify
+            </h2>
+<p class="text-[#668581] dark:text-gray-400 text-sm mt-1 font-medium">
+                Please cross-check the screenshot with the submitted UTR.
+            </p>
+</div>
+<!-- Evidence Card (Screenshot) -->
+<div class="relative group/image w-full bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-soft border border-gray-100 dark:border-gray-700 aspect-[3/4]">
+<!-- Using a gradient placeholder as fallback/example, normally would be user image -->
+<div class="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover/image:scale-105" data-alt="Mobile phone screen showing a digital payment confirmation receipt with transaction details" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDdEV7ylNIJ4KHUA3kqAzxf_-kvC3kmBC1J55znGfFl3l6vxNR-hLCdunExdPzJIcibIbEc_eFtpyzu_sjVaDggbwH2CLRXKRrnkUHliv8Wy_iRNP4mDVfgFhQCUdy5a5HxsFDFmH8TCHDrF_XFHt7lopGK6-IffZ6Ttk79RcLyI_LaQAalV-lMhkGYDrUMcCdNEHvsCe8aHAlHi34dZTkSQQUTMt2u_-bhchhQCYTVm7Y4rw77pqhoN1Oc9V3mlIk9aw_yUhHtrUg');">
+</div>
+<!-- Zoom Hint Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60"></div>
+<button class="absolute bottom-4 right-4 bg-white/20 backdrop-blur-md border border-white/30 text-white px-4 py-2 rounded-full flex items-center gap-2 shadow-lg transition-transform active:scale-95">
+<span class="material-symbols-outlined text-[20px]">zoom_in</span>
+<span class="text-xs font-bold uppercase tracking-wide">Tap to Enlarge</span>
+</button>
+</div>
+<!-- Submitted Details Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft p-5 border border-[#dce4e4] dark:border-gray-700">
+<div class="flex items-center gap-2 mb-4 border-b border-[#dce4e4] dark:border-gray-700 pb-3">
+<span class="material-symbols-outlined text-primary">person</span>
+<h3 class="text-xs font-bold text-[#668581] dark:text-gray-400 uppercase tracking-wider">Submitted by Customer</h3>
+</div>
+<div class="grid gap-5">
+<div class="flex justify-between items-center group/copy cursor-pointer">
+<div class="flex flex-col gap-1">
+<p class="text-[#668581] dark:text-gray-400 text-sm font-medium">Transaction ID (UTR)</p>
+<p class="text-[#121717] dark:text-white text-lg font-bold font-mono tracking-tight">928302938102</p>
+</div>
+<div class="size-10 rounded-full bg-[#f1f4f4] dark:bg-gray-700 flex items-center justify-center text-[#668581] dark:text-gray-300 group-hover/copy:text-primary group-hover/copy:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-[20px]">content_copy</span>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<p class="text-[#668581] dark:text-gray-400 text-sm font-medium">User Bank</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#668581] text-[18px]">account_balance</span>
+<p class="text-[#121717] dark:text-white text-base font-semibold">HDFC Bank</p>
+</div>
+</div>
+</div>
+</div>
+<!-- System Expected Match Card -->
+<div class="relative bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft p-5 border-l-4 border-primary dark:border-primary overflow-hidden">
+<!-- Background Pattern for "System" feel -->
+<div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-8xl text-primary">verified_user</span>
+</div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">dns</span>
+<h3 class="text-xs font-bold text-[#668581] dark:text-gray-400 uppercase tracking-wider">Expected Payment</h3>
+</div>
+<div class="grid gap-4">
+<div class="flex flex-col gap-1">
+<p class="text-[#668581] dark:text-gray-400 text-sm font-medium">Beneficiary Name</p>
+<p class="text-[#121717] dark:text-white text-base font-semibold">Boutique Official UPI</p>
+</div>
+<div class="mt-2 pt-3 border-t border-dashed border-[#dce4e4] dark:border-gray-700">
+<div class="flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<p class="text-[#668581] dark:text-gray-400 text-sm font-medium">Total Amount</p>
+<p class="text-primary dark:text-primary text-3xl font-extrabold tracking-tight">₹1,450.00</p>
+</div>
+<div class="bg-primary/10 dark:bg-primary/20 text-primary px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                            MATCH
+                        </div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Sticky Action Footer -->
+<div class="fixed bottom-0 left-0 w-full z-40 px-4 py-5 bg-surface-light/90 dark:bg-[#1d2025]/95 backdrop-blur-xl border-t border-[#dce4e4] dark:border-gray-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+<div class="flex flex-col gap-3 max-w-lg mx-auto">
+<!-- Primary Action -->
+<button class="relative w-full overflow-hidden rounded-xl h-14 bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all duration-200 shadow-glow group">
+<div class="absolute inset-0 flex items-center justify-center gap-2 z-10">
+<span class="material-symbols-outlined text-white font-bold">check</span>
+<span class="text-white text-lg font-bold tracking-wide">CONFIRM &amp; MARK AS PACKED</span>
+</div>
+<!-- Shine effect -->
+<div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-0"></div>
+</button>
+<!-- Destructive Action -->
+<button class="w-full rounded-xl h-12 bg-transparent border-2 border-error/30 text-error hover:bg-error/5 hover:border-error active:bg-error/10 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">close</span>
+<span class="text-base font-bold tracking-wide">REJECT PAYMENT</span>
+</button>
+</div>
+</div>
+</body></html>

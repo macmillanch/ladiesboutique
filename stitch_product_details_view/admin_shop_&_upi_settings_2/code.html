@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile &amp; Addresses</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "boutique-beige": "#FDFBF7",
+                        "boutique-teal": "#2DD4BF",
+                        "boutique-teal-dark": "#0F766E",
+                        "surface": "#FFFFFF",
+                        "text-primary": "#374151",
+                        "text-secondary": "#6B7280",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>.no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        body {
+            min-height: 100vh;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-boutique-beige font-display text-text-primary antialiased pb-24">
+<header class="sticky top-0 z-50 bg-boutique-beige/95 backdrop-blur-sm">
+<div class="flex items-center justify-between px-4 py-3">
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+<span class="material-symbols-outlined text-gray-800">arrow_back</span>
+</button>
+<h1 class="text-lg font-semibold text-gray-800 tracking-wide">My Profile</h1>
+<button class="size-10 flex items-center justify-center rounded-full hover:bg-black/5 transition-colors">
+<span class="material-symbols-outlined text-gray-800">notifications_none</span>
+</button>
+</div>
+</header>
+<main class="w-full max-w-lg mx-auto px-5 space-y-8 pt-2">
+<section class="flex flex-col items-center text-center">
+<div class="relative mb-4 group cursor-pointer">
+<div class="size-24 rounded-full p-1 bg-white shadow-soft">
+<img alt="User Profile" class="w-full h-full rounded-full object-cover border-2 border-boutique-teal/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBQuJJ-_SJIsQnUdtoFkvCTvVl1UvVptGx5QxT5D8LEE4-T45WQ62uHcQwV6fhsapDovR9WdAVLZ8t_ITKydFvz0fpjFfuuVFBId92dfa-2aoHsMHOWrHwmqSBUzQh6bCt1H4i0Ztn_cnh0tBYk7GOdTctwTsYP5y7Bs3G5Il4-f5aCJiahgoW2wcg1wEwl3q_wCZfHJ4ZNvYPRPwAOGDYa-L_eGj_jmfGLdko4WcjGFP5T_BB2ZtV6XiF26-sEoc9nXFNlTHJquo"/>
+</div>
+<div class="absolute bottom-0 right-0 bg-boutique-teal text-white p-1.5 rounded-full shadow-md border-2 border-white hover:bg-boutique-teal-dark transition-colors">
+<span class="material-symbols-outlined text-[16px] block">edit</span>
+</div>
+</div>
+<h2 class="text-xl font-bold text-gray-900">Sophia Anderson</h2>
+<p class="text-text-secondary mt-1 font-medium">+91 98765 43210</p>
+</section>
+<section class="space-y-4">
+<div class="flex items-center justify-between">
+<h3 class="text-lg font-bold text-gray-800">Delivery Addresses</h3>
+</div>
+<div class="bg-surface rounded-2xl p-5 shadow-soft border border-gray-100 relative transition-transform hover:scale-[1.01]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2 bg-boutique-teal/10 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-boutique-teal-dark text-[18px]">home</span>
+<span class="text-xs font-bold text-boutique-teal-dark uppercase tracking-wide">Home</span>
+</div>
+<div class="flex gap-1">
+<button class="p-2 text-gray-400 hover:text-boutique-teal transition-colors rounded-full hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">edit_square</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-400 transition-colors rounded-full hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<div class="space-y-1 mb-3">
+<p class="font-semibold text-gray-900">Sophia Anderson</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                        Flat 402, Emerald Heights, Park Avenue,<br/>
+                        Bandra West, Mumbai - 400050
+                    </p>
+</div>
+</div>
+<div class="bg-surface rounded-2xl p-5 shadow-soft border border-gray-100 relative transition-transform hover:scale-[1.01]">
+<div class="flex justify-between items-start mb-3">
+<div class="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full">
+<span class="material-symbols-outlined text-gray-600 text-[18px]">work</span>
+<span class="text-xs font-bold text-gray-600 uppercase tracking-wide">Work</span>
+</div>
+<div class="flex gap-1">
+<button class="p-2 text-gray-400 hover:text-boutique-teal transition-colors rounded-full hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">edit_square</span>
+</button>
+<button class="p-2 text-gray-400 hover:text-red-400 transition-colors rounded-full hover:bg-gray-50">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+<div class="space-y-1 mb-3">
+<p class="font-semibold text-gray-900">Sophia Anderson</p>
+<p class="text-gray-600 text-sm leading-relaxed">
+                        WeWork Enam Sambhav, G Block,<br/>
+                        BKC, Mumbai - 400051
+                    </p>
+</div>
+</div>
+<button class="w-full h-14 mt-4 border-2 border-dashed border-boutique-teal text-boutique-teal-dark font-semibold rounded-2xl flex items-center justify-center gap-2 hover:bg-boutique-teal/5 transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined">add_location_alt</span>
+                Add New Address
+            </button>
+</section>
+<section class="pt-2">
+<h3 class="text-lg font-bold text-gray-800 mb-4">Account Settings</h3>
+<div class="bg-surface rounded-2xl shadow-soft divide-y divide-gray-50 overflow-hidden">
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-purple-50 text-purple-500 flex items-center justify-center group-hover:bg-purple-100 transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<span class="font-medium text-gray-700">My Orders</span>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-gray-500 transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-pink-50 text-pink-500 flex items-center justify-center group-hover:bg-pink-100 transition-colors">
+<span class="material-symbols-outlined">favorite</span>
+</div>
+<span class="font-medium text-gray-700">Wishlist</span>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-gray-500 transition-colors">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors group">
+<div class="flex items-center gap-4">
+<div class="size-10 rounded-xl bg-blue-50 text-blue-500 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<span class="font-medium text-gray-700">Settings</span>
+</div>
+<span class="material-symbols-outlined text-gray-300 group-hover:text-gray-500 transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<div class="pb-6">
+<button class="w-full flex items-center justify-center gap-2 p-4 text-red-500 font-semibold bg-surface border border-red-100 rounded-2xl hover:bg-red-50 transition-colors active:scale-[0.98]">
+<span class="material-symbols-outlined">logout</span>
+                Log Out
+            </button>
+<p class="text-center text-xs text-gray-400 mt-4">Version 2.4.0</p>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-surface border-t border-gray-100 px-6 py-3 pb-safe z-50 shadow-[0_-4px_20px_-2px_rgba(0,0,0,0.03)]">
+<div class="flex justify-between items-center max-w-lg mx-auto">
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-boutique-teal transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">storefront</span>
+<span class="text-[10px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-boutique-teal transition-colors group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">category</span>
+<span class="text-[10px] font-medium">Shop</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-gray-400 hover:text-boutique-teal transition-colors group relative">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">shopping_bag</span>
+<span class="text-[10px] font-medium">Bag</span>
+<span class="absolute top-0 right-0 size-2 bg-red-400 rounded-full ring-2 ring-white"></span>
+</button>
+<button class="flex flex-col items-center gap-1 text-boutique-teal-dark">
+<span class="material-symbols-outlined fill-current drop-shadow-sm scale-110">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</div>
+</nav>
+
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Boutique Story</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&amp;family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#32332e",
+                        "background-light": "#f4f3f0",
+                        "background-dark": "#2c2821",
+                        "paper-light": "#ffffff",
+                        "paper-dark": "#3a3630",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar hide for cleaner look if needed */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-primary dark:text-white transition-colors duration-300">
+<div class="relative flex h-auto min-h-screen w-full flex-col overflow-x-hidden font-body">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm p-4 pb-2 transition-all">
+<button class="text-primary dark:text-white flex size-10 shrink-0 items-center justify-center hover:bg-black/5 dark:hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-primary dark:text-white text-lg font-display font-bold leading-tight tracking-wide text-center flex-1 pr-10">
+                About
+            </h1>
+</header>
+<!-- Hero Section -->
+<div class="@container w-full">
+<div class="w-full h-[450px] relative">
+<div class="absolute inset-0 bg-center bg-no-repeat bg-cover" data-alt="Sunlit boutique interior with linen clothes hanging on a rack and fresh flowers" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1hnbmhLVMQ7oeeUpStB_bipo9QnBcEwpG3AU9-jXrJe3n7a-eoGXBgQEm3czMxG7L5j02ToFuarDCw4soivexbpGP5xihjWWIXCJqOy8X8rCDvjyUKRSzBTuLPumOcmuMSv2bChCILOJURLv-4KLJX6TePM1k-Ju6UOAfxuouF4FqUrliqBdUca863gDTiiPvfp5g8L8zzDMRMjk1hHUORURmK__F2caED09mp0Jk37WNoqRG7aIxvoSYmmrF0UCv3dHkmBMYGvk");'>
+</div>
+<!-- Subtle gradient overlay for text readability if needed, kept minimal here for clean look -->
+<div class="absolute inset-0 bg-gradient-to-t from-background-light/40 to-transparent dark:from-background-dark/40"></div>
+</div>
+</div>
+<!-- Narrative Section -->
+<div class="px-6 pt-8 pb-4 flex flex-col items-center">
+<h2 class="text-primary dark:text-white font-display text-3xl font-semibold leading-tight text-center tracking-tight mb-4">
+                Weaving a Legacy
+            </h2>
+<div class="w-12 h-[1px] bg-primary/20 dark:bg-white/20 mb-6"></div>
+<p class="text-primary/80 dark:text-white/80 text-base font-normal leading-relaxed text-center max-w-md mx-auto">
+                Founded in 2015, we began with a simple belief: that luxury should feel as good as it looks. We source the finest materials to bring you timeless elegance that transcends seasons.
+            </p>
+</div>
+<!-- Values Grid -->
+<div class="px-4 py-8">
+<div class="bg-paper-light dark:bg-paper-dark rounded-xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.05)] dark:shadow-none p-6">
+<div class="grid grid-cols-3 gap-4 divide-x divide-primary/10 dark:divide-white/10">
+<!-- Value 1 -->
+<div class="flex flex-col items-center gap-3 text-center px-1">
+<span class="material-symbols-outlined text-[28px] text-primary dark:text-white font-light">gesture</span>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary dark:text-white">Handcrafted</h3>
+</div>
+<!-- Value 2 -->
+<div class="flex flex-col items-center gap-3 text-center px-1">
+<span class="material-symbols-outlined text-[28px] text-primary dark:text-white font-light">checkroom</span>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary dark:text-white">Premium</h3>
+</div>
+<!-- Value 3 -->
+<div class="flex flex-col items-center gap-3 text-center px-1">
+<span class="material-symbols-outlined text-[28px] text-primary dark:text-white font-light">eco</span>
+<h3 class="text-xs uppercase tracking-widest font-bold text-primary dark:text-white">Ethical</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Founder Section -->
+<div class="px-4 pb-8">
+<div class="bg-paper-light dark:bg-paper-dark rounded-xl p-8 flex flex-col items-center text-center border border-primary/5 dark:border-white/5 relative overflow-hidden">
+<!-- Decorative background element -->
+<div class="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-primary/5 dark:bg-white/5 rounded-full blur-2xl"></div>
+<div class="relative w-24 h-24 mb-5">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-background-light dark:border-background-dark shadow-md" data-alt="Portrait of Eleanor the founder smiling warmly" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBCD6nG0diNKIJjMICk4O2eJnm_P5Rp8kLAttz38grnpk17E8r5eLdUtIDRfdvcyAfq_F358LvGcMQCEzjJxo7e6_r8XTKdDaZDXfKE-LbDv4Uy90dHAaQQuF2kouffOawtKTMGMiWyvaZphF1E8nguc3XdmQr5VqEr2YMZEgAaTeQYCy7bzsLzl3baHqaOlaXwlp012yusQErErfmDrF8vG4l0p0HSEQ-Op84jfSFUDusR9jB9OgGiy7lKR9ALquJaSEmhiUjcths");'>
+</div>
+</div>
+<h2 class="font-display text-xl font-bold text-primary dark:text-white mb-3">Meet Eleanor</h2>
+<p class="font-display italic text-lg leading-relaxed text-primary/70 dark:text-white/70 mb-6">
+                    "I curate pieces that I would wear myself. Welcome to our family."
+                </p>
+<div class="w-16 h-0.5 bg-primary/10 dark:bg-white/10 rounded-full"></div>
+</div>
+</div>
+<!-- Footer / CTA -->
+<div class="px-6 pb-12 pt-2 text-center">
+<button class="group relative inline-flex items-center justify-center px-8 py-3 overflow-hidden font-medium text-primary dark:text-white transition duration-300 ease-out border border-primary/30 dark:border-white/30 rounded-full shadow-sm hover:shadow-md hover:bg-paper-light dark:hover:bg-paper-dark w-full max-w-xs mx-auto">
+<span class="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-primary dark:bg-white/10 group-hover:translate-x-0 ease">
+<span class="material-symbols-outlined text-white dark:text-white text-[20px]">arrow_forward</span>
+</span>
+<span class="absolute flex items-center justify-center w-full h-full text-primary dark:text-white transition-all duration-300 transform group-hover:translate-x-full ease font-display tracking-wide text-sm uppercase">Explore Collection</span>
+<span class="relative invisible">Explore Collection</span>
+</button>
+<p class="mt-8 text-xs text-primary/40 dark:text-white/40 uppercase tracking-widest">Est. 2015 • Paris, France</p>
+</div>
+</div>
+</body></html>

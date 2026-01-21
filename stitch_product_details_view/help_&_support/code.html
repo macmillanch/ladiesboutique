@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Help &amp; Support</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5ea69e",
+                        "primary-dark": "#4A8F8A",
+                        "background-light": "#FDF7F0", 
+                        "background-dark": "#1a282d",
+                        "surface-light": "#FFFFFF",
+                        "surface-dark": "#25363e",
+                        "text-main": "#1a282d",
+                        "text-muted": "#6E7C88",
+                        "accent-peach": "#F2DDCF"
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem", 
+                        "xl": "1.5rem",
+                        "2xl": "2rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                        "glow": "0 0 15px rgba(94, 166, 158, 0.3)"
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Accordion Animation */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .3s ease-in-out;
+        }
+        
+        @keyframes sweep {
+            0%    {opacity: 0; transform: translateY(-10px)}
+            100%  {opacity: 1; transform: translateY(0)}
+        }
+
+        details > summary .chevron {
+            transition: transform 0.3s ease;
+        }
+        details[open] > summary .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased min-h-screen flex flex-col transition-colors duration-300">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-20 w-full bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-transparent dark:border-gray-800">
+<div class="flex items-center justify-between px-4 py-3 pt-safe-top">
+<button class="flex size-10 items-center justify-center rounded-full active:bg-black/5 dark:active:bg-white/10 transition text-text-main dark:text-white">
+<span class="material-symbols-outlined">arrow_back_ios_new</span>
+</button>
+<h1 class="text-text-main dark:text-white text-lg font-bold leading-tight tracking-[-0.015em]">Help &amp; Support</h1>
+<div class="size-10"></div> <!-- Spacer for visual balance -->
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-8">
+<!-- Hero Section -->
+<div class="relative flex flex-col items-center pt-6 pb-2 px-6 text-center">
+<!-- Illustration Container -->
+<div class="mb-6 relative w-32 h-32 rounded-full bg-gradient-to-tr from-accent-peach/30 to-white dark:from-surface-dark dark:to-primary/10 flex items-center justify-center shadow-soft ring-4 ring-white dark:ring-surface-dark overflow-hidden">
+<div class="w-full h-full bg-center bg-cover" data-alt="Minimalist soft vector illustration of a friendly customer support avatar or smiling face" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBpZSGoHwm9GDFuwuVSpjvFvauCORUx7y-XvhgiVrHrjSg-7HCRwbBW6XnQ4BpZIguTSOFSdMZiEKFaH-337saL2d_YlvVLkRQo7eAadIa_yZM4uimpW3PrlFo759_gC4K2gSZH4rx7wy8IhK5rV82oFqy0ybxMQT1zMP5uy_nZPkuIouYe0diA_7diB_7SeCKpGfZfjEyPwTbERfDMcd5ncuRE8mZxZQqBUYvFPGXeFVd3ojtnxQ2O4MeIhoOoWaokqmCvgPKBeC0"); opacity: 0.9;'></div>
+</div>
+<h2 class="text-text-main dark:text-white text-[28px] font-bold leading-tight mb-2 tracking-tight">
+                Hello, lovely! <br/>How can we help?
+            </h2>
+<p class="text-text-muted dark:text-gray-400 text-base font-medium max-w-[280px] leading-relaxed">
+                We are here to assist you with your orders, sizing, and style questions.
+            </p>
+</div>
+<!-- Primary CTA: WhatsApp -->
+<div class="px-5 py-6">
+<div class="relative group">
+<!-- Decorative blurred glow behind button -->
+<div class="absolute -inset-1 bg-primary rounded-xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+<button class="relative w-full flex items-center justify-center bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all duration-200 text-white rounded-xl h-14 px-6 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined mr-3 text-[24px]">chat_bubble</span>
+<span class="text-lg font-bold tracking-wide">Chat on WhatsApp</span>
+<span class="material-symbols-outlined absolute right-4 opacity-70 text-[20px]">chevron_right</span>
+</button>
+</div>
+<p class="text-center text-xs text-text-muted dark:text-gray-500 mt-3 font-medium flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px] filled text-green-500">bolt</span> Typical reply time: 5 mins
+            </p>
+</div>
+<!-- FAQ Section -->
+<div class="px-5 mt-4">
+<div class="flex items-center gap-2 mb-4 px-1">
+<span class="material-symbols-outlined text-primary text-[20px]">help</span>
+<h3 class="text-text-main dark:text-white font-bold text-lg">Frequently Asked Questions</h3>
+</div>
+<div class="space-y-3">
+<!-- FAQ Item 1 (Expanded by default for demo) -->
+<details class="group bg-surface-light dark:bg-surface-dark rounded-xl border border-accent-peach/50 dark:border-gray-700 shadow-sm overflow-hidden" open="">
+<summary class="flex items-center justify-between p-4 cursor-pointer select-none active:bg-accent-peach/10 dark:active:bg-gray-700/50 transition-colors">
+<span class="text-text-main dark:text-white font-semibold">How do I track my order?</span>
+<span class="chevron material-symbols-outlined text-text-muted dark:text-gray-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-text-muted dark:text-gray-300 text-sm leading-relaxed border-t border-transparent">
+                        Once your order ships, we'll send a confirmation email with a tracking link. You can also find it under 'My Orders' in your profile.
+                    </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group bg-surface-light dark:bg-surface-dark rounded-xl border border-transparent hover:border-accent-peach/50 dark:border-gray-800 shadow-sm overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer select-none active:bg-accent-peach/10 dark:active:bg-gray-700/50 transition-colors">
+<span class="text-text-main dark:text-white font-semibold">What is your return policy?</span>
+<span class="chevron material-symbols-outlined text-text-muted dark:text-gray-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-text-muted dark:text-gray-300 text-sm leading-relaxed border-t border-transparent">
+                        We accept returns within 30 days of delivery. Items must be unworn, unwashed, and tracking tags attached.
+                    </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group bg-surface-light dark:bg-surface-dark rounded-xl border border-transparent hover:border-accent-peach/50 dark:border-gray-800 shadow-sm overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer select-none active:bg-accent-peach/10 dark:active:bg-gray-700/50 transition-colors">
+<span class="text-text-main dark:text-white font-semibold">Do you ship internationally?</span>
+<span class="chevron material-symbols-outlined text-text-muted dark:text-gray-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-text-muted dark:text-gray-300 text-sm leading-relaxed border-t border-transparent">
+                        Yes! We ship to over 50 countries. International shipping rates are calculated at checkout based on location.
+                    </div>
+</details>
+<!-- FAQ Item 4 -->
+<details class="group bg-surface-light dark:bg-surface-dark rounded-xl border border-transparent hover:border-accent-peach/50 dark:border-gray-800 shadow-sm overflow-hidden transition-all">
+<summary class="flex items-center justify-between p-4 cursor-pointer select-none active:bg-accent-peach/10 dark:active:bg-gray-700/50 transition-colors">
+<span class="text-text-main dark:text-white font-semibold">Can I change my payment method?</span>
+<span class="chevron material-symbols-outlined text-text-muted dark:text-gray-400">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-text-muted dark:text-gray-300 text-sm leading-relaxed border-t border-transparent">
+                        For security reasons, we cannot change payment methods once an order is placed. Please contact support to cancel and re-order.
+                    </div>
+</details>
+</div>
+</div>
+<!-- Footer / Secondary Actions -->
+<div class="mt-8 px-5 pb-6">
+<h4 class="text-center text-xs font-bold text-text-muted uppercase tracking-widest mb-4 opacity-60">Other ways to connect</h4>
+<div class="grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-surface-dark border border-accent-peach/30 dark:border-gray-700 rounded-2xl shadow-sm active:scale-95 transition-transform duration-200">
+<div class="size-10 rounded-full bg-background-light dark:bg-gray-700 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">mail</span>
+</div>
+<span class="text-sm font-bold text-text-main dark:text-white">Email Us</span>
+</button>
+<button class="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-surface-dark border border-accent-peach/30 dark:border-gray-700 rounded-2xl shadow-sm active:scale-95 transition-transform duration-200">
+<div class="size-10 rounded-full bg-background-light dark:bg-gray-700 flex items-center justify-center text-[#E1306C]"> <!-- Instagram color hint -->
+<span class="material-symbols-outlined">photo_camera</span>
+</div>
+<span class="text-sm font-bold text-text-main dark:text-white">Instagram</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Spacing for Home Indicator (iOS) -->
+<div class="h-6 w-full"></div>
+</body></html>

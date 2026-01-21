@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add New Address - Boutique App</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a79086",
+                        "primary-dark": "#8a756b",
+                        "background-light": "#fcf9f3",
+                        "background-dark": "#302e2c",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#3d3a38",
+                        "text-main": "#302e2c",
+                        "text-muted": "#797472",
+                        "border-color": "#e6e1de",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"],
+                        "serif": ["Noto Serif", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "md": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(167, 144, 134, 0.1)",
+                        "input": "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>/* Custom scrollbar hide for cleaner mobile look */
+.no-scrollbar::-webkit-scrollbar {
+    display: none
+    }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }
+/* Smooth transitions for inputs */
+.form-input {
+    transition: all 0.2s ease-in-out
+    }
+/* Custom checkbox styling */
+.custom-checkbox:checked {
+    background-color: #a79086;
+    border-color: #a79086;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuDnAoNZdvRfXzuqZ05ML3qCJK7kyLiuq3hfiVlNVq-G0UDosVorCvasoZ_KEy-qRNGTna1zSbbcLRX_Qu1KFUvw7NCpvRJfpQ3TRmpyCf1NESUQzEXzogoroIWF9--zGlr39FYLubQVdU5I9SIsl43zShRDjEX6wOS_u4h7-3BNtUJycacnD24cHNqYCQhDY37drjcjNA05bZydV47TrLDmpLM-uPRUn-e-R8I8KOOsHOdy0JCymlUS6aefr4zef0cvzoSbi1fwD2w)
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-main dark:text-background-light min-h-screen flex flex-col antialiased selection:bg-primary/30 selection:text-primary-dark">
+<!-- Header -->
+<header class="sticky top-0 z-20 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10 transition-colors duration-300">
+<div class="flex items-center justify-between px-4 py-4 max-w-lg mx-auto w-full">
+<button aria-label="Go back" class="flex items-center justify-center w-10 h-10 -ml-2 rounded-full hover:bg-primary/10 active:bg-primary/20 text-text-main dark:text-white transition-colors group">
+<span class="material-symbols-outlined text-[24px] group-hover:-translate-x-0.5 transition-transform">arrow_back_ios_new</span>
+</button>
+<h1 class="text-xl font-serif font-bold tracking-tight text-text-main dark:text-white">Add Delivery Address</h1>
+<div class="w-10"></div> <!-- Spacer for visual balance -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-lg mx-auto p-4 pb-32">
+<!-- Elegant Form Card -->
+<form class="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-soft p-6 space-y-6 border border-white/50 dark:border-white/5 relative overflow-hidden">
+<!-- Decorative corner accent -->
+<div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-primary/10 to-transparent rounded-bl-full -mr-4 -mt-4 pointer-events-none"></div>
+<!-- Full Name -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="fullname">Full Name</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-3.5 text-text-muted text-[20px] pointer-events-none group-focus-within:text-primary transition-colors">person</span>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white pl-11 pr-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="fullname" name="fullname" placeholder="Enter your full name" type="text"/>
+</div>
+</div>
+<!-- Phone Number -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="phone">Phone Number</label>
+<div class="relative flex">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+<span class="material-symbols-outlined text-text-muted text-[20px] group-focus-within:text-primary transition-colors">call</span>
+</div>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white pl-11 pr-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="phone" name="phone" placeholder="10-digit mobile number" type="tel"/>
+</div>
+</div>
+<hr class="border-border-color dark:border-white/10 border-dashed opacity-70"/>
+<!-- Address Lines -->
+<div class="space-y-5">
+<!-- Flat/House No -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="address1">Flat, House no., Building</label>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="address1" name="address1" placeholder="e.g. Flat 402, Rose Apartments" type="text"/>
+</div>
+<!-- Area/Street -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="address2">Area, Colony, Street</label>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="address2" name="address2" placeholder="e.g. Sector 12, Main Street" type="text"/>
+</div>
+<!-- Landmark -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 flex items-center gap-2" for="landmark">
+                        Landmark 
+                        <span class="text-xs font-normal text-text-muted bg-primary/10 px-2 py-0.5 rounded-full dark:text-white/60 dark:bg-white/10">Optional</span>
+</label>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="landmark" name="landmark" placeholder="e.g. Near City Center Mall" type="text"/>
+</div>
+</div>
+<!-- Pincode & City Row -->
+<div class="flex gap-4">
+<div class="w-1/2 group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="pincode">Pincode</label>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="pincode" inputmode="numeric" name="pincode" placeholder="000000" type="text"/>
+</div>
+<div class="w-1/2 group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="city">City</label>
+<input class="form-input block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base placeholder:text-text-muted/60 focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input" id="city" name="city" placeholder="City" type="text"/>
+</div>
+</div>
+<!-- State Selector -->
+<div class="relative group">
+<label class="block text-sm font-semibold text-text-main dark:text-gray-200 mb-2 transition-colors group-focus-within:text-primary" for="state">State</label>
+<div class="relative">
+<select class="form-input appearance-none block w-full rounded-xl border-border-color bg-white dark:bg-black/20 dark:border-white/10 dark:text-white px-4 py-3 text-base text-text-main focus:border-primary focus:ring-1 focus:ring-primary focus:ring-opacity-50 shadow-input pr-10" id="state" name="state">
+<option disabled="" selected="" value="">Select State</option>
+<option value="CA">California</option>
+<option value="NY">New York</option>
+<option value="TX">Texas</option>
+<option value="FL">Florida</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-text-muted group-focus-within:text-primary">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+</form>
+<!-- Default Address Toggle -->
+<div class="mt-6 px-2 flex items-center justify-between group cursor-pointer" onclick="document.getElementById('default-address').click()">
+<div class="flex items-center gap-3">
+<div class="relative flex items-center">
+<input class="custom-checkbox peer h-5 w-5 cursor-pointer rounded border-gray-300 text-primary focus:ring-primary/50 transition-all" id="default-address" type="checkbox"/>
+</div>
+<label class="text-base font-medium text-text-main dark:text-white cursor-pointer select-none" for="default-address">Use as default address</label>
+</div>
+</div>
+</main>
+<!-- Footer Action -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-lg border-t border-primary/10 p-4 pb-8 z-30">
+<div class="max-w-lg mx-auto">
+<button class="w-full bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all duration-200 text-white font-bold text-lg py-3.5 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group">
+<span>Save Address</span>
+<span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">check</span>
+</button>
+</div>
+</div>
+</body></html>

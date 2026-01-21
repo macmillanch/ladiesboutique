@@ -1,0 +1,173 @@
+const express = require('express');
+const cors = require('cors');
+const db = require('./db');
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Basic Route
+app.get('/', (req, res) => {
+    res.json({ message: 'Ladies Boutique API is running' });
+});
+
+// --- AUTH ROUTES ---
+app.post('/api/auth/login', async (req, res) => {
+    // Implement Login Logic (Phone or Email)
+    // Check DB, return JWT
+    const { phone, password } = req.body;
+    try {
+        const result = await db.query('SELECT * FROM users WHERE phone = $1', [phone]);
+        if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+
+        const user = result.rows[0];
+        // TODO: Verify password with bcrypt
+        // if (!await bcrypt.compare(password, user.password)) return res.status(401).json({error: 'Invalid creds'});
+
+        // MOCK JWT for now
+        res.json({
+            token: 'mock-jwt-token',
+            user: {
+                id: user.id,
+                email: user.email,
+                role: user.role,
+                phone: user.phone,
+                name: user.name,
+                profile_image_url: user.profile_image_url
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// --- USER ROUTES ---
+app.put('/api/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, profile_image_url } = req.body;
+    try {
+        const result = await db.query(
+            'UPDATE users SET name = COALESCE($1, name), profile_image_url = COALESCE($2, profile_image_url) WHERE id = $3 RETURNING *',
+            [name, profile_image_url, id]
+        );
+        if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+
+        const user = result.rows[0];
+        res.json({
+            id: user.id, email: user.email, role: user.role, phone: user.phone,
+            name: user.name, profile_image_url: user.profile_image_url
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// Admin Promotion (Debug only - normally requires auth)
+app.post('/api/admin/promote', async (req, res) => {
+    const { userId } = req.body;
+    try {
+        const result = await db.query("UPDATE users SET role = 'admin' WHERE id = $1 RETURNING *", [userId]);
+        if (result.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+
+        const user = result.rows[0];
+        res.json({
+            message: 'User promoted to admin',
+            user: {
+                id: user.id, email: user.email, role: user.role, phone: user.phone,
+                name: user.name, profile_image_url: user.profile_image_url
+            }
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// --- ORDER ROUTES (Placeholder) ---
+app.get('/api/orders/:userId', async (req, res) => {
+    // TODO: Implement GET orders
+    res.json([]);
+});
+
+app.post('/api/orders', async (req, res) => {
+    // TODO: Implement POST order
+    const { userId, totalAmount, items } = req.body;
+    // Mock success
+    res.status(201).json({ id: 'order-' + Date.now(), status: 'pending' });
+});
+
+// --- WISHLIST ROUTES (Placeholder) ---
+app.get('/api/wishlist/:userId', async (req, res) => {
+    res.json([]);
+});
+app.post('/api/wishlist', async (req, res) => {
+    res.status(201).json({ message: 'Added to wishlist' });
+});
+app.delete('/api/wishlist/:userId/:productId', async (req, res) => {
+    res.json({ message: 'Removed from wishlist' });
+});
+
+// --- ADDRESS ROUTES (Placeholder) ---
+app.get('/api/addresses/:userId', async (req, res) => {
+    res.json([]);
+});
+app.post('/api/addresses', async (req, res) => {
+    res.status(201).json({ id: 'addr-' + Date.now(), ...req.body });
+});
+app.delete('/api/addresses/:userId/:addressId', async (req, res) => {
+    res.json({ message: 'Address deleted' });
+});
+
+// --- PRODUCT ROUTES ---
+app.get('/api/products', async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM products ORDER BY created_at DESC');
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.post('/api/products', async (req, res) => {
+    // Admin Only TODO: Middleware
+    const { name, price, description, sizes, colors, image_urls } = req.body;
+    try {
+        const result = await db.query(
+            'INSERT INTO products (name, price, description, sizes, colors, image_urls) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
+            [name, price, description, JSON.stringify(sizes), JSON.stringify(colors), JSON.stringify(image_urls)]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.put('/api/products/:id', async (req, res) => {
+    const { id } = req.params;
+    const { name, price, description, sizes, colors, image_urls } = req.body;
+    try {
+        const result = await db.query(
+            'UPDATE products SET name = $1, price = $2, description = $3, sizes = $4, colors = $5, image_urls = $6 WHERE id = $7 RETURNING *',
+            [name, price, description, JSON.stringify(sizes), JSON.stringify(colors), JSON.stringify(image_urls), id]
+        );
+        if (result.rows.length === 0) return res.status(404).json({ error: 'Product not found' });
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.delete('/api/products/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await db.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
+        if (result.rows.length === 0) return res.status(404).json({ error: 'Product not found' });
+        res.json({ message: 'Product deleted successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

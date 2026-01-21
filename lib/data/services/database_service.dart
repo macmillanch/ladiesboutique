@@ -1,0 +1,201 @@
+import 'dart:async';
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
+import 'package:http/http.dart' as http;
+import '../models/product_model.dart';
+import '../models/order_model.dart';
+
+class DatabaseService {
+  static const String _baseUrl = kIsWeb
+      ? 'http://localhost:3000/api'
+      : 'http://10.0.2.2:3000/api';
+
+  // Products
+  Stream<List<Product>> getProducts() async* {
+    while (true) {
+      try {
+        final response = await http.get(Uri.parse('$_baseUrl/products'));
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body);
+          yield data.map((json) => Product.fromJson(json)).toList();
+        }
+      } catch (e) {
+        debugPrint('Error fetching products: $e');
+        yield [];
+      }
+      await Future.delayed(const Duration(seconds: 10)); // Poll every 10s
+    }
+  }
+
+  Future<void> addProduct(Product product) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/products'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(product.toJson()),
+    );
+    if (response.statusCode != 201) {
+      throw Exception('Failed to add product');
+    }
+  }
+
+  Future<void> updateProduct(Product product) async {
+    final response = await http.put(
+      Uri.parse('$_baseUrl/products/${product.id}'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(product.toJson()),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update product');
+    }
+  }
+
+  Future<void> deleteProduct(String productId) async {
+    final response = await http.delete(
+      Uri.parse('$_baseUrl/products/$productId'),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete product');
+    }
+  }
+
+  // Orders
+  // Orders
+  Stream<List<OrderModel>> getOrders() async* {
+    while (true) {
+      try {
+        final response = await http.get(Uri.parse('$_baseUrl/orders'));
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body);
+          yield data.map((json) => OrderModel.fromJson(json)).toList();
+        }
+      } catch (e) {
+        debugPrint('Error fetching orders: $e');
+        yield [];
+      }
+      await Future.delayed(const Duration(seconds: 10)); // Poll every 10s
+    }
+  }
+
+  Stream<List<OrderModel>> getUserOrders(String userId) async* {
+    while (true) {
+      try {
+        final response = await http.get(Uri.parse('$_baseUrl/orders/$userId'));
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body);
+          yield data.map((json) => OrderModel.fromJson(json)).toList();
+        }
+      } catch (e) {
+        debugPrint('Error fetching user orders: $e');
+        yield [];
+      }
+      await Future.delayed(const Duration(seconds: 10)); // Poll every 10s
+    }
+  }
+
+  Future<void> createOrder(OrderModel order) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/orders'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(order.toJson()),
+    );
+    if (response.statusCode != 201) {
+      throw Exception('Failed to create order');
+    }
+  }
+
+  Future<void> markOrderPacked(String orderId) async {
+    // Stub
+  }
+
+  Future<void> markOrderShipped(
+    String orderId,
+    String courier,
+    String trackingId,
+    String slipUrl,
+  ) async {
+    // Stub
+  }
+
+  Future<void> confirmDelivery(String orderId) async {
+    // Stub
+  }
+
+  // Wishlist
+  Future<void> addToWishlist(String userId, Product product) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/wishlist'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'userId': userId, 'productId': product.id}),
+    );
+    if (response.statusCode != 201 && response.statusCode != 200) {
+      throw Exception('Failed to add to wishlist');
+    }
+  }
+
+  Future<void> removeFromWishlist(String userId, String productId) async {
+    final response = await http.delete(
+      Uri.parse('$_baseUrl/wishlist/$userId/$productId'),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to remove from wishlist');
+    }
+  }
+
+  Stream<List<Product>> getWishlist(String userId) async* {
+    while (true) {
+      try {
+        final response = await http.get(
+          Uri.parse('$_baseUrl/wishlist/$userId'),
+        );
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body);
+          yield data.map((json) => Product.fromJson(json)).toList();
+        }
+      } catch (e) {
+        yield [];
+      }
+      await Future.delayed(const Duration(seconds: 5));
+    }
+  }
+
+  // Addresses
+  Stream<List<Map<String, dynamic>>> getAddresses(String userId) async* {
+    while (true) {
+      try {
+        final response = await http.get(
+          Uri.parse('$_baseUrl/addresses/$userId'),
+        );
+        if (response.statusCode == 200) {
+          final List<dynamic> data = jsonDecode(response.body);
+          yield List<Map<String, dynamic>>.from(data);
+        }
+      } catch (e) {
+        yield [];
+      }
+      await Future.delayed(const Duration(seconds: 5));
+    }
+  }
+
+  Future<void> addAddress(
+    String userId,
+    Map<String, dynamic> addressData,
+  ) async {
+    final response = await http.post(
+      Uri.parse('$_baseUrl/addresses'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'userId': userId, ...addressData}),
+    );
+    if (response.statusCode != 201) {
+      throw Exception('Failed to add address');
+    }
+  }
+
+  Future<void> deleteAddress(String userId, String addressId) async {
+    final response = await http.delete(
+      Uri.parse('$_baseUrl/addresses/$userId/$addressId'),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete address');
+    }
+  }
+}

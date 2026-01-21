@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Orders - Boutique App</title>
+<!-- Google Fonts: Manrope -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#b3dbca", // Mint Green
+                        "primary-dark": "#8fc0ab",
+                        "background-light": "#f6f7f7", // Light Gray/Cream
+                        "background-dark": "#151d1a",
+                        "charcoal": "#26292B",
+                        "soft-coral": "#FCDDD4",
+                        "soft-blue": "#E1F1F8",
+                        "soft-gold": "#FFF4C3",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "full": "9999px"},
+                    boxShadow: {
+                        "soft": "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-charcoal antialiased overflow-x-hidden">
+<div class="relative flex min-h-screen flex-col w-full max-w-md mx-auto bg-background-light dark:bg-background-dark shadow-2xl">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between bg-white/90 backdrop-blur-md px-4 py-4 dark:bg-background-dark/90 border-b border-gray-100 dark:border-gray-800">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors dark:text-white dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-charcoal dark:text-white">My Orders</h1>
+<div class="size-10"></div> <!-- Spacer for alignment -->
+</header>
+<!-- Main Content: Order List -->
+<main class="flex-1 px-4 py-6 space-y-5 pb-24">
+<!-- Card 1: Active/Shipped (India Post) -->
+<article class="group relative flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-soft transition-all hover:shadow-lg dark:bg-[#1E2623] overflow-hidden">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="relative h-28 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Floral summer dress folded neatly" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDcQD9Jc-fhs9P6f39NQMs-Xng6jaOLE35hb3KY5TI7fHQDLYqXJSNywHSoOSHWYnWGwWV65J_r6YrfDwTm0AHOB6cUniMqlb_MRo296OxvwwKshRySuf7TvOQ9nAUxMDe8Ks6sNPRuBr9-yV9bFZtHCUzCFJAwReEp0aGvhjJaEw4gfZx028ioVS7xxLQYbCP9oJ-sdUcMN0gUotsKYpsa0oA-3_cLdJA9a61nrYo0QUAzD-r4LUdQvMTeq2YKBwVki8dV1pvbbo0');"></div>
+</div>
+<!-- Order Details -->
+<div class="flex flex-1 flex-col justify-between py-0.5">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-charcoal text-[15px] dark:text-white">#ORD-4920</h3>
+<span class="font-semibold text-charcoal dark:text-primary">₹2,499</span>
+</div>
+<p class="mt-1 text-xs font-medium text-gray-500 dark:text-gray-400">Oct 24, 2023 • 2 Items</p>
+</div>
+<!-- Status Badge -->
+<div class="mt-2 flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-soft-coral/50 px-2.5 py-1 text-xs font-bold text-[#8a3c28] dark:bg-orange-900/40 dark:text-orange-200">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+                                Shipped
+                            </span>
+<span class="text-[10px] font-medium text-gray-400 uppercase tracking-wide">India Post</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex items-center justify-between border-t border-gray-50 pt-3 dark:border-gray-800">
+<p class="text-xs text-gray-400">Est. Delivery: Oct 30</p>
+<button class="flex h-9 items-center gap-2 rounded-lg bg-primary px-5 text-sm font-semibold text-charcoal transition-transform active:scale-95 hover:bg-primary-dark/80 shadow-sm">
+<span class="material-symbols-outlined text-[18px]">near_me</span>
+                        Track Order
+                    </button>
+</div>
+</article>
+<!-- Card 2: Payment Pending (UPI) -->
+<article class="group relative flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-soft transition-all hover:shadow-lg dark:bg-[#1E2623]">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="relative h-28 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105" data-alt="Elegant silk saree with gold borders" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAyY0Hw9Ba0xfaa7O-est-oTBd2eTgre4xkIj-g76mAG9jHaqpuIF8qhJrvJqmFIZd5Iv5X8yZWkVIu7pMV3GUO7kUx945iCBj7NozEDbZuj1-OM6QbrBARcAXHuuHb56iYdSMfiA8QpvwSLQNylwmcwRLjUd1F8v5wfTNT0S2IFT5U0JuqoElvjcT3pwfmKgXqIkJx4AOOiOvwA28jRjivFcruzP-yYid8sCZ8X__qh75aheETtvlyF3O1H8m_KmQZ0l3NMwhh64M');"></div>
+</div>
+<!-- Order Details -->
+<div class="flex flex-1 flex-col justify-between py-0.5">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-charcoal text-[15px] dark:text-white">#ORD-4701</h3>
+<span class="font-semibold text-charcoal dark:text-primary">₹3,550</span>
+</div>
+<p class="mt-1 text-xs font-medium text-gray-500 dark:text-gray-400">Today, 10:30 AM • 1 Item</p>
+</div>
+<!-- Status Badge -->
+<div class="mt-2">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-soft-gold/80 px-2.5 py-1 text-xs font-bold text-[#755f08] dark:bg-yellow-900/40 dark:text-yellow-200">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                                Payment Pending
+                            </span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex items-center justify-end border-t border-gray-50 pt-3 dark:border-gray-800">
+<button class="flex h-9 w-full items-center justify-center gap-2 rounded-lg bg-charcoal text-white text-sm font-semibold transition-transform active:scale-95 hover:bg-black dark:bg-white dark:text-charcoal shadow-sm">
+<span class="material-symbols-outlined text-[18px]">qr_code_2</span>
+                        Pay via UPI
+                    </button>
+</div>
+</article>
+<!-- Card 3: Delivered -->
+<article class="group relative flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-soft transition-all opacity-90 hover:opacity-100 dark:bg-[#1E2623]">
+<div class="flex gap-4">
+<!-- Product Image -->
+<div class="relative h-28 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale-[30%] transition-all duration-500 group-hover:grayscale-0" data-alt="Pastel pink women's blouse" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDZHNW3E-33XjnnbTwtwUZgt0zBactmjJA5q6jT1SbGjrfnxNEyUGdpNxg27GQfA8fhIMc9M_RFaPh4qwFpd17sT2AjjVuJ2dU5q-_WI-JHfp7Sy_3-SjHvubpxyzl9kpXTCo4y-rYr8SC6vOEH7jEljDrLZhIPglUeD6sYpE_ie6mIwXn1JP6eLJpW1_t-HwRizXOTmcz9u0p9CnhpI1fzP-FLtTj3J8SySTTJ4gbfdz2qx8pyAFZP96LKkZXi1uy3PKeiKAnmfLA');"></div>
+</div>
+<!-- Order Details -->
+<div class="flex flex-1 flex-col justify-between py-0.5">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-charcoal text-[15px] dark:text-white">#ORD-4652</h3>
+<span class="font-semibold text-charcoal dark:text-primary">₹1,299</span>
+</div>
+<p class="mt-1 text-xs font-medium text-gray-500 dark:text-gray-400">Sep 12, 2023 • 3 Items</p>
+</div>
+<!-- Status Badge -->
+<div class="mt-2">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-primary/30 px-2.5 py-1 text-xs font-bold text-[#2d5242] dark:bg-primary/20 dark:text-primary">
+<span class="material-symbols-outlined icon-filled text-[14px]">check_circle</span>
+                                Delivered
+                            </span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="flex items-center justify-between border-t border-gray-50 pt-3 dark:border-gray-800">
+<p class="text-xs text-gray-400">Delivered on Sep 15</p>
+<button class="flex h-8 items-center gap-1 rounded-lg border border-gray-200 px-4 text-sm font-medium text-charcoal transition-colors hover:bg-gray-50 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800">
+<span class="material-symbols-outlined text-[16px]">receipt_long</span>
+                        Details
+                    </button>
+</div>
+</article>
+<!-- Card 4: Cancelled -->
+<article class="group relative flex flex-col gap-4 rounded-2xl bg-white p-4 shadow-soft transition-all opacity-75 hover:opacity-100 dark:bg-[#1E2623]">
+<div class="flex gap-4">
+<div class="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-xl bg-gray-100">
+<div class="absolute inset-0 bg-cover bg-center grayscale" data-alt="White embroidered linen dress" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaFIPIjwOLOW9NMCMuHmEEzAIsPpriBXx4MzuV0xn7OEqbyohwLRgJZCfY2ouwviZ3s1aYyYZ91oxR2J5M88AomZC9O8O3p5qFmlu_QwFkytpKGwhMxqWD0vCp2P2K3yhaN_EBcBfeiQEbF0hdAfDyneZdsYvYwLKdWNAxtapC24xZ70HfusPK9qHH4wEahDXwsN-yEPmed44KWaPl6FixStZoqzlpDGOc7o5bj-TJTDs3h5VLr-IgHPC5Jhn83_EmzUHXo6RsVMM');"></div>
+</div>
+<div class="flex flex-1 flex-col justify-between py-0.5">
+<div>
+<div class="flex items-center justify-between">
+<h3 class="font-bold text-charcoal text-[15px] decoration-gray-400 dark:text-white">#ORD-4100</h3>
+<span class="font-semibold text-gray-400 line-through">₹4,200</span>
+</div>
+<p class="mt-1 text-xs font-medium text-gray-400">Aug 05, 2023</p>
+</div>
+<div class="mt-2">
+<span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-500 dark:bg-gray-800 dark:text-gray-400">
+<span class="material-symbols-outlined text-[14px]">cancel</span>
+                                Cancelled
+                            </span>
+</div>
+</div>
+</div>
+</article>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 z-50 flex w-full max-w-md items-center justify-around border-t border-gray-100 bg-white/95 backdrop-blur px-2 pb-5 pt-3 dark:border-gray-800 dark:bg-background-dark/95">
+<a class="group flex flex-col items-center gap-1 p-2 text-gray-400 transition-colors hover:text-charcoal dark:hover:text-white" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="group flex flex-col items-center gap-1 p-2 text-gray-400 transition-colors hover:text-charcoal dark:hover:text-white" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">search</span>
+<span class="text-[10px] font-medium">Browse</span>
+</a>
+<!-- Active Tab -->
+<a class="group flex flex-col items-center gap-1 p-2 text-charcoal dark:text-primary" href="#">
+<div class="relative">
+<span class="material-symbols-outlined icon-filled text-[26px] text-charcoal dark:text-primary drop-shadow-sm">shopping_bag</span>
+<span class="absolute -right-1 -top-1 size-2 rounded-full bg-primary ring-2 ring-white dark:ring-background-dark"></span>
+</div>
+<span class="text-[10px] font-bold">Orders</span>
+</a>
+<a class="group flex flex-col items-center gap-1 p-2 text-gray-400 transition-colors hover:text-charcoal dark:hover:text-white" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">favorite</span>
+<span class="text-[10px] font-medium">Wishlist</span>
+</a>
+<a class="group flex flex-col items-center gap-1 p-2 text-gray-400 transition-colors hover:text-charcoal dark:hover:text-white" href="#">
+<span class="material-symbols-outlined text-[26px] group-hover:scale-110 transition-transform">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</nav>
+</div>
+</body></html>

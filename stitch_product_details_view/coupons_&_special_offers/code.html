@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coupons &amp; Special Offers</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d9a630",
+                        "primary-dark": "#b08522",
+                        "background-light": "#f5f2f0",
+                        "background-dark": "#22262a",
+                        "paper-light": "#FFFFFF",
+                        "paper-dark": "#2a2f35",
+                        "ink-dark": "#171612",
+                        "ink-light": "#f0f0f0",
+                        "stone-border": "#E0DCD7",
+                    },
+                    fontFamily: {
+                        "display": ["Noto Serif", "serif"],
+                        "sans": ["Manrope", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.05)',
+                        'float': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>.dashed-border-box {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuB2YIBvPSWCUkQmwBtJtYDpEwxgK3qIBTDr15tjdW__xqv22u-UbFwPrDdFOsJzHfM3PqZiqXer61kQrTc_CUT5gOrngB-sN5nIuhm1Ys3Xvgnh-tXAyqbwPx1NQEYOEkp167yY7Y5DDPGItApMe3cXSzdF5VMqUuDHlS34tZ0s4rdinxbBgRgfNXb9k5RRn6u_dqXlveCUdjWl2k4344hNgVW94gCNf-CVC0kdPpKqd1MXThVyJBaBT0P_ujzllwXzilf1eOIXr6Q)
+    }
+.dark .dashed-border-box {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCarIMXdsyb0hn6XIuk92BSU_T13-ERghzLqwQOhh1fAp_nfrzoortkCcJ4WYRxcNbk5egJOzpoWh-8EwcV6E1AlwJl1yHgQB5s9fybMX0wrojq_LrhwkqHt7uHxUVXB1D0likMIxcYqK8rlVhtvhrXJAxqsuBk9_bKGhgX2_I5GJQw7FgoZnqoND2pIhjnc492WXQ6BeJOrEsiuI_IYy7_LUZPzN9RElUePusJjCYM1wWK011zKiD0OutMMPobUXV0G77EzcoWL6g)
+    }
+/* Hide scrollbar for clean look */
+.no-scrollbar::-webkit-scrollbar {
+    display: none
+    }
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="antialiased">
+<!-- Main Container -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark group/design-root overflow-x-hidden transition-colors duration-300">
+<!-- Header -->
+<header class="sticky top-0 z-50 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md p-4 pb-2 justify-between border-b border-stone-200/50 dark:border-white/5">
+<button class="text-ink-dark dark:text-ink-light flex size-10 shrink-0 items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back_ios_new</span>
+</button>
+<h1 class="text-ink-dark dark:text-ink-light text-xl font-display font-bold leading-tight tracking-tight flex-1 text-center pr-10">
+                Your Wallet
+            </h1>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col px-5 pt-6 pb-12 gap-8">
+<!-- Section 1: Vouchers -->
+<section class="flex flex-col gap-5">
+<div class="flex items-baseline justify-between">
+<h2 class="text-ink-dark dark:text-ink-light text-2xl font-display font-bold tracking-tight">My Privileges</h2>
+<span class="text-xs font-sans font-medium text-stone-500 dark:text-stone-400 uppercase tracking-wider">2 Available</span>
+</div>
+<!-- Voucher Card 1 -->
+<div class="group relative w-full bg-paper-light dark:bg-paper-dark rounded-xl shadow-float overflow-hidden transition-all duration-300 hover:-translate-y-1">
+<!-- Decorative Side Accent -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="p-3">
+<!-- Dashed Inner Border -->
+<div class="dashed-border-box rounded-lg p-5 flex flex-col gap-4 relative">
+<!-- Top Part: Value & Desc -->
+<div class="flex justify-between items-start gap-4">
+<div class="flex flex-col">
+<span class="text-primary font-display text-4xl font-bold leading-none tracking-tight">20% OFF</span>
+<h3 class="text-ink-dark dark:text-ink-light font-display text-lg font-medium mt-2">Welcome Gift</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm font-sans mt-0.5">Valid on your first purchase</p>
+</div>
+<!-- Brand Icon / Watermark -->
+<div class="opacity-10 absolute top-4 right-4 rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-ink-dark dark:text-ink-light" style="font-size: 64px;">local_mall</span>
+</div>
+</div>
+<!-- Divider with semi-circles for ticket stub look -->
+<div class="relative flex items-center w-full my-2">
+<div class="h-[1px] w-full border-t border-dashed border-stone-300 dark:border-stone-600"></div>
+</div>
+<!-- Bottom Part: Code & Action -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] uppercase tracking-widest text-stone-400 font-sans font-bold">Coupon Code</span>
+<code class="text-ink-dark dark:text-ink-light text-lg font-mono tracking-widest font-bold">WELCOME20</code>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white dark:text-ink-dark dark:font-bold px-6 py-2.5 rounded-full transition-colors active:scale-95 shadow-md shadow-primary/20">
+<span class="text-sm font-sans font-bold tracking-wide">COPY</span>
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+<!-- Accordion T&C -->
+<details class="group/accordion mt-2 pt-2">
+<summary class="list-none flex items-center gap-1 cursor-pointer text-stone-500 hover:text-primary transition-colors w-fit">
+<span class="text-xs font-sans font-medium underline underline-offset-2 decoration-stone-300">Terms &amp; Conditions</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open/accordion:rotate-180" style="font-size: 16px;">expand_more</span>
+</summary>
+<div class="pt-3 pb-1">
+<p class="text-xs text-stone-500 dark:text-stone-400 font-sans leading-relaxed">
+                                        Offer valid for new customers only. Cannot be combined with other promotions. Excludes clearance items and gift cards. One use per customer.
+                                    </p>
+</div>
+</details>
+</div>
+</div>
+</div>
+<!-- Voucher Card 2 -->
+<div class="group relative w-full bg-paper-light dark:bg-paper-dark rounded-xl shadow-float overflow-hidden transition-all duration-300 hover:-translate-y-1">
+<!-- Decorative Side Accent -->
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary/60"></div>
+<div class="p-3">
+<div class="dashed-border-box rounded-lg p-5 flex flex-col gap-4 relative">
+<div class="flex justify-between items-start gap-4">
+<div class="flex flex-col">
+<span class="text-primary font-display text-4xl font-bold leading-none tracking-tight">$50 OFF</span>
+<h3 class="text-ink-dark dark:text-ink-light font-display text-lg font-medium mt-2">Festive Special</h3>
+<p class="text-stone-500 dark:text-stone-400 text-sm font-sans mt-0.5">Min. spend $200</p>
+</div>
+<div class="opacity-10 absolute top-4 right-4 rotate-12 pointer-events-none">
+<span class="material-symbols-outlined text-ink-dark dark:text-ink-light" style="font-size: 64px;">diamond</span>
+</div>
+</div>
+<div class="relative flex items-center w-full my-2">
+<div class="h-[1px] w-full border-t border-dashed border-stone-300 dark:border-stone-600"></div>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex flex-col gap-1">
+<span class="text-[10px] uppercase tracking-widest text-stone-400 font-sans font-bold">Coupon Code</span>
+<code class="text-ink-dark dark:text-ink-light text-lg font-mono tracking-widest font-bold">FESTIVE50</code>
+</div>
+<button class="flex items-center justify-center gap-2 bg-white border border-stone-200 dark:border-stone-600 hover:border-primary text-ink-dark dark:text-white dark:bg-stone-800 px-6 py-2.5 rounded-full transition-all active:scale-95 shadow-sm">
+<span class="text-sm font-sans font-bold tracking-wide">COPY</span>
+</button>
+</div>
+<details class="group/accordion mt-2 pt-2">
+<summary class="list-none flex items-center gap-1 cursor-pointer text-stone-500 hover:text-primary transition-colors w-fit">
+<span class="text-xs font-sans font-medium underline underline-offset-2 decoration-stone-300">Terms &amp; Conditions</span>
+<span class="material-symbols-outlined transition-transform duration-300 group-open/accordion:rotate-180" style="font-size: 16px;">expand_more</span>
+</summary>
+<div class="pt-3 pb-1">
+<p class="text-xs text-stone-500 dark:text-stone-400 font-sans leading-relaxed">
+                                        Valid on the 'Festive Collection' only. Discount applied at checkout. Expires Dec 31st.
+                                    </p>
+</div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- Spacer -->
+<div class="h-2 border-b border-stone-200 dark:border-white/5 w-full"></div>
+<!-- Section 2: Offers Grid -->
+<section class="flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<h2 class="text-ink-dark dark:text-ink-light text-2xl font-display font-bold tracking-tight">Curated Collections</h2>
+<button class="text-primary text-sm font-sans font-bold flex items-center hover:opacity-80">
+                        View All <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+</button>
+</div>
+<!-- Masonry-ish Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Offer Card 1: Tall -->
+<div class="relative group col-span-1 row-span-2 overflow-hidden rounded-2xl cursor-pointer">
+<div class="absolute inset-0 bg-stone-200 animate-pulse"></div> <!-- Loading Placeholder -->
+<img alt="Silk dress promotion" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Elegant woman wearing a silk beige dress standing in a minimalist room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn5Zrf5S0glkO33BtejYYljkPBiojvFX18oEbBfKc70way6MUwhEOAYcmZ367GuDZCSXNFmDQZlBPo6GVcOmmpogqwd3YnE4TXP6AOBfsHRYW9LOk_SouEYqQXOh5mNf_Sj-rVrmS7p8VXB-qV4nBy1r0D9-Buuhu0YZRtLkyfHSHa5bOva_O3X0wij3RiK5MXvRw3KxciuHOsKVGXWMBlpTnB-3RYjS7tFjdmBMZHsiKKyWUNycKBnai0eRarLHQc4MOd-fz4kvY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<span class="inline-block bg-white/90 backdrop-blur-sm px-2 py-1 text-[10px] font-bold uppercase tracking-wider mb-2 text-black rounded-sm">Special Deal</span>
+<h3 class="text-white font-display text-xl font-bold leading-tight">The Silk Edit</h3>
+<p class="text-white/90 text-xs font-sans mt-1">Buy 2 Get 1 Free</p>
+</div>
+</div>
+<!-- Offer Card 2: Square -->
+<div class="relative group col-span-1 h-48 overflow-hidden rounded-2xl cursor-pointer">
+<div class="absolute inset-0 bg-stone-200 animate-pulse"></div>
+<img alt="Accessories promotion" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close up of gold accessories including rings and bracelets on a soft cloth" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNJfuVbRvYhHxKYyjPrgL3XXTpbSUubuy2580MfD9gs60w0p8dEUrhiMJnBhqyR4xrCdfd4ecCYEjSNgJ2yHcJXVjlJ99ovHUpDNK0Udmmd258k6bEOovs1fho3idCGfRGxaQUpgrPmHe9y9g__GVbKVOCo_p418PioyO-C32vV1bWlH0CBGDxTyF4oZ8EKJM-kokF0xgd7Z4LR9awTzcpXdy7rnp7q1Yg7Hb3cqhsS1gA6eDL89Z8sBCPKR97Wx8pWwT-DrfZSFU"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+<div class="absolute inset-0 flex flex-col justify-center items-center text-center p-3">
+<div class="bg-white/90 dark:bg-black/80 backdrop-blur-md p-3 rounded-xl shadow-lg transform transition-transform group-hover:-translate-y-1">
+<h3 class="text-ink-dark dark:text-white font-display text-sm font-bold">Accessories</h3>
+<p class="text-primary font-sans text-xs font-bold mt-1">Free Shipping</p>
+</div>
+</div>
+</div>
+<!-- Offer Card 3: Square -->
+<div class="relative group col-span-1 h-56 overflow-hidden rounded-2xl cursor-pointer">
+<div class="absolute inset-0 bg-stone-200 animate-pulse"></div>
+<img alt="Footwear promotion" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A pair of stylish leather boots placed next to a handbag" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJvZKXVMqqSshG7nKNiN3L6T-YbZo0dSgNo_w6DAHmlEKBG1ZJWeDPvD0cKtW50xZwbxqZJl5gFUSSMJN4A9epInOXb6zm4Byh7_KUjOW9_PoyrY8u_TJiUubvKDmkv_xJLboDF4UiOJQPzo4WrjSBcQegO8QbAovWvDxbC6XlSffRs5lRfDnGdZdV9slCZv5aRY2WKiZ6drg9Ibd3xRU8_15dg6l8p9cuku3iQ1uCa9ABL6eqfhkP1MPcD3EtUFCpIjJawWKfPGk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-4 w-full">
+<h3 class="text-white font-display text-lg font-bold">Winter Step</h3>
+<p class="text-white/80 text-xs font-sans mt-0.5">Up to 40% Off</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Tab Bar (Contextual) -->
+<div class="fixed bottom-0 left-0 right-0 h-20 bg-paper-light dark:bg-paper-dark border-t border-stone-200 dark:border-stone-700 flex justify-around items-center px-2 z-40 pb-2">
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-sans font-medium">Home</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined">favorite</span>
+<span class="text-[10px] font-sans font-medium">Wishlist</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<div class="size-10 bg-primary/10 rounded-full flex items-center justify-center mb-[-4px]">
+<span class="material-symbols-outlined fill-1">local_offer</span>
+</div>
+<span class="text-[10px] font-sans font-bold">Offers</span>
+</div>
+<div class="flex flex-col items-center gap-1 opacity-40">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-sans font-medium">Profile</span>
+</div>
+</div>
+</div>
+</body></html>

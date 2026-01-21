@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Refer &amp; Earn - Ladies Boutique</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#386640", // Emerald Green
+                        "primary-dark": "#2a4d31",
+                        "secondary": "#D29C8B", // Terracotta
+                        "secondary-light": "#EEDCD6",
+                        "accent-mint": "#C7DED9",
+                        "background-light": "#f7f4e8", // Soft Cream
+                        "background-dark": "#222a25", // Dark Green/Black
+                        "text-main": "#131614",
+                        "text-muted": "#6e7c71",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px"},
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(210, 156, 139, 0.2)',
+                        'card': '0 4px 20px -5px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom boutique touches */
+        .dotted-line {
+            background-image: linear-gradient(to right, #D29C8B 33%, rgba(255,255,255,0) 0%);
+            background-position: bottom;
+            background-size: 8px 1px;
+            background-repeat: repeat-x;
+        }
+        .vertical-dotted {
+            background-image: linear-gradient(to bottom, #D29C8B 33%, rgba(255,255,255,0) 0%);
+            background-position: right;
+            background-size: 1px 8px;
+            background-repeat: repeat-y;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden max-w-md mx-auto shadow-2xl bg-background-light dark:bg-background-dark">
+<!-- Top App Bar -->
+<header class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md">
+<button class="flex size-10 items-center justify-center rounded-full bg-white/50 dark:bg-white/10 hover:bg-white dark:hover:bg-white/20 transition-colors text-text-main dark:text-white">
+<span class="material-symbols-outlined" style="font-size: 24px;">arrow_back</span>
+</button>
+<h1 class="text-text-main dark:text-white text-lg font-bold tracking-tight">Refer &amp; Earn</h1>
+<button class="flex items-center justify-end text-primary dark:text-secondary hover:text-primary-dark transition-colors">
+<span class="text-sm font-bold tracking-wide">History</span>
+</button>
+</header>
+<!-- Main Content Scroll Area -->
+<main class="flex-1 flex flex-col px-6 pb-8">
+<!-- Hero Illustration & Headline -->
+<div class="mt-4 mb-8 relative">
+<!-- Asymmetric Image Layout -->
+<div class="flex justify-end mb-6 relative">
+<div class="absolute top-10 -left-4 size-24 rounded-full bg-secondary/20 dark:bg-secondary/10 blur-2xl"></div>
+<div class="w-[90%] aspect-[4/3] rounded-tl-[3rem] rounded-br-[3rem] rounded-tr-lg rounded-bl-lg overflow-hidden shadow-soft relative z-10">
+<div class="w-full h-full bg-cover bg-center transition-transform hover:scale-105 duration-700" data-alt="Happy friends shopping together and holding gift bags" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDDE0hu0Fd8IlHXHSjOt0OqKcivW2UDfD3s6lj1WiAEW8PKA7Jbec4vdNfEsi1VU0FV1Ht9XIcIQ5whEJF5PbDUgtNKd3WkNyRyo8uBjGj1kuzM7JVXw6FNEj3nKTd91xWNMGgU693_SzQLdHHcF6VCsGHx08iDh9oI1USlR8gN42hzMGwW74IK2VlOY35T0oaexhDCewROu-8Yfu4YPot9_R9c3N8GdB16CVc01hHvlJ6Fz_1e3kTX7zRbE6kYoYLLTzektczUy2E');">
+</div>
+<!-- Decorative overlay badge -->
+<div class="absolute bottom-0 right-0 bg-white dark:bg-zinc-800 px-4 py-2 rounded-tl-xl shadow-sm">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary" style="font-size: 18px;">redeem</span>
+<span class="text-xs font-bold text-text-main dark:text-white uppercase tracking-wider">Rewards</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="space-y-3">
+<h2 class="text-text-main dark:text-white text-[32px] font-extrabold leading-[1.1] tracking-tight">
+                        Invite Friends &amp; <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/70 dark:from-green-400 dark:to-green-200">Get 10% Off</span>
+</h2>
+<p class="text-text-muted dark:text-gray-400 text-base font-medium leading-relaxed max-w-[90%]">
+                        Share the love of style. Give your friends a discount and earn credits when they make their first purchase.
+                    </p>
+</div>
+</div>
+<!-- How it Works (Steps) -->
+<div class="mb-10">
+<div class="grid grid-cols-3 gap-2 relative">
+<!-- Connecting Line -->
+<div class="absolute top-6 left-0 w-full h-[2px] border-t-2 border-dashed border-secondary/30 dark:border-secondary/20 z-0"></div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center gap-3 relative z-10 group">
+<div class="size-12 rounded-full bg-white dark:bg-zinc-800 border border-secondary/30 shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-primary dark:text-green-400" style="font-size: 24px;">share</span>
+</div>
+<div class="text-center">
+<p class="text-text-main dark:text-white text-xs font-bold uppercase tracking-wide">Share Link</p>
+<p class="text-text-muted dark:text-gray-500 text-[10px] leading-tight mt-1">Send your link</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center gap-3 relative z-10 group">
+<div class="size-12 rounded-full bg-white dark:bg-zinc-800 border border-secondary/30 shadow-sm flex items-center justify-center group-hover:scale-110 transition-transform duration-300 delay-75">
+<span class="material-symbols-outlined text-primary dark:text-green-400" style="font-size: 24px;">shopping_bag</span>
+</div>
+<div class="text-center">
+<p class="text-text-main dark:text-white text-xs font-bold uppercase tracking-wide">Friend Buys</p>
+<p class="text-text-muted dark:text-gray-500 text-[10px] leading-tight mt-1">They shop new</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col items-center gap-3 relative z-10 group">
+<div class="size-12 rounded-full bg-primary text-white shadow-lg shadow-primary/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 delay-150">
+<span class="material-symbols-outlined" style="font-size: 24px;">celebration</span>
+</div>
+<div class="text-center">
+<p class="text-text-main dark:text-white text-xs font-bold uppercase tracking-wide">Get Reward</p>
+<p class="text-text-muted dark:text-gray-500 text-[10px] leading-tight mt-1">Earn 10% off</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Referral Card Section -->
+<div class="bg-white dark:bg-zinc-800 rounded-2xl p-6 shadow-soft border border-secondary/10 dark:border-white/5 relative overflow-hidden mb-6">
+<!-- Decorative background elements inside card -->
+<div class="absolute -right-6 -top-6 size-24 bg-accent-mint/30 dark:bg-primary/20 rounded-full blur-xl"></div>
+<div class="absolute -left-6 -bottom-6 size-20 bg-secondary/20 dark:bg-secondary/10 rounded-full blur-xl"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<span class="text-text-muted dark:text-gray-400 text-xs font-semibold uppercase tracking-wider">Your Unique Code</span>
+<div class="flex items-baseline gap-2">
+<h3 class="text-primary dark:text-white text-2xl font-black tracking-widest font-mono">BOUTIQUE23</h3>
+</div>
+</div>
+</div>
+<div class="h-px w-full bg-gradient-to-r from-transparent via-secondary/40 to-transparent my-1"></div>
+<button class="flex items-center justify-between w-full bg-background-light dark:bg-zinc-900/50 hover:bg-secondary-light/30 dark:hover:bg-zinc-700 rounded-xl p-3 border border-secondary/20 transition-all group active:scale-[0.99]">
+<span class="text-text-main dark:text-gray-300 text-sm font-medium pl-2">Tap to copy code</span>
+<div class="bg-white dark:bg-zinc-700 text-primary dark:text-green-400 shadow-sm rounded-lg p-2 flex items-center justify-center group-hover:text-primary-dark dark:group-hover:text-green-300 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 20px;">content_copy</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Primary Action -->
+<div class="mt-auto space-y-4">
+<button class="w-full relative overflow-hidden rounded-xl bg-accent-mint hover:bg-[#b8d6cf] active:bg-[#a9ccc4] transition-colors py-4 px-6 flex items-center justify-center gap-3 shadow-sm group">
+<!-- WhatsApp-ish color nuance but softer -->
+<span class="material-symbols-outlined text-primary transition-transform group-hover:-translate-y-0.5 group-hover:rotate-12" style="font-size: 24px;">chat</span>
+<span class="text-primary text-base font-bold tracking-wide">Share on WhatsApp</span>
+</button>
+<div class="flex justify-center">
+<button class="text-text-muted hover:text-primary dark:text-gray-500 dark:hover:text-gray-300 text-xs font-medium underline underline-offset-4 transition-colors">
+                        Terms and conditions apply
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

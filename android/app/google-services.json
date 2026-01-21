@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "987381638082",
+    "project_id": "schooltalk-2du3o",
+    "storage_bucket": "schooltalk-2du3o.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:987381638082:android:52a814c5d03691768aac5b",
+        "android_client_info": {
+          "package_name": "com.theboutique.rk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "987381638082-b05pu7hhqha8h3npetoe2tc9usnf89h2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT5fTHRUHpymwfsaCr5yZKG1I9t3Xge1k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "987381638082-b05pu7hhqha8h3npetoe2tc9usnf89h2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
