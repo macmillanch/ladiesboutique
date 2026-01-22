@@ -1,6 +1,8 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const db = require('./db');
+const { upload, uploadToCloudinary } = require('./upload');
 const app = express();
 
 app.use(cors());
@@ -9,6 +11,24 @@ app.use(express.json());
 // Basic Route
 app.get('/', (req, res) => {
     res.json({ message: 'Ladies Boutique API is running' });
+});
+
+// --- UPLOAD ROUTE ---
+app.post('/api/upload', upload.single('image'), async (req, res) => {
+    try {
+        if (!req.file) {
+            return res.status(400).json({ error: 'No image file provided' });
+        }
+
+        const result = await uploadToCloudinary(req.file.buffer);
+        res.json({
+            url: result.secure_url,
+            public_id: result.public_id
+        });
+    } catch (err) {
+        console.error('Upload error:', err);
+        res.status(500).json({ error: 'Failed to upload image' });
+    }
 });
 
 // --- AUTH ROUTES ---
