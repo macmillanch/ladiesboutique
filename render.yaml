@@ -10,10 +10,18 @@ services:
       - key: PORT
         value: 10000
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: ladies-boutique-db
+          property: connectionString
       - key: CLOUDINARY_CLOUD_NAME
         sync: false
       - key: CLOUDINARY_API_KEY
         sync: false
       - key: CLOUDINARY_API_SECRET
         sync: false
+
+databases:
+  - name: ladies-boutique-db
+    databaseName: boutique_db
+    user: boutique_user
+    plan: free
