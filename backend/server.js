@@ -13,6 +13,15 @@ app.get('/', (req, res) => {
     res.json({ message: 'Ladies Boutique API is running' });
 });
 
+app.get('/api/db-init', async (req, res) => {
+    try {
+        await db.initDb();
+        res.json({ message: 'Database initialization attempted' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // --- UPLOAD ROUTE ---
 app.post('/api/upload', upload.single('image'), async (req, res) => {
     try {
