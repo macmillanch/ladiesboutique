@@ -5,10 +5,10 @@ import 'package:http/http.dart' as http;
 import '../models/product_model.dart';
 import '../models/order_model.dart';
 
+import '../../core/app_config.dart';
+
 class DatabaseService {
-  static const String _baseUrl = kIsWeb
-      ? 'http://localhost:3000/api'
-      : 'http://10.0.2.2:3000/api';
+  String get _baseUrl => AppConfig.baseUrl;
 
   // Products
   Stream<List<Product>> getProducts() async* {

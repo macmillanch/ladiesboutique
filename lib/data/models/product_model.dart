@@ -31,9 +31,9 @@ class Product {
       'discount': discount,
       'sizes': sizes,
       'colors': colors,
-      'images': images,
+      'image_urls': images,
       'description': description,
-      'isAvailable': isAvailable,
+      'is_available': isAvailable,
     };
   }
 
@@ -49,7 +49,7 @@ class Product {
         json['image_urls'] ?? [],
       ), // Adjusted key based on backend
       description: json['description'] ?? '',
-      isAvailable: json['isAvailable'] ?? true,
+      isAvailable: json['is_available'] ?? true,
     );
   }
 }
