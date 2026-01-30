@@ -210,7 +210,6 @@ class _ContactScreenState extends State<ContactScreen> {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
-    final shopName = _settings['shop_name'] ?? 'RKJ Fashions';
     final shopAddress =
         _settings['shop_address'] ??
         '123 Blossom Avenue, Suite 100\nNew York, NY 10012';
@@ -303,26 +302,12 @@ class _ContactScreenState extends State<ContactScreen> {
                                 size: 26,
                               ),
                             ),
-                            Container(
-                              width: 0,
-                              height: 0,
-                              margin: const EdgeInsets.only(top: 0),
-                              borderStyle: BorderStyle.solid,
-                              decoration: const BoxDecoration(
-                                border: Border(
-                                  left: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 8,
-                                  ),
-                                  right: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 8,
-                                  ),
-                                  top: BorderSide(
-                                    color: AppColors.primaryUser,
-                                    width: 12,
-                                  ),
-                                ),
+                            Transform.translate(
+                              offset: const Offset(0, -5),
+                              child: const Icon(
+                                Icons.arrow_drop_down,
+                                size: 40,
+                                color: AppColors.primaryUser,
                               ),
                             ),
                           ],
