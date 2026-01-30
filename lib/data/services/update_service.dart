@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../core/app_config.dart';
 
 class UpdateService {
-  static const String currentVersion = "1.0.7";
+  static const String currentVersion = "1.0.8";
 
   static Future<void> checkForUpdates(BuildContext context) async {
     try {
@@ -76,7 +76,7 @@ class UpdateService {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'A new version of Ladies Boutique is available. Please update for the best experience.',
+                'A new version of RKJ Fashions is available. Please update for the best experience.',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               if (notes.isNotEmpty) ...[

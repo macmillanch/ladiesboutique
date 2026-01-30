@@ -16,13 +16,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     final user = context.read<AuthService>().currentUser;
     if (user != null) {
       await context.read<DatabaseService>().markNotificationsRead(user.id);
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Marked all as read')));
-      // Trigger rebuild or let Stream handle it?
-      // If Stream polls, it will update eventually.
-      // If we want instant feedback, we might need manual refresh or optimistic update.
-      setState(() {});
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(const SnackBar(content: Text('Marked all as read')));
+        // Trigger rebuild or let Stream handle it?
+        // If Stream polls, it will update eventually.
+        // If we want instant feedback, we might need manual refresh or optimistic update.
+        setState(() {});
+      }
     }
   }
 
