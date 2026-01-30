@@ -2,16 +2,13 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import '../models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/app_config.dart';
 
 class AuthService with ChangeNotifier {
-  // Replace with your local IP if testing on real device
-  // Localhost for Web: http://localhost:3000
-  // Localhost for Emulator: http://10.0.2.2:3000
-  static const String _baseUrl = kIsWeb
-      ? 'http://localhost:3000/api'
-      : 'http://10.0.2.2:3000/api';
+  String get _baseUrl => AppConfig.baseUrl;
 
   // Use SharedPreferences for Web compatibility, SecureStorage for Mobile
   final _storage = const FlutterSecureStorage();
@@ -57,7 +54,7 @@ class AuthService with ChangeNotifier {
     }
   }
 
-  Future<void> login(String phone, String password) async {
+  Future<void> login(String identifier, String password) async {
     _isLoading = true;
     notifyListeners();
 
@@ -65,7 +62,7 @@ class AuthService with ChangeNotifier {
       final response = await http.post(
         Uri.parse('$_baseUrl/auth/login'),
         headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'phone': phone, 'password': password}),
+        body: jsonEncode({'identifier': identifier, 'password': password}),
       );
 
       if (response.statusCode == 200) {
@@ -154,20 +151,130 @@ class AuthService with ChangeNotifier {
   }
 
   // Method stubs to prevent compilation errors in existing code
+  // Method stubs to prevent compilation errors in existing code
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   Future<void> signInWithGoogle() async {
-    throw UnimplementedError('Google Sign In removed');
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        _isLoading = false;
+        notifyListeners();
+        return; // User canceled the sign-in
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+      final String? idToken = googleAuth.idToken;
+
+      if (idToken != null) {
+        // Send to backend for verification and login/signup
+        final response = await http.post(
+          Uri.parse('$_baseUrl/auth/google'),
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'idToken': idToken,
+            'name': googleUser.displayName,
+            'email': googleUser.email,
+            'photoUrl': googleUser.photoUrl,
+            'force_create': true,
+          }),
+        );
+
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          final data = jsonDecode(response.body);
+          final token = data['token'];
+          final user = User.fromJson(data['user']);
+
+          _currentUser = user;
+
+          if (kIsWeb) {
+            final prefs = await SharedPreferences.getInstance();
+            await prefs.setString('auth_token', token);
+            await prefs.setString('user_data', jsonEncode(user.toJson()));
+          } else {
+            await _storage.write(key: 'auth_token', value: token);
+            await _storage.write(
+              key: 'user_data',
+              value: jsonEncode(user.toJson()),
+            );
+          }
+        } else {
+          throw Exception(
+            jsonDecode(response.body)['error'] ?? 'Google Sign In failed',
+          );
+        }
+      }
+    } catch (e) {
+      debugPrint('Google Sign In error: $e');
+      // If user cancelled, it might throw an exception, so we just log it.
+      // rethrow; // Optional: decide if UI needs to show error
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
-  Future<void> signUpWithEmail(String email, String password) async {
-    throw UnimplementedError('Use login with phone');
+  Future<void> signUpWithEmail(String identifier, String password) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/auth/signup'), // Assuming backend supports this
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'identifier': identifier,
+          'password': password,
+          'name': 'New User', // Default name
+        }),
+      );
+
+      if (response.statusCode == 201 || response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        debugPrint('Signup response data: $data');
+        final token = data['token'];
+        final user = User.fromJson(data['user']);
+
+        _currentUser = user;
+
+        if (kIsWeb) {
+          final prefs = await SharedPreferences.getInstance();
+          await prefs.setString('auth_token', token);
+          await prefs.setString('user_data', jsonEncode(user.toJson()));
+        } else {
+          await _storage.write(key: 'auth_token', value: token);
+          await _storage.write(
+            key: 'user_data',
+            value: jsonEncode(user.toJson()),
+          );
+        }
+        debugPrint('Signup completed and user stored locally');
+      } else {
+        String errorMsg = 'Sign up failed';
+        try {
+          final errorData = jsonDecode(response.body);
+          errorMsg = errorData['error'] ?? errorMsg;
+        } catch (_) {
+          errorMsg =
+              'Server Error: ${response.statusCode} - ${response.reasonPhrase}';
+        }
+        debugPrint('Signup failed with message: $errorMsg');
+        throw Exception(errorMsg);
+      }
+    } catch (e) {
+      debugPrint('Sign up error caught in AuthService: $e');
+      rethrow;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> signInWithEmail(String email, String password) async {
-    // Map to login
-    // This is a hack to support existing UI calling this method
-    // But really we should change the UI to use phone/password
-    // or just map this to login if email is treated as phone?
-    // For now, let's just interpret email as phone if it looks like one
     await login(email, password);
   }
 

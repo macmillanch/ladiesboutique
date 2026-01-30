@@ -16,7 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/api/app-version', (req, res) => {
     res.json({
-        version: "1.0.1",
+        version: "1.0.5",
         url: "https://ladies-boutique-backend.onrender.com/downloads/ladies-boutique.apk",
         forceUpdate: false,
         releaseNotes: "New features: Product Image Support, User ID display (RKJ...), and performance improvements."

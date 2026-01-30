@@ -9,6 +9,8 @@ import 'core/theme/admin_theme.dart';
 import 'ui/auth/login_screen.dart';
 import 'ui/admin/admin_home_screen.dart';
 import 'ui/user/user_home_screen.dart';
+import 'data/services/update_service.dart';
+import 'ui/auth/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,7 +44,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             // Simple role-based theme
             theme: authService.isAdmin ? AdminTheme.theme : UserTheme.theme,
-            home: const AuthWrapper(),
+            home: const SplashScreen(),
           );
         },
       ),
@@ -62,9 +64,13 @@ class _AuthWrapperState extends State<AuthWrapper> {
   void initState() {
     super.initState();
     // Try auto-login on startup
-    Future.microtask(() {
+    Future.microtask(() async {
       if (mounted) {
-        context.read<AuthService>().tryAutoLogin();
+        await context.read<AuthService>().tryAutoLogin();
+        // Check for updates after auto-login attempt
+        if (mounted) {
+          UpdateService.checkForUpdates(context);
+        }
       }
     });
   }
@@ -74,7 +80,18 @@ class _AuthWrapperState extends State<AuthWrapper> {
     final authService = Provider.of<AuthService>(context);
 
     if (authService.isLoading) {
-      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/logo.png', width: 150),
+              const SizedBox(height: 20),
+              const CircularProgressIndicator(),
+            ],
+          ),
+        ),
+      );
     }
 
     if (authService.currentUser != null) {

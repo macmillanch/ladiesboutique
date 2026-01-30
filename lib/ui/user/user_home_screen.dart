@@ -110,7 +110,12 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
       extendBody: true, // For transparency effects if needed
       appBar: AppBar(
         // Removed leading search icon as it's now in _buildHeader
-        title: const Text('The Boutique'),
+        title: Image.asset(
+          'assets/images/logo.png',
+          height: 40,
+          fit: BoxFit.contain,
+        ),
+        centerTitle: true,
         actions: [
           Stack(
             clipBehavior: Clip.none,

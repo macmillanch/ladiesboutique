@@ -156,10 +156,8 @@ class AboutScreen extends StatelessWidget {
                               ),
                             ],
                             image: const DecorationImage(
-                              image: NetworkImage(
-                                'https://lh3.googleusercontent.com/aida-public/AB6AXuBCD6nG0diNKIJjMICk4O2eJnm_P5Rp8kLAttz38grnpk17E8r5eLdUtIDRfdvcyAfq_F358LvGcMQCEzjJxo7e6_r8XTKdDaZDXfKE-LbDv4Uy90dHAaQQuF2kouffOawtKTMGMiWyvaZphF1E8nguc3XdmQr5VqEr2YMZEgAaTeQYCy7bzsLzl3baHqaOlaXwlp012yusQErErfmDrF8vG4l0p0HSEQ-Op84jfSFUDusR9jB9OgGiy7lKR9ALquJaSEmhiUjcths',
-                              ),
-                              fit: BoxFit.cover,
+                              image: AssetImage('assets/images/logo.png'),
+                              fit: BoxFit.contain,
                             ),
                           ),
                         ),

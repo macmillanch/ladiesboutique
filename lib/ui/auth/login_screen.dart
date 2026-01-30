@@ -18,7 +18,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isLoading = false;
-  final bool _isSignUp = false; // Toggle between Login and Sign Up
+  bool _isSignUp = false; // Toggle between Login and Sign Up
+  bool _obscurePassword = true;
 
   void _showError(String message) {
     if (!mounted) return;
@@ -40,26 +41,37 @@ class _LoginScreenState extends State<LoginScreen> {
     }
 
     try {
+      debugPrint('Attempting submit: isSignUp=$_isSignUp, identifier=$email');
       if (_isSignUp) {
         await auth.signUpWithEmail(email, password);
+        debugPrint('Signup successful for $email');
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Account created successfully!'),
+              backgroundColor: Colors.green,
+            ),
+          );
+        }
       } else {
-        // await auth.signInWithEmail(email, password);
-        // Treat as phone login
         await auth.login(email, password);
+        debugPrint('Login successful for $email');
       }
-      debugPrint('LOGGED IN UID: ${auth.currentUser?.id}');
+
+      debugPrint(
+        'Redirecting to AuthWrapper... current user id: ${auth.currentUser?.id}',
+      );
       if (mounted) {
         setState(() => _isLoading = false);
-        // Force navigation to ensure we leave the login screen
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (_) => const AuthWrapper()),
         );
       }
     } catch (e) {
-      debugPrint('Login Error: $e');
+      debugPrint('Submit Error caught in UI: $e');
       if (mounted) {
         setState(() => _isLoading = false);
-        _showError(e.toString());
+        _showError('Error: $e');
       }
     }
   }
@@ -94,28 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Logo / Title
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: AppColors.primaryUser.withValues(alpha: 0.1),
-                  ),
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
-                    size: 48,
-                    color: AppColors.primaryUser,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                Text(
-                  AppConstants.appName,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textUser,
-                    letterSpacing: 1.2,
-                  ),
+                Image.asset(
+                  'assets/images/logo.png',
+                  height: 180,
+                  fit: BoxFit.contain,
                 ),
                 Text(
                   _isSignUp ? 'Create your account' : 'Welcome back',
@@ -131,17 +125,21 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextField(
                   controller:
                       _emailController, // Retaining variable name to avoid refactoring whole file
-                  keyboardType: TextInputType.phone,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: _inputDecoration(
-                    'Phone Number',
-                    Icons.phone_android,
+                    'Phone or Email',
+                    Icons.person_outline,
                   ),
                 ),
                 const SizedBox(height: 20),
                 TextField(
                   controller: _passwordController,
-                  obscureText: true,
-                  decoration: _inputDecoration('Password', Icons.lock_outline),
+                  obscureText: _obscurePassword,
+                  decoration: _inputDecoration(
+                    'Password',
+                    Icons.lock_outline,
+                    isPassword: true,
+                  ),
                 ),
                 const SizedBox(height: 32),
 
@@ -178,25 +176,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 16),
                 TextButton(
                   onPressed: () {
-                    // For now, simple toggle. Ideally separate screens.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text(
-                          'Sign up not fully implemented in UI. Please contact admin to create account.',
-                        ),
-                      ),
-                    );
-                    // setState(() => _isSignUp = !_isSignUp);
+                    setState(() => _isSignUp = !_isSignUp);
                   },
                   child: Text(
-                    'Login with Phone & Password',
-                    // _isSignUp
-                    //     ? 'Already have an account? Login'
-                    //     : 'Don\'t have an account? Sign Up',
+                    _isSignUp
+                        ? 'Already have an account? Login'
+                        : 'Don\'t have an account? Sign Up',
                     style: const TextStyle(color: AppColors.primaryUser),
                   ),
                 ),
-
                 const SizedBox(height: 40),
 
                 const Row(
@@ -230,9 +218,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     backgroundColor: Colors.white,
                   ),
                   icon: const Icon(
-                    Icons.login,
+                    Icons
+                        .login, // Replaced with generic as no asset available in this view
                     color: AppColors.textUser,
-                  ), // Replace with generic login icon since no assets
+                  ),
                   label: const Text(
                     'Continue with Google',
                     style: TextStyle(
@@ -250,10 +239,27 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  InputDecoration _inputDecoration(String label, IconData icon) {
+  InputDecoration _inputDecoration(
+    String label,
+    IconData icon, {
+    bool isPassword = false,
+  }) {
     return InputDecoration(
       labelText: label,
       prefixIcon: Icon(icon, color: AppColors.textMuted),
+      suffixIcon: isPassword
+          ? IconButton(
+              icon: Icon(
+                _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                color: AppColors.textMuted,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscurePassword = !_obscurePassword;
+                });
+              },
+            )
+          : null,
       filled: true,
       fillColor: Colors.white,
       enabledBorder: OutlineInputBorder(
