@@ -16,10 +16,10 @@ app.get('/', (req, res) => {
 
 app.get('/api/app-version', (req, res) => {
     res.json({
-        version: "1.0.5",
+        version: "1.0.7",
         url: "https://ladies-boutique-backend.onrender.com/downloads/ladies-boutique.apk",
         forceUpdate: false,
-        releaseNotes: "New features: Product Image Support, User ID display (RKJ...), and performance improvements."
+        releaseNotes: "v1.0.7: Renamed to RKJ Fashions. Signup improvements (Success Dialog). UI Polish."
     });
 });
 
@@ -65,22 +65,24 @@ app.post('/api/upload', upload.single('image'), async (req, res) => {
 
 // --- AUTH ROUTES ---
 app.post('/api/auth/signup', async (req, res) => {
-    const { password, name, identifier } = req.body;
-    // identifier can be passed explicitly, or we check legacy fields
-    const loginId = identifier || req.body.phone || req.body.email;
+    const { identifier, password, name, phone: reqPhone, email: reqEmail } = req.body;
 
-    if (!loginId) {
-        return res.status(400).json({ error: 'Email or Phone is required' });
+    // Determine Phone and Email
+    let email = reqEmail || null;
+    let phone = reqPhone || null;
+
+    // Fallback: If explicit fields are missing, try to parse identifier
+    if (!email && !phone && identifier) {
+        if (identifier.includes('@')) {
+            email = identifier;
+        } else {
+            phone = identifier;
+        }
     }
 
-    let email = null;
-    let phone = null;
-
-    // Simple heuristic to distinguish email from phone
-    if (loginId.includes('@')) {
-        email = loginId;
-    } else {
-        phone = loginId;
+    if (!email && !phone) {
+        // If still nothing, error
+        return res.status(400).json({ error: 'Phone or Email is required' });
     }
 
     try {

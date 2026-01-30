@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<AuthService>(
         builder: (context, authService, _) {
           return MaterialApp(
-            title: 'Ladies Boutique',
+            title: 'RKJ Fashions',
             debugShowCheckedModeBanner: false,
             // Simple role-based theme
             theme: authService.isAdmin ? AdminTheme.theme : UserTheme.theme,

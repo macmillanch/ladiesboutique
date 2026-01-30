@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../data/services/auth_service.dart';
-import '../../core/utils/constants.dart';
 import '../../core/theme/app_colors.dart';
 import '../../main.dart';
 
@@ -15,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   // Input
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
   bool _isLoading = false;
@@ -31,31 +32,68 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> _submitEmail() async {
     setState(() => _isLoading = true);
     final auth = context.read<AuthService>();
-    final email = _emailController.text.trim();
+    final identifier = _emailController.text
+        .trim(); // Used as Email in signup, Identifier in login
     final password = _passwordController.text.trim();
+    final name = _nameController.text.trim();
+    final phone = _phoneController.text.trim();
 
-    if (email.isEmpty || password.isEmpty) {
-      _showError('Please enter email and password');
-      setState(() => _isLoading = false);
-      return;
+    if (_isSignUp) {
+      if (name.isEmpty ||
+          (identifier.isEmpty && phone.isEmpty) ||
+          password.isEmpty) {
+        _showError('Please enter Name, Password, and Phone/Email');
+        setState(() => _isLoading = false);
+        return;
+      }
+    } else {
+      if (identifier.isEmpty || password.isEmpty) {
+        _showError('Please enter phone/email and password');
+        setState(() => _isLoading = false);
+        return;
+      }
     }
 
     try {
-      debugPrint('Attempting submit: isSignUp=$_isSignUp, identifier=$email');
+      debugPrint(
+        'Attempting submit: isSignUp=$_isSignUp, identifier=$identifier',
+      );
       if (_isSignUp) {
-        await auth.signUpWithEmail(email, password);
-        debugPrint('Signup successful for $email');
+        // identifier is treated as Email in signup form if it contains @, else maybe just identifier?
+        // But UI labeling suggests it is Email.
+        // Let's pass identifiers correctly.
+
+        String? emailToSend = identifier.isNotEmpty ? identifier : null;
+        String? phoneToSend = phone.isNotEmpty ? phone : null;
+
+        await auth.signUpWithEmail(
+          name: name,
+          password: password,
+          phone: phoneToSend,
+          email: emailToSend,
+        );
+        debugPrint('Signup successful');
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Account created successfully!'),
-              backgroundColor: Colors.green,
+          await showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (ctx) => AlertDialog(
+              title: const Text('Success'),
+              content: const Text(
+                'Registration Complete! Welcome to RKJ Fashions.',
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  child: const Text('OK'),
+                ),
+              ],
             ),
           );
         }
       } else {
-        await auth.login(email, password);
-        debugPrint('Login successful for $email');
+        await auth.login(identifier, password);
+        debugPrint('Login successful for $identifier');
       }
 
       debugPrint(
@@ -71,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
       debugPrint('Submit Error caught in UI: $e');
       if (mounted) {
         setState(() => _isLoading = false);
-        _showError('Error: $e');
+        _showError(e.toString().replaceAll('Exception: ', ''));
       }
     }
   }
@@ -122,16 +160,32 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(height: 48),
 
                 // Phone/Password Form
+                // Form Fields
+                if (_isSignUp) ...[
+                  TextField(
+                    controller: _nameController,
+                    decoration: _inputDecoration('Full Name', Icons.person),
+                  ),
+                  const SizedBox(height: 20),
+                  TextField(
+                    controller: _phoneController,
+                    keyboardType: TextInputType.phone,
+                    decoration: _inputDecoration('Phone Number', Icons.phone),
+                  ),
+                  const SizedBox(height: 20),
+                ],
+
                 TextField(
                   controller:
-                      _emailController, // Retaining variable name to avoid refactoring whole file
+                      _emailController, // Used as Identifier (Login) or Email (Signup)
                   keyboardType: TextInputType.emailAddress,
                   decoration: _inputDecoration(
-                    'Phone or Email',
-                    Icons.person_outline,
+                    _isSignUp ? 'Email Address (Optional)' : 'Phone or Email',
+                    Icons.email_outlined,
                   ),
                 ),
                 const SizedBox(height: 20),
+
                 TextField(
                   controller: _passwordController,
                   obscureText: _obscurePassword,
@@ -278,6 +332,8 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
+    _nameController.dispose();
+    _phoneController.dispose();
     debugPrint('LoginScreen Disposed');
     super.dispose();
   }

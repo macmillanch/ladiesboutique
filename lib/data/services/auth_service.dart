@@ -218,18 +218,24 @@ class AuthService with ChangeNotifier {
     }
   }
 
-  Future<void> signUpWithEmail(String identifier, String password) async {
+  Future<void> signUpWithEmail({
+    required String name,
+    required String password,
+    String? phone,
+    String? email,
+  }) async {
     _isLoading = true;
     notifyListeners();
 
     try {
       final response = await http.post(
-        Uri.parse('$_baseUrl/auth/signup'), // Assuming backend supports this
+        Uri.parse('$_baseUrl/auth/signup'),
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode({
-          'identifier': identifier,
+          'name': name,
           'password': password,
-          'name': 'New User', // Default name
+          'phone': phone,
+          'email': email,
         }),
       );
 
