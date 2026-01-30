@@ -104,7 +104,25 @@ CREATE TABLE IF NOT EXISTS notifications (
     metadata JSONB
 );
 
+-- Create Settings Table
+CREATE TABLE IF NOT EXISTS settings (
+    key VARCHAR(50) PRIMARY KEY,
+    value TEXT
+);
+
 -- Seed Initial Admin
 INSERT INTO users (phone, email, password, role) 
 VALUES ('9876543210', 'admin@boutique.com', '$2b$10$YourHashedPasswordHere', 'admin')
 ON CONFLICT (phone) DO NOTHING;
+
+-- Seed Default Settings
+INSERT INTO settings (key, value) VALUES 
+('shop_name', 'RKJ Fashions'),
+('shop_email', 'admin@boutique.com'),
+('shop_phone', '9876543210'),
+('shop_address', '123 Blossom Avenue, Suite 100, New York, NY 10012'),
+('upi_id', 'username@bank'),
+('upi_name', 'Anjali Sharma'),
+('upi_bank', 'HDFC Bank'),
+('qr_code_url', 'https://placehold.co/400x400/png?text=QR+Code')
+ON CONFLICT (key) DO NOTHING;

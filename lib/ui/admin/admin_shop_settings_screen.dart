@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/database_service.dart';
 
 class AdminShopSettingsScreen extends StatefulWidget {
   const AdminShopSettingsScreen({super.key});
@@ -14,10 +16,68 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
   final TextEditingController _bankNameCtrl = TextEditingController();
   final TextEditingController _upiIdCtrl = TextEditingController();
   final TextEditingController _phoneCtrl = TextEditingController();
-  final TextEditingController _boutiqueNameCtrl = TextEditingController(
-    text: 'Fashion Boutique',
-  );
+  final TextEditingController _boutiqueNameCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
+  final TextEditingController _qrUrlCtrl = TextEditingController();
+
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    try {
+      final settings = await context.read<DatabaseService>().getSettings();
+      setState(() {
+        _beneficiaryNameCtrl.text = settings['upi_name'] ?? '';
+        _bankNameCtrl.text = settings['upi_bank'] ?? '';
+        _upiIdCtrl.text = settings['upi_id'] ?? '';
+        _phoneCtrl.text = settings['shop_phone'] ?? '';
+        _boutiqueNameCtrl.text = settings['shop_name'] ?? 'RKJ Fashions';
+        _emailCtrl.text = settings['shop_email'] ?? '';
+        _qrUrlCtrl.text =
+            settings['qr_code_url'] ??
+            'https://placehold.co/400x400/png?text=QR+Code';
+        _isLoading = false;
+      });
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Failed to load settings: $e')));
+        setState(() => _isLoading = false);
+      }
+    }
+  }
+
+  Future<void> _updateSettings(Map<String, String> updates) async {
+    try {
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => const Center(child: CircularProgressIndicator()),
+      );
+
+      await context.read<DatabaseService>().updateSettings(updates);
+
+      if (mounted) {
+        Navigator.pop(context); // Close loading
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Settings updated successfully')),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        Navigator.pop(context); // Close loading
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Update failed: $e')));
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -27,11 +87,16 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
     _phoneCtrl.dispose();
     _boutiqueNameCtrl.dispose();
     _emailCtrl.dispose();
+    _qrUrlCtrl.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
     return Scaffold(
       backgroundColor: AppColors.backgroundUser,
       appBar: AppBar(
@@ -79,7 +144,14 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
                   prefixText: '+91 ',
                 ),
                 const SizedBox(height: 24),
-                _buildActionButton('UPDATE UPI DETAILS', Icons.save, () {}),
+                _buildActionButton('UPDATE UPI DETAILS', Icons.save, () {
+                  _updateSettings({
+                    'upi_name': _beneficiaryNameCtrl.text,
+                    'upi_bank': _bankNameCtrl.text,
+                    'upi_id': _upiIdCtrl.text,
+                    'shop_phone': _phoneCtrl.text,
+                  });
+                }),
               ],
             ),
             const SizedBox(height: 24),
@@ -89,57 +161,34 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
               title: 'Shop QR Code',
               icon: Icons.qr_code_scanner,
               children: [
-                GestureDetector(
-                  onTap: () {
-                    // Pick Image Logic
-                  },
-                  child: Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Colors.grey.shade300,
-                        style: BorderStyle.none,
-                      ), // Dashed borders need custom painter usually, stick to solid or library
-                      image: const DecorationImage(
-                        image: NetworkImage(
-                          'https://placehold.co/400x400/png?text=QR+Code',
-                        ),
-                        fit: BoxFit.contain,
-                        opacity: 0.5,
-                      ),
+                _buildTextField('QR Code URL', 'https://...', _qrUrlCtrl),
+                const SizedBox(height: 24),
+
+                Container(
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: Colors.grey.shade300,
+                      style: BorderStyle.none,
                     ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.cloud_upload_outlined,
-                            size: 48,
-                            color: Colors.grey.shade400,
-                          ),
-                          const SizedBox(height: 8),
-                          Text(
-                            'Tap to upload new QR',
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        _qrUrlCtrl.text.isNotEmpty
+                            ? _qrUrlCtrl.text
+                            : 'https://placehold.co/400x400/png?text=QR+Code',
                       ),
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),
+
                 const SizedBox(height: 24),
-                _buildActionButton(
-                  'UPDATE QR CODE',
-                  Icons.upload_file,
-                  () {},
-                  isOutlined: true,
-                ),
+                _buildActionButton('UPDATE QR URL', Icons.link, () {
+                  _updateSettings({'qr_code_url': _qrUrlCtrl.text});
+                }, isOutlined: true),
               ],
             ),
             const SizedBox(height: 24),
@@ -151,7 +200,7 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
               children: [
                 _buildTextField(
                   'Boutique Name',
-                  'e.g. Elegant Trends',
+                  'e.g. RKJ Fashions',
                   _boutiqueNameCtrl,
                 ),
                 const SizedBox(height: 16),
@@ -164,7 +213,12 @@ class _AdminShopSettingsScreenState extends State<AdminShopSettingsScreen> {
                 _buildActionButton(
                   'UPDATE PROFILE',
                   Icons.edit_calendar_rounded,
-                  () {},
+                  () {
+                    _updateSettings({
+                      'shop_name': _boutiqueNameCtrl.text,
+                      'shop_email': _emailCtrl.text,
+                    });
+                  },
                 ),
               ],
             ),

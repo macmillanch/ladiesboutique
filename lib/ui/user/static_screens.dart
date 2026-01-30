@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/services/database_service.dart';
 
 class AboutScreen extends StatelessWidget {
   const AboutScreen({super.key});
@@ -92,8 +95,6 @@ class AboutScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 40),
-
-                  // Values Grid
                   Container(
                     padding: const EdgeInsets.all(24),
                     decoration: BoxDecoration(
@@ -127,74 +128,6 @@ class AboutScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 40),
-
-                  // Founder
-                  Container(
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(24),
-                      border: Border.all(
-                        color: AppColors.primaryUser.withValues(alpha: 0.1),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              color: AppColors.backgroundUser,
-                              width: 3,
-                            ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.1),
-                                blurRadius: 10,
-                              ),
-                            ],
-                            image: const DecorationImage(
-                              image: AssetImage('assets/images/logo.png'),
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          'Meet Eleanor',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.textUser,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          '"I curate pieces that I would wear myself. Welcome to our family."',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontStyle: FontStyle.italic,
-                            color: AppColors.textMuted,
-                            height: 1.4,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 40),
-                  const Text(
-                    'Est. 2015 • Paris, France',
-                    style: TextStyle(
-                      fontSize: 12,
-                      letterSpacing: 1.5,
-                      color: AppColors.textMuted,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 20),
                 ],
               ),
             ),
@@ -223,11 +156,67 @@ class AboutScreen extends StatelessWidget {
   }
 }
 
-class ContactScreen extends StatelessWidget {
+class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
 
   @override
+  State<ContactScreen> createState() => _ContactScreenState();
+}
+
+class _ContactScreenState extends State<ContactScreen> {
+  Map<String, dynamic> _settings = {};
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSettings();
+  }
+
+  Future<void> _loadSettings() async {
+    try {
+      final settings = await context.read<DatabaseService>().getSettings();
+      if (mounted) {
+        setState(() {
+          _settings = settings;
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
+      if (mounted) setState(() => _isLoading = false);
+    }
+  }
+
+  Future<void> _launchUrl(String urlString) async {
+    final uri = Uri.parse(urlString);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    }
+  }
+
+  Future<void> _makePhoneCall(String phoneNumber) async {
+    final Uri launchUri = Uri(scheme: 'tel', path: phoneNumber);
+    await launchUrl(launchUri);
+  }
+
+  Future<void> _openMap() async {
+    const url = 'https://www.google.com/maps/search/?api=1&query=RKJ+Fashions';
+    await _launchUrl(url);
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+    final shopName = _settings['shop_name'] ?? 'RKJ Fashions';
+    final shopAddress =
+        _settings['shop_address'] ??
+        '123 Blossom Avenue, Suite 100\nNew York, NY 10012';
+    final shopPhone = _settings['shop_phone'] ?? '+91 98765 43210';
+    final shopEmail = _settings['shop_email'] ?? 'hello@boutique.com';
+
     return Scaffold(
       backgroundColor: AppColors.backgroundUser,
       appBar: AppBar(
@@ -238,7 +227,7 @@ class ContactScreen extends StatelessWidget {
             color: AppColors.textUser,
           ),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white.withValues(alpha: 0.9),
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: AppColors.textUser),
@@ -247,227 +236,361 @@ class ContactScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            // Header
-            const Text(
-              'Get in Touch',
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: AppColors.textUser,
-                fontFamily: 'Epilogue',
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'We are here to help you with any questions or concerns.',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textMuted, fontSize: 16),
-            ),
-            const SizedBox(height: 32),
-
-            // Contact Info Cards
-            Container(
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.05),
-                    blurRadius: 10,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  _buildContactRow(
-                    Icons.phone_outlined,
-                    'Customer Support',
-                    '+91 98765 43210',
-                    isLink: true,
-                  ),
-                  const Divider(height: 32),
-                  _buildContactRow(
-                    Icons.email_outlined,
-                    'Email Address',
-                    'support@rkcollections.com',
-                    isLink: true,
-                  ),
-                  const Divider(height: 32),
-                  _buildContactRow(
-                    Icons.location_on_outlined,
-                    'Visit Us',
-                    '123, Fashion Street, Koramangala, Bengaluru, Karnataka 560034',
-                  ),
-                  const Divider(height: 32),
-                  _buildContactRow(
-                    Icons.access_time,
-                    'Business Hours',
-                    'Mon - Sat: 10:00 AM - 8:00 PM',
-                  ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 32),
-
-            // Social Media
-            const Text(
-              'Follow Us',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-                color: AppColors.textUser,
-              ),
-            ),
             const SizedBox(height: 16),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildSocialButton(Icons.facebook, Colors.blue),
-                const SizedBox(width: 20),
-                _buildSocialButton(Icons.camera_alt, Colors.pink), // Instagram
-                const SizedBox(width: 20),
-                _buildSocialButton(Icons.share, Colors.lightBlue), // Twitter
-              ],
-            ),
-            const SizedBox(height: 40),
-
-            // Message Form Placeholder
-            Container(
-              padding: const EdgeInsets.all(24),
-              decoration: BoxDecoration(
-                color: AppColors.primaryUser.withValues(alpha: 0.05),
-                borderRadius: BorderRadius.circular(16),
-                border: Border.all(
-                  color: AppColors.primaryUser.withValues(alpha: 0.2),
-                ),
-              ),
-              child: Column(
-                children: [
-                  const Text(
-                    'Send us a message',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: AppColors.primaryUser,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  TextField(
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white,
-                      hintText: 'Your Message',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: GestureDetector(
+                onTap: _openMap,
+                child: Container(
+                  width: double.infinity,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.08),
+                        blurRadius: 40,
+                        offset: const Offset(0, 10),
                       ),
-                      contentPadding: const EdgeInsets.all(16),
+                    ],
+                    image: const DecorationImage(
+                      image: NetworkImage(
+                        'https://lh3.googleusercontent.com/aida-public/AB6AXuBViZ0yU-HS3Pg5LU8V-FCQ4Ad4qAYeaKnayftZkC6mSQhVcWYTDtsObRNHXpTwzrwKiwVMqAaGwm7SVrzp0bO9GRQmIqDWqN1xiqmBAtLi61Tf0qymev1q3LRKFp0vJyXbDGkJlkiQEkb_eCoxDnTxAuSPDKbO8YH-qRPH1bJucFgrWVlJiFdgqB7YvxQToCjFApJ40cjm8tuzsz8Q9Ho5oeJIRhCJk7TvFYE8hFTm40i1OoBcs32WVe-IcwLSNQKPh0iMmrbOTWw',
+                      ),
+                      fit: BoxFit.cover,
                     ),
-                    maxLines: 4,
                   ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (context.mounted) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Message sent! We will get back to you shortly.',
-                              ),
-                            ),
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryUser,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                  child: Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24),
+                          gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [
+                              Colors.transparent,
+                              Colors.black.withValues(alpha: 0.1),
+                            ],
+                          ),
                         ),
                       ),
-                      child: const Text('Send Message'),
-                    ),
+                      Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(12),
+                              decoration: BoxDecoration(
+                                color: AppColors.primaryUser,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 4,
+                                ),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    blurRadius: 10,
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.storefront,
+                                color: Colors.white,
+                                size: 26,
+                              ),
+                            ),
+                            Container(
+                              width: 0,
+                              height: 0,
+                              margin: const EdgeInsets.only(top: 0),
+                              borderStyle: BorderStyle.solid,
+                              decoration: const BoxDecoration(
+                                border: Border(
+                                  left: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 8,
+                                  ),
+                                  right: BorderSide(
+                                    color: Colors.transparent,
+                                    width: 8,
+                                  ),
+                                  top: BorderSide(
+                                    color: AppColors.primaryUser,
+                                    width: 12,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Positioned(
+                        bottom: 16,
+                        right: 16,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 6,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.9),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 8,
+                                height: 8,
+                                decoration: const BoxDecoration(
+                                  color: Colors.green,
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                              const Text(
+                                'Open Now',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textUser,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                ),
+              ),
+            ),
+
+            Transform.translate(
+              offset: const Offset(0, -24),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: Container(
+                  padding: const EdgeInsets.all(32),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(24),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.1),
+                        blurRadius: 25,
+                        offset: const Offset(0, 20),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 48,
+                        height: 4,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      const Text(
+                        'Visit Our Store',
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: AppColors.textUser,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'EST. 2023',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.primaryUser,
+                          letterSpacing: 1.0,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Text(
+                        shopAddress,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 16,
+                          height: 1.5,
+                          color: AppColors.textUser.withValues(alpha: 0.8),
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      const Divider(),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: _buildHoursCard('Mon - Sat', '10am - 7pm'),
+                          ),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildHoursCard('Sunday', '11am - 5pm'),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 24),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton.icon(
+                              onPressed: _openMap,
+                              icon: const Icon(Icons.near_me),
+                              label: const Text('Get Directions'),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.primaryUser,
+                                foregroundColor: Colors.white,
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              onPressed: () => _makePhoneCall(shopPhone),
+                              icon: const Icon(Icons.call),
+                              label: const Text('Call Now'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: AppColors.primaryUser,
+                                side: const BorderSide(
+                                  color: AppColors.primaryUser,
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                ),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  _buildFooterLink(
+                    icon: Icons.mail,
+                    title: 'Email Us',
+                    subtitle: shopEmail,
+                    onTap: () => _launchUrl('mailto:$shopEmail'),
+                  ),
+                  const SizedBox(height: 16),
+                  _buildFooterLink(
+                    icon: Icons.camera_alt,
+                    title: 'Instagram',
+                    subtitle: '@rkj_fashions',
+                    onTap: () {},
+                  ),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),
-            const SizedBox(height: 40),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildContactRow(
-    IconData icon,
-    String label,
-    String value, {
-    bool isLink = false,
-  }) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: AppColors.backgroundUser,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Icon(icon, color: AppColors.primaryUser, size: 24),
-        ),
-        const SizedBox(width: 16),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                label,
-                style: const TextStyle(
-                  color: AppColors.textMuted,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-              const SizedBox(height: 4),
-              Text(
-                value,
-                style: TextStyle(
-                  color: isLink ? AppColors.primaryUser : AppColors.textUser,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  height: 1.4,
-                  decoration: isLink ? TextDecoration.underline : null,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildSocialButton(IconData icon, Color color) {
+  Widget _buildHoursCard(String day, String time) {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
+        color: AppColors.backgroundUser.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        children: [
+          Text(
+            day,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.secondaryUser,
+            ),
           ),
+          const SizedBox(height: 4),
+          Text(time, style: TextStyle(color: Colors.grey[600])),
         ],
       ),
-      child: Icon(icon, color: color, size: 28),
+    );
+  }
+
+  Widget _buildFooterLink({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.05),
+              blurRadius: 4,
+            ),
+          ],
+          border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
+        ),
+        child: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: AppColors.backgroundUser,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: AppColors.primaryUser),
+            ),
+            const SizedBox(width: 16),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.textUser,
+                    ),
+                  ),
+                  Text(
+                    subtitle,
+                    style: TextStyle(color: Colors.grey[500], fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right, color: Colors.grey),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -498,7 +621,6 @@ class HelpScreen extends StatelessWidget {
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            // Hero
             Container(
               height: 200,
               width: double.infinity,
@@ -545,8 +667,6 @@ class HelpScreen extends StatelessWidget {
               style: TextStyle(color: AppColors.textMuted, fontSize: 14),
             ),
             const SizedBox(height: 32),
-
-            // WhatsApp Button
             ElevatedButton.icon(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
@@ -566,8 +686,6 @@ class HelpScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 40),
-
-            // FAQ
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -592,34 +710,6 @@ class HelpScreen extends StatelessWidget {
             _buildExpansionTile(
               'Sizing Guide',
               'Check the "Size Guide" link on every product page for detailed measurements.',
-            ),
-
-            const SizedBox(height: 40),
-            const Divider(),
-            const SizedBox(height: 24),
-
-            // Contact Grid
-            Row(
-              children: [
-                Expanded(
-                  child: _buildContactCard(
-                    Icons.email_outlined,
-                    'Email Support',
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: _buildContactCard(
-                    Icons.camera_alt_outlined,
-                    'Instagram',
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 24),
-            const Text(
-              'Available Mon-Fri, 9am - 6pm EST',
-              style: TextStyle(fontSize: 12, color: AppColors.textMuted),
             ),
           ],
         ),
@@ -654,30 +744,6 @@ class HelpScreen extends StatelessWidget {
           Text(
             content,
             style: const TextStyle(color: AppColors.textMuted, height: 1.5),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildContactCard(IconData icon, String label) {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.grey.withValues(alpha: 0.1)),
-      ),
-      child: Column(
-        children: [
-          Icon(icon, color: AppColors.textMuted),
-          const SizedBox(height: 12),
-          Text(
-            label,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              color: AppColors.textUser,
-            ),
           ),
         ],
       ),

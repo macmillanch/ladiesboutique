@@ -418,6 +418,36 @@ app.post('/api/reviews', async (req, res) => {
     }
 });
 
+// --- SETTINGS ROUTES ---
+app.get('/api/settings', async (req, res) => {
+    try {
+        const result = await db.query('SELECT * FROM settings');
+        const settings = {};
+        result.rows.forEach(row => {
+            settings[row.key] = row.value;
+        });
+        res.json(settings);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.put('/api/settings', async (req, res) => {
+    const updates = req.body; // Expects { key: value, key2: value2 }
+    try {
+        const queries = Object.keys(updates).map(key => {
+            return db.query(
+                'INSERT INTO settings (key, value) VALUES ($1, $2) ON CONFLICT (key) DO UPDATE SET value = $2',
+                [key, updates[key]]
+            );
+        });
+        await Promise.all(queries);
+        res.json({ message: 'Settings updated successfully' });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // --- NOTIFICATION ROUTES ---
 app.get('/api/notifications/:userId', async (req, res) => {
     const { userId } = req.params;

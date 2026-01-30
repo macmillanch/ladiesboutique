@@ -242,4 +242,23 @@ class DatabaseService {
   Future<void> markNotificationsRead(String userId) async {
     await http.put(Uri.parse('$_baseUrl/notifications/read/$userId'));
   }
+
+  Future<Map<String, dynamic>> getSettings() async {
+    final response = await http.get(Uri.parse('$_baseUrl/settings'));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    }
+    return {};
+  }
+
+  Future<void> updateSettings(Map<String, String> settings) async {
+    final response = await http.put(
+      Uri.parse('$_baseUrl/settings'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode(settings),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update settings');
+    }
+  }
 }
