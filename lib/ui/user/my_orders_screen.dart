@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/order_model.dart';
 import '../../data/services/auth_service.dart';
@@ -109,13 +110,9 @@ class MyOrdersScreen extends StatelessWidget {
         statusColor = Colors.orange;
     }
 
-    // Format date if createdAt exists
-    // Assuming createdAt is DateTime or Timestamp. If it's not in OrderModel, we skip.
-    // We will assume OrderModel has createdAt for now, if not we will handle plain display.
-    String dateStr = '';
-    // if (order.createdAt != null) {
-    //   dateStr = DateFormat('MMM dd, yyyy').format(order.createdAt!);
-    // }
+    // Attempt to format date roughly if string available, or just ignore display
+    // since createdAt formatting is usually handled by intl.
+    // We'll skip complex formatting to minimalize dependencies here, or simple string.
 
     return GestureDetector(
       onTap: () {
@@ -156,14 +153,6 @@ class MyOrdersScreen extends StatelessWidget {
                         color: AppColors.textUser,
                       ),
                     ),
-                    if (dateStr.isNotEmpty)
-                      Text(
-                        dateStr,
-                        style: const TextStyle(
-                          fontSize: 12,
-                          color: AppColors.textMuted,
-                        ),
-                      ),
                   ],
                 ),
                 Container(
@@ -228,8 +217,101 @@ class MyOrdersScreen extends StatelessWidget {
                 ),
               ],
             ),
+            if (order.trackingId.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              SizedBox(
+                width: double.infinity,
+                child: OutlinedButton.icon(
+                  onPressed: () => _showTracking(context, order.trackingId),
+                  icon: const Icon(Icons.local_shipping),
+                  label: Text('Track Order (${order.trackingId})'),
+                  style: OutlinedButton.styleFrom(
+                    foregroundColor: AppColors.primaryUser,
+                    side: const BorderSide(color: AppColors.primaryUser),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ],
         ),
+      ),
+    );
+  }
+
+  Future<void> _showTracking(BuildContext context, String trackingId) async {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator()),
+    );
+
+    try {
+      final data = await context.read<DatabaseService>().trackSpeedPost(
+        trackingId,
+      );
+      if (context.mounted) {
+        Navigator.pop(context); // Pop loader
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          ),
+          builder: (ctx) => _TrackingSheet(data: data),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        Navigator.pop(context);
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('Tracking failed: $e')));
+      }
+    }
+  }
+}
+
+class _TrackingSheet extends StatelessWidget {
+  final Map<String, dynamic> data;
+  const _TrackingSheet({required this.data});
+
+  @override
+  Widget build(BuildContext context) {
+    // API structure might vary.
+    return Container(
+      padding: const EdgeInsets.all(24),
+      height: MediaQuery.of(context).size.height * 0.6,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Tracking Details',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 16),
+          Expanded(
+            child: SingleChildScrollView(
+              child: data.isEmpty
+                  ? const Center(
+                      child: Text("No tracking details found or API error."),
+                    )
+                  : Text(const JsonEncoder.withIndent('  ').convert(data)),
+            ),
+          ),
+        ],
       ),
     );
   }

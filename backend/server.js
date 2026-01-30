@@ -238,15 +238,45 @@ app.put('/api/users/:id', async (req, res) => {
 
 // --- ORDER ROUTES (Placeholder) ---
 app.get('/api/orders/:userId', async (req, res) => {
-    // TODO: Implement GET orders
-    res.json([]);
+    const { userId } = req.params;
+    try {
+        const result = await db.query('SELECT * FROM orders WHERE user_id = $1 ORDER BY created_at DESC', [userId]);
+        res.json(result.rows);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 app.post('/api/orders', async (req, res) => {
-    // TODO: Implement POST order
-    const { userId, totalAmount, items } = req.body;
-    // Mock success
-    res.status(201).json({ id: 'order-' + Date.now(), status: 'pending' });
+    const { userId, totalAmount, items, shippingAddress, paymentMethod, transactionId } = req.body;
+    try {
+        const result = await db.query(
+            `INSERT INTO orders (user_id, total_amount, items, shipping_address, payment_method, transaction_id, status)
+             VALUES ($1, $2, $3, $4, $5, $6, 'Confirmed') RETURNING *`,
+            [userId, totalAmount, JSON.stringify(items), shippingAddress, paymentMethod, transactionId]
+        );
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.put('/api/orders/:id', async (req, res) => {
+    const { id } = req.params;
+    const { status, tracking_id } = req.body;
+    try {
+        const result = await db.query(
+            `UPDATE orders SET 
+             status = COALESCE($1, status), 
+             tracking_id = COALESCE($2, tracking_id) 
+             WHERE id = $3 RETURNING *`,
+            [status, tracking_id, id]
+        );
+        if (result.rows.length === 0) return res.status(404).json({ error: 'Order not found' });
+        res.json(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
 });
 
 // --- WISHLIST ROUTES ---

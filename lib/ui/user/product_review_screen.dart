@@ -353,7 +353,7 @@ class _ProductReviewScreenState extends State<ProductReviewScreen> {
                       widget.productId,
                       _rating,
                       _reviewController.text,
-                      [], // TODO: Implement Image Upload
+                      [],
                     );
 
                     if (context.mounted) {

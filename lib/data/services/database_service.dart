@@ -113,11 +113,47 @@ class DatabaseService {
     String trackingId,
     String slipUrl,
   ) async {
-    // Stub
+    final response = await http.put(
+      Uri.parse('$_baseUrl/orders/$orderId'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'status': 'Shipped', 'tracking_id': trackingId}),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update order');
+    }
   }
 
   Future<void> confirmDelivery(String orderId) async {
-    // Stub
+    final response = await http.put(
+      Uri.parse('$_baseUrl/orders/$orderId'),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'status': 'Delivered'}),
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update order');
+    }
+  }
+
+  Future<Map<String, dynamic>> trackSpeedPost(String consignmentNumber) async {
+    const apiKey = '9a19ea9211mshc83699f10d28b68p1f7821jsn58469b993489';
+    try {
+      final response = await http.get(
+        Uri.parse(
+          'https://speedpost-tracking-api-for-india-post.p.rapidapi.com/speedpost/track/$consignmentNumber',
+        ),
+        headers: {
+          'x-rapidapi-host':
+              'speedpost-tracking-api-for-india-post.p.rapidapi.com',
+          'x-rapidapi-key': apiKey,
+        },
+      );
+      if (response.statusCode == 200) {
+        return jsonDecode(response.body);
+      }
+    } catch (e) {
+      debugPrint('Tracking Error: $e');
+    }
+    return {};
   }
 
   // Wishlist
