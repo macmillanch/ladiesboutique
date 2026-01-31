@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../data/services/auth_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../main.dart';
+import 'reset_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -195,7 +196,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     isPassword: true,
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const ResetPasswordScreen(),
+                        ),
+                      );
+                    },
+                    child: const Text(
+                      'Forgot Password?',
+                      style: TextStyle(color: AppColors.textMuted),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
 
                 ElevatedButton(
                   onPressed: _isLoading ? null : _submitEmail,

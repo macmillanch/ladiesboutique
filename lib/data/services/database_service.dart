@@ -67,6 +67,8 @@ class DatabaseService {
         if (response.statusCode == 200) {
           final List<dynamic> data = jsonDecode(response.body);
           yield data.map((json) => OrderModel.fromJson(json)).toList();
+        } else {
+          yield [];
         }
       } catch (e) {
         debugPrint('Error fetching orders: $e');
@@ -83,6 +85,8 @@ class DatabaseService {
         if (response.statusCode == 200) {
           final List<dynamic> data = jsonDecode(response.body);
           yield data.map((json) => OrderModel.fromJson(json)).toList();
+        } else {
+          yield [];
         }
       } catch (e) {
         debugPrint('Error fetching user orders: $e');

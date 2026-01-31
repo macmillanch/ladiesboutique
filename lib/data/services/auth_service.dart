@@ -335,6 +335,32 @@ class AuthService with ChangeNotifier {
     }
   }
 
+  Future<void> resetPassword(String identifier, String newPassword) async {
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/auth/reset-password'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'identifier': identifier,
+          'newPassword': newPassword,
+        }),
+      );
+
+      if (response.statusCode != 200) {
+        throw Exception(jsonDecode(response.body)['error'] ?? 'Reset failed');
+      }
+    } catch (e) {
+      debugPrint('Reset Password Error: $e');
+      rethrow;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
   Future<void> checkAdmin() async {
     // Stub
   }
